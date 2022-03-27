@@ -1,5 +1,11 @@
-html,
-body {
+:root{
+  --preto: #121212;
+  --super-preto: #000000;
+  --cinza: #2D2D35;
+  --branco: #FFFFFF;
+}
+
+html, body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

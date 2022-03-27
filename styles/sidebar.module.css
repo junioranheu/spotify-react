@@ -1,0 +1,6 @@
+.sidebar {
+    background-color: var(--super-preto);
+    width: 15%;
+
+    color: var(--branco);
+}

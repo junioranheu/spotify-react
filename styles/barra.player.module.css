@@ -1,0 +1,33 @@
+/* =-=-=-=-=-=-=-=-=-=-= Player (usuário logado) =-=-=-=-=-=-=-=-=-=-= */
+.barraPlayer {
+    background-color: var(--preto);
+
+    position: absolute;
+    bottom: 0;
+
+    width: 100vw;
+    height: 85px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.barraPlayer div:nth-child(1) {
+    background-color: pink;
+}
+
+.barraPlayer div:nth-child(2) {
+    background-color: red;
+}
+
+.barraPlayer div:nth-child(3) {
+    background-color: blue;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Botao from '../../components/outros/botao.js';
-import Styles from '../../styles/barra.module.css';
+import Styles from '../../styles/barra.deslogado.module.css';
 
 export default function BarraDeslogado() {
     return (

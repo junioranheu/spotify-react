@@ -10,17 +10,19 @@ export default function Sidebar() {
         <aside className={Styles.sidebar}>
             <SpotifyLogo width='130px' />
 
-            <span>
-                <Casa width='24px' /> <span>Início</span>
-            </span>
+            <div className={Styles.divIcones}>
+                <span>
+                    <Casa width='24px' /> <span>Início</span>
+                </span>
 
-            <span>
-                <Lupa width='24px' /> <span>Procurar</span>
-            </span>
+                <span>
+                    <Lupa width='24px' /> <span>Procurar</span>
+                </span>
 
-            <span>
-                <Biblioteca width='24px' /> <span>Biblioteca</span>
-            </span>
+                <span>
+                    <Biblioteca width='24px' /> <span>Biblioteca</span>
+                </span>
+            </div>
         </aside>
     )
 }

@@ -15,6 +15,26 @@
     gap: 16px;
 }
 
+.sidebar span {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 700;
+    opacity: 0.85;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar span:hover {
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+    opacity: 1;
+    cursor: pointer;
+}
+
 .divIcones {
     /* background-color: red; */
     margin-top: 15px;
@@ -26,27 +46,9 @@
 
 .divIcones span {
     /* background-color: pink; */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
-    font-size: 0.875rem;
-    line-height: 1rem;
-    text-transform: none;
-    letter-spacing: normal;
-    font-weight: 700;
-    opacity: 0.85;
-
     display: flex;
     align-items: center;
     gap: 15px;
-}
-
-.divIcones span:hover {
-    -webkit-transition: opacity .3s;
-    transition: opacity .3s;
-    opacity: 1;
-    cursor: pointer;
 }
 
 .quadrado {
@@ -66,4 +68,22 @@
 
 .quadrado.quadradoColorido {
     background: linear-gradient(135deg, #450af5, #c4efd9);
+}
+
+.divisao {
+    border-bottom: 1px solid rgba(42, 42, 42, 100);
+    margin-top: 15px;
+    margin-bottom: 12px;
+}
+
+.divPlaylists {
+    /* background-color: pink; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.divPlaylists span {
+    font-weight: 400;
 }

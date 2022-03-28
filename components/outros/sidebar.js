@@ -1,3 +1,5 @@
+import { loremIpsum } from 'lorem-ipsum';
+import Link from 'next/link';
 import { Resizable } from 're-resizable';
 import React from 'react';
 import Styles from '../../styles/sidebar.module.css';
@@ -21,7 +23,7 @@ export default function Sidebar() {
         >
             <aside className={Styles.sidebar}>
                 <div>
-                    <SpotifyLogo width='130px' />
+                    <Link href={'/'}><a><SpotifyLogo width='130px' /></a></Link>
                 </div>
 
                 <div className={Styles.divIcones}>
@@ -54,6 +56,15 @@ export default function Sidebar() {
 
                         <span>Músicas curtidas</span>
                     </span>
+                </div>
+
+                <div className={Styles.divisao}></div>
+
+                <div className={Styles.divPlaylists}>
+                    <span>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</span>
+                    <span>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</span>
+                    <span>{loremIpsum({ coucount: 1, sentenceUpperBound: 5 })}</span>
+                    <span>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</span>
                 </div>
             </aside>
         </Resizable>

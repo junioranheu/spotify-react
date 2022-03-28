@@ -8,7 +8,9 @@ import SpotifyLogo from '../svg/spotifyLogo';
 export default function Sidebar() {
     return (
         <aside className={Styles.sidebar}>
-            <SpotifyLogo width='130px' />
+            <div>
+                <SpotifyLogo width='130px' />
+            </div>
 
             <div className={Styles.divIcones}>
                 <span>
@@ -22,6 +24,11 @@ export default function Sidebar() {
                 <span>
                     <Biblioteca width='24px' /> <span>Biblioteca</span>
                 </span>
+            </div>
+
+            <div className={Styles.divIcones}>
+                <span>Criar lista de reprodução</span>
+                <span>Músicas que gostou</span>
             </div>
         </aside>
     )

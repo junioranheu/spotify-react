@@ -4,8 +4,8 @@
 
     color: var(--branco);
 
-    padding-left: 26px;
-    padding-right: 26px;
+    padding-left: 25px;
+    padding-right: 25px;
     padding-top: 24px;
     padding-bottom: 22px;
 
@@ -17,7 +17,7 @@
 
 .divIcones {
     /* background-color: red; */
-    margin-top: 22px;
+    margin-top: 15px;
 
     display: flex;
     flex-direction: column;
@@ -32,8 +32,14 @@
     text-transform: none;
     letter-spacing: normal;
     font-weight: 700;
+    opacity: 0.8;
 
     display: flex;
     align-items: center;
     gap: 15px;
+}
+
+.divIcones span:hover {
+    opacity: 1;
+    cursor: pointer;
 }

@@ -20,14 +20,17 @@
     overflow-x: hidden;
 }
 
-.barraPlayer div:nth-child(1) {
+/* =-=-=-=-=-=-=-=-=-=-= Div 1 =-=-=-=-=-=-=-=-=-=-= */
+.divInfo {
     background-color: pink;
 }
 
-.barraPlayer div:nth-child(2) {
+/* =-=-=-=-=-=-=-=-=-=-= Div 2 =-=-=-=-=-=-=-=-=-=-= */
+.divPlayer {
     background-color: red;
 }
 
-.barraPlayer div:nth-child(3) {
+/* =-=-=-=-=-=-=-=-=-=-= Div 3 =-=-=-=-=-=-=-=-=-=-= */
+.divOpcoes{
     background-color: blue;
 }

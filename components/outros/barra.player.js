@@ -11,7 +11,7 @@ import Volume from '../svg/barra.player/volume';
 export default function BarraPlayer() {
     return (
         <section className={Styles.barraPlayer}>
-            <div>
+            <div className={Styles.divInfo}>
                 <Coracao />
                 <Toggle />
                 <Microfone />
@@ -21,11 +21,11 @@ export default function BarraPlayer() {
                 <Fullscreen />
             </div>
 
-            <div>
+            <div className={Styles.divPlayer}>
                 <h1>Parte 2</h1>
             </div>
 
-            <div>
+            <div className={Styles.divOpcoes}>
                 <h1>Parte 3</h1>
             </div>
         </section>

@@ -1,4 +1,4 @@
-export default function Toggle({ width }) {
+export default function Toggle() {
     return (
         <svg width='16' height='16' xmlns='http://www.w3.org/2000/svg'>
             <g fill='currentColor' fill-rule='evenodd'>

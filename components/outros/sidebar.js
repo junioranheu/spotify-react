@@ -14,11 +14,11 @@ export default function Sidebar() {
     return (
         <Resizable
             defaultSize={{
-                width: 270,
+                width: 280,
             }}
 
             minHeight={'100vh'}
-            minWidth={170}
+            minWidth={185}
             maxWidth={400}
         >
             <aside className={Styles.sidebar}>
@@ -61,10 +61,10 @@ export default function Sidebar() {
                 <div className={Styles.divisao}></div>
 
                 <div className={Styles.divPlaylists}>
-                    <span>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</span>
-                    <span>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</span>
-                    <span>{loremIpsum({ coucount: 1, sentenceUpperBound: 5 })}</span>
-                    <span>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</span>
+                    <span><Link href={'/'}><a>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</a></Link></span>
+                    <span><Link href={'/'}><a>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</a></Link></span>
+                    <span><Link href={'/'}><a>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</a></Link></span>
+                    <span><Link href={'/'}><a>{loremIpsum({ count: 1, sentenceUpperBound: 5 })}</a></Link></span>
                 </div>
             </aside>
         </Resizable>

@@ -8,3 +8,34 @@
 
     display: flex;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
+.botao {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 40px;
+    margin: 8px 0 12px;
+    padding: 8px 48px;
+    border: none;
+    background: var(--branco);
+    border-radius: 500px;
+    color: var(--preto);
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 180px;
+    white-space: nowrap;
+    outline: none;
+    place-content: center;
+    place-items: center;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+    text-transform: uppercase;
+  }
+  
+  .botao:hover {
+    transform: scale(1.06);
+  }
+  

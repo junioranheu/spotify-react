@@ -1,4 +1,7 @@
 .container {
-    background-color: blue;
+    background-color: blueviolet;
     width: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }

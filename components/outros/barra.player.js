@@ -14,6 +14,10 @@ import Volume from '../svg/barra.player/volume';
 export default function BarraPlayer() {
     const [isMusicaCurtida, setIsMusicaCurtida] = useState(false);
 
+    function handleCoracao() {
+        setIsMusicaCurtida(!isMusicaCurtida);
+    }
+
     return (
         <section className={Styles.barraPlayer}>
             <div className={Styles.divInfo}>
@@ -27,12 +31,14 @@ export default function BarraPlayer() {
                         <span className={Styles.infoDescricao}>vai tomar no cu</span>
                     </div>
                 </div>
- 
-                {isMusicaCurtida ? (
-                    <CoracaoPreenchido />
-                ) : (
-                    <Coracao />
-                )}
+
+                <span onClick={() => handleCoracao()} className={Styles.spanCoracao}>
+                    {isMusicaCurtida ? (
+                        <CoracaoPreenchido />
+                    ) : (
+                        <Coracao />
+                    )}
+                </span>
 
                 <Toggle />
             </div>

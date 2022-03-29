@@ -40,7 +40,7 @@
     gap: 15px;
 }
 
-.divInfo div {
+.divInfo div, .spanCoracao {
     /* background-color: red; */
     display: flex;
     justify-content: center;

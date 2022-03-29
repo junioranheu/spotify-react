@@ -13,24 +13,93 @@
     align-items: center;
     gap: 100px;
 
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
 
     overflow-y: hidden;
     overflow-x: hidden;
 }
 
+.barraPlayer svg {
+    fill: #B3B3B3;
+    cursor: pointer;
+}
+
+.barraPlayer svg:hover {
+    fill: #FFFFFF;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Div 1 =-=-=-=-=-=-=-=-=-=-= */
 .divInfo {
-    background-color: pink;
+    /* background-color: pink; */
+    width: 33%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.divInfo div {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+
+    margin-right: 5px;
+}
+
+.divInfo img {
+    cursor: pointer;
+}
+
+.infoMusica {
+    /* background-color: blue !important; */
+    margin-left: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.infoTitulo {
+    /* color: peru !important; */
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 0.85rem;
+    line-height: 1rem;
+    font-weight: 400;
+    color: var(--branco);
+}
+
+.infoDescricao {
+    /* color: red !important; */
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    font-weight: 400;
+    color: #b3b3b3;
+}
+
+.infoTitulo:hover, .infoDescricao:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Div 2 =-=-=-=-=-=-=-=-=-=-= */
 .divPlayer {
     background-color: red;
+    width: 33%;
+
+    display: flex;
+    justify-content: center;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Div 3 =-=-=-=-=-=-=-=-=-=-= */
-.divOpcoes{
-    background-color: blue;
+.divOpcoes {
+    /* background-color: blue; */
+    width: 33%;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
 }

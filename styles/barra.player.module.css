@@ -62,6 +62,9 @@
     /* background-color: blue !important; */
     margin-left: 10px;
 
+    /* min-width: 150px !important;    */
+    max-width: 150px !important;
+
     display: flex;
     flex-direction: column;
 }
@@ -74,6 +77,10 @@
     line-height: 1rem;
     font-weight: 400;
     color: var(--branco);
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .infoDescricao {
@@ -84,6 +91,10 @@
     line-height: 1rem;
     font-weight: 400;
     color: #b3b3b3;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .infoTitulo:hover, .infoDescricao:hover {

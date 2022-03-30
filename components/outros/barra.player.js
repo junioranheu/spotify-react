@@ -54,8 +54,8 @@ export default function BarraPlayer() {
                     </div>
 
                     <div className={Styles.infoMusica}>
-                        <span className={Styles.infoTitulo}>bla bla bla!</span>
-                        <span className={Styles.infoDescricao}>chalequito</span>
+                        <span className={Styles.infoTitulo} title={'You Only Live Once'}>You Only Live Once</span>
+                        <span className={Styles.infoDescricao} title={'The Strokes'}>The Strokes</span>
                     </div>
                 </div>
 

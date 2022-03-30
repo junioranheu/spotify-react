@@ -3,52 +3,45 @@ import Styles from '../../styles/ProgressBar.volume.module.css';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarVolume() {
-    const [ptrPosition, setPtrPosition] = useState(null);
-    const ptrRef = useRef(null);
-    let isMouseDown = false;
+    const [volume, setVolume] = useState(0);
+    const [volumeReal, setVolumeReal] = useState(0);
+    const refPointer = useRef(null);
     let x = 1;
+    let widthElemento = 1;
 
-    const handleMouseLeave = (e) => {
-        isMouseDown = false;
-    }
-
-    const handleMouseMove = (e) => {
+    function handleMouseMove(e) {
         e.preventDefault();
         var rect = document.querySelector('#progressWrapper').getBoundingClientRect();
-        // console.log(e);
-        // console.log(rect);
         x = e.clientX - rect.left;
+        widthElemento = rect.width;
 
-        // Ajustar caso seja menor que 0 ou maior que 100;
-        x = x < 0 ? 0 : x;
-        // x = x > 100 ? 100 : x;
-
+        // console.log(rect.width);
         // console.log(`${e.clientX} - ${rect.left}`);
         // console.log(x);
     }
 
-    const handleMouseUp = (e) => {
-        isMouseDown = false;
-        setPtrPosition(x);
-    
-        console.log(x);
-    }
+    function handleMouseUp() {
+        // Ajustar caso seja menor que 0;
+        x = x < 0 ? 0 : x;
 
-    const handleMouseDown = (e) => {
-        isMouseDown = true;
+        // Calcular o volume real, já que o volume pode passar de 100;
+        let volumeRealCalculo = ((x / widthElemento) * 100);
+        setVolumeReal(volumeRealCalculo);
+        // console.log(volumeRealCalculo);
+
+        // Volume "bruto", para exibir no elemento;
+        setVolume(x);
+        // console.log(x);
     }
 
     return (
         <div className={Styles.progressWrapper} id='progressWrapper'
-            onMouseLeave={handleMouseLeave}
             onMouseMove={(e) => handleMouseMove(e)}
-            onMouseDown={(e) => handleMouseDown(e)}
-            onMouseUp={handleMouseUp}
+            onMouseUp={() => handleMouseUp()}
         >
-            <div className={Styles.progress} style={{ width: ptrPosition }}>
-                <div className={Styles.pointer} ref={ptrRef}>
-                    <div className={Styles.toast}>
-                    </div>
+            <div className={Styles.progress} style={{ width: volume }}>
+                <div className={Styles.pointer} ref={refPointer}>
+                    <div className={Styles.toast}></div>
                 </div>
             </div>
         </div>

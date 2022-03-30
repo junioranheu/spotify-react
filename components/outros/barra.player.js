@@ -18,6 +18,11 @@ export default function BarraPlayer() {
         setIsMusicaCurtida(!isMusicaCurtida);
     }
 
+    const [volume, setVolume] = useState(0);
+    function handleVolume(v) {
+        setVolume(Math.floor(v));
+    }
+
     return (
         <section className={Styles.barraPlayer}>
             {/* Primeira div, esquerda */}
@@ -57,8 +62,18 @@ export default function BarraPlayer() {
                 <Volume />
 
                 <div className={Styles.divVolume}>
-                    <ProgressBarVolume />
+                    <ProgressBarVolume handleVolume={handleVolume} />
                 </div>
+
+
+                {
+                    // Exibir o volume 
+                    process.env.NODE_ENV === 'development' && (
+                        <span style={{ color: 'var(--verde)' }}>
+                            <code>Volume {volume}</code>
+                        </span>
+                    )
+                }
 
                 <Fullscreen />
             </div>

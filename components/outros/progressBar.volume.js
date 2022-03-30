@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Styles from '../../styles/ProgressBar.volume.module.css';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
-export default function ProgressBarVolume() {
+export default function ProgressBarVolume(props) {
     const [volume, setVolume] = useState(0);
     const [volumeReal, setVolumeReal] = useState(0);
     const refPointer = useRef(null);
@@ -27,6 +27,7 @@ export default function ProgressBarVolume() {
         // Calcular o volume real, já que o volume pode passar de 100;
         let volumeRealCalculo = ((x / widthElemento) * 100);
         setVolumeReal(volumeRealCalculo);
+        props.handleVolume(volumeRealCalculo);
         // console.log(volumeRealCalculo);
 
         // Volume "bruto", para exibir no elemento;

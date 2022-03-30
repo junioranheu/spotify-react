@@ -40,12 +40,18 @@
     gap: 15px;
 }
 
-.divInfo div, .spanCoracao {
+.divInfo div {
     /* background-color: red; */
     display: flex;
     justify-content: center;
 
     margin-right: 5px;
+}
+
+.spanCoracao, .spanVolume {
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
 }
 
 .divInfo img {

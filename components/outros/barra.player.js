@@ -9,7 +9,10 @@ import Fullscreen from '../svg/barra.player/fullscreen';
 import Lista from '../svg/barra.player/lista';
 import Microfone from '../svg/barra.player/microfone';
 import Toggle from '../svg/barra.player/toggle';
-import Volume from '../svg/barra.player/volume';
+import Volume1 from '../svg/barra.player/volume1';
+import Volume2 from '../svg/barra.player/volume2';
+import Volume3 from '../svg/barra.player/volume3';
+import Volume4 from '../svg/barra.player/volume4';
 import ProgressBarVolume from './progressBar.volume';
 
 export default function BarraPlayer() {
@@ -18,9 +21,17 @@ export default function BarraPlayer() {
         setIsMusicaCurtida(!isMusicaCurtida);
     }
 
-    const [volume, setVolume] = useState(0);
-    function handleVolume(v) {
+    const [volume, setVolume] = useState(50);
+    function getVolume(v) {
         setVolume(Math.floor(v));
+    }
+
+    function handleVolume() {
+        if (volume > 0) {
+            setVolume(0);
+        } else {
+            setVolume(50);
+        }
     }
 
     return (
@@ -59,24 +70,36 @@ export default function BarraPlayer() {
                 <Microfone />
                 <Lista />
                 <Dispositivo />
-                <Volume />
 
-                <div className={Styles.divVolume}>
-                    <ProgressBarVolume handleVolume={handleVolume} />
+                <span onClick={() => handleVolume()} className={Styles.spanVolume}>
+                    {
+                        volume >= 65 ? (
+                            <Volume4 />
+                        ) : volume >= 30 && volume < 65 ? (
+                            <Volume3 />
+                        ) : volume >= 1 && volume < 30 ? (
+                            <Volume2 />
+                        ) : (
+                            <Volume1 />
+                        )
+                    }
+                </span>
+
+                <div className={Styles.divVolume} title={`Volume ${volume}`}>
+                    <ProgressBarVolume getVolume={getVolume} volume={volume} />
                 </div>
-
-
-                {
-                    // Exibir o volume 
-                    process.env.NODE_ENV === 'development' && (
-                        <span style={{ color: 'var(--verde)' }}>
-                            <code>Volume {volume}</code>
-                        </span>
-                    )
-                }
 
                 <Fullscreen />
             </div>
+
+            {
+                // Exibir o volume 
+                process.env.NODE_ENV === 'development' && (
+                    <span style={{ color: 'var(--verde)' }}>
+                        <code>{volume}</code>
+                    </span>
+                )
+            }
         </section>
     )
 }

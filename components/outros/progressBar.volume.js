@@ -18,8 +18,7 @@ export default function ProgressBarVolume(props) {
         // Definir o volume ao carregar, com base em props.volume;
         const volumeInicial = (props.volume * widthElemento) / 100;
         setVolume(volumeInicial);
-    }, []);
-
+    }, [props.volume]);
 
     function handleMouseMove(e) {
         e.preventDefault();

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Styles from '../../styles/ProgressBar.volume.module.css';
+import Styles from '../../styles/progressBar.volume.module.css';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarVolume(props) {

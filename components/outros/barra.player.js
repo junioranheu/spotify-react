@@ -10,16 +10,17 @@ import Lista from '../svg/barra.player/lista';
 import Microfone from '../svg/barra.player/microfone';
 import Toggle from '../svg/barra.player/toggle';
 import Volume from '../svg/barra.player/volume';
+import ProgressBarVolume from './progressBar.volume';
 
 export default function BarraPlayer() {
     const [isMusicaCurtida, setIsMusicaCurtida] = useState(false);
-
     function handleCoracao() {
         setIsMusicaCurtida(!isMusicaCurtida);
     }
 
     return (
         <section className={Styles.barraPlayer}>
+            {/* Primeira div, esquerda */}
             <div className={Styles.divInfo}>
                 <div>
                     <div>
@@ -27,8 +28,8 @@ export default function BarraPlayer() {
                     </div>
 
                     <div className={Styles.infoMusica}>
-                        <span className={Styles.infoTitulo}>bla bla bla</span>
-                        <span className={Styles.infoDescricao}>vai tomar no cu</span>
+                        <span className={Styles.infoTitulo}>bla bla bla!</span>
+                        <span className={Styles.infoDescricao}>chalequito</span>
                     </div>
                 </div>
 
@@ -43,16 +44,22 @@ export default function BarraPlayer() {
                 <Toggle />
             </div>
 
+            {/* Segunda div, meio */}
             <div className={Styles.divPlayer}>
                 <h1>Parte 2</h1>
             </div>
 
+            {/* Terceira div, direita */}
             <div className={Styles.divOpcoes}>
                 <Microfone />
                 <Lista />
                 <Dispositivo />
                 <Volume />
-                <span>volume</span>
+
+                <div className={Styles.divVolume}>
+                    <ProgressBarVolume />
+                </div>
+
                 <Fullscreen />
             </div>
         </section>

@@ -3,6 +3,7 @@
   --super-preto: #000000;
   --cinza: #2D2D35;
   --branco: #FFFFFF;
+  --verde: #1DB954;
 }
 
 html, body {
@@ -32,6 +33,13 @@ a {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none
+}
+
+.svg16px{
+  min-width: 16px;
+  min-height: 16px;
+  max-width: 16px;
+  max-height: 16px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Scroll =-=-=-=-=-=-=-=-=-=-= */

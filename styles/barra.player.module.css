@@ -48,7 +48,7 @@
     margin-right: 5px;
 }
 
-.spanCoracao, .spanVolume {
+.spanCoracao, .spanVolume, .spanFullScreen {
     /* background-color: red; */
     display: flex;
     justify-content: center;

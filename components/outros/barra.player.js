@@ -5,7 +5,7 @@ import Styles from '../../styles/barra.player.module.css';
 import Coracao from '../svg/barra.player/coracao';
 import CoracaoPreenchido from '../svg/barra.player/coracaoPreenchido';
 import Dispositivo from '../svg/barra.player/dispositivo';
-import Fullscreen from '../svg/barra.player/fullscreen';
+import FullScreen from '../svg/barra.player/fullscreen';
 import Lista from '../svg/barra.player/lista';
 import Microfone from '../svg/barra.player/microfone';
 import Toggle from '../svg/barra.player/toggle';
@@ -31,6 +31,16 @@ export default function BarraPlayer() {
             setVolume(0);
         } else {
             setVolume(50);
+        }
+    }
+
+    function handleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         }
     }
 
@@ -89,17 +99,19 @@ export default function BarraPlayer() {
                     <ProgressBarVolume getVolume={getVolume} volume={volume} />
                 </div>
 
-                <Fullscreen />
+                <span onClick={() => handleFullScreen()} className={Styles.spanFullScreen}>
+                    <FullScreen />
+                </span>
             </div>
 
-            {
+            {/* {
                 // Exibir o volume 
                 process.env.NODE_ENV === 'development' && (
                     <span style={{ color: 'var(--verde)' }}>
                         <code>{volume}</code>
                     </span>
                 )
-            }
+            } */}
         </section>
     )
 }

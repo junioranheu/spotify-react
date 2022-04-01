@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import ImgTheStroke from '../../static/thestrokes.webp';
+import ImgTheStroke from '../../static/image/thestrokes.webp';
 import Styles from '../../styles/barra.player.module.css';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';

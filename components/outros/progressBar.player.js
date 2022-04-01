@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
+import Musica from '../../static/music/yolo.mp3';
 import Styles from '../../styles/progressBar.module.css';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
@@ -95,15 +96,25 @@ export default function ProgressBarPlayer(props) {
     // }, [props.isPlaying, tempoAtual, tempoSegundosAtual])
 
     return (
-        <div className={Styles.progressWrapper} id='progressWrapperPlayer'
-            onMouseMove={(e) => handleMouseMove(e)}
-            onMouseUp={() => handleMouseUp()}
-        >
-            <div className={Styles.progress} style={{ width: tempoAtual }}>
-                <div className={Styles.pointer} ref={refPointer}>
-                    <div className={Styles.toast}></div>
+        <Fragment>
+            <div className={Styles.progressWrapper} id='progressWrapperPlayer'
+                onMouseMove={(e) => handleMouseMove(e)}
+                onMouseUp={() => handleMouseUp()}
+            >
+                <div className={Styles.progress} style={{ width: tempoAtual }}>
+                    <div className={Styles.pointer} ref={refPointer}>
+                        <div className={Styles.toast}></div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <audio
+                src={Musica}
+                autoPlay={true}
+                controls={true}
+            // onPlay={() => setPlayingState(true)}
+            // onPause={() => setPlayingState(false)}
+            />
+        </Fragment>
     )
 }

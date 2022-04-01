@@ -1,5 +1,19 @@
-const nextConfig = {
-  swcMinify: true
-}
+const minify = { 
+  swcMinify: true,
+};
 
-module.exports = nextConfig
+const final = {
+  minify,
+
+  webpack(config, options) {
+    config.module.rules.push({
+      test: /\.mp3$/,
+      use: {
+        loader: 'url-loader',
+      },
+    });
+    return config;
+  },
+};
+
+module.exports = final;

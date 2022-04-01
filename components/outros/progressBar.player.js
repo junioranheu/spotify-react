@@ -1,33 +1,33 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import Musica from '../../static/music/yolocut.mp3';
+import Musica from '../../static/music/yolo.mp3';
 import Styles from '../../styles/progressBar.module.css';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarPlayer(props) {
     const refMusica = useRef();
-
-    const [tempoAtual, setTempoAtual] = useState(0);
-    const [tempoReal, setTempoReal] = useState(0);
-
-    // Constantes para verificar os segundos da música;
-    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(0);
-    const [tempoSegundosAtual, setTempoSegundosAtual] = useState(0);
-
-    const [widthElemento, setWidthElemento] = useState(0);
     const refPointer = useRef(null);
     let x = 1;
+
+    const [tempoAtual, setTempoAtual] = useState(0);
+    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(0);
+    const [widthElemento, setWidthElemento] = useState(0);
 
     useEffect(() => {
         // Pegar uma vez o width do elemento;
         var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
         setWidthElemento(rect.width);
 
-        // Ajustar novamente o width do elemento ao dar resize;
+        // Ajustar novamente o width do elemento ao dar resize, também ajustar o tempoAtual para desbugar visualmente;
         window.addEventListener('resize', handleResize);
         function handleResize() {
             var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
             setWidthElemento(rect.width);
+
+            if (rect.width > 0 && rect.width !== Infinity) {
+                // console.log(rect.width);
+                setarTempoAtual(rect.width);
+            }
         }
 
         // Pegar a duração da música;
@@ -53,13 +53,11 @@ export default function ProgressBarPlayer(props) {
 
         // Calcular o tempoReal, já que o tempoAtual pode passar de 100;
         let tempoRealCalculo = ((x / (widthElemento - 1)) * 100);
-        setTempoReal(tempoRealCalculo);
 
         // Corrigir bug do "100";
         if (tempoRealCalculo >= 99) {
             // console.log('100!!!' + widthElemento);
             x = widthElemento;
-            setTempoReal(100);
         }
 
         // Tempo "bruto", para exibir no elemento;
@@ -68,7 +66,6 @@ export default function ProgressBarPlayer(props) {
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         // Parte #02 - Usar variaveis tempoSegundosMaximo e tempoSegundosAtual, referentes ao tempo real da música tocada;
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
-        setTempoSegundosAtual(segundoAtual);
         // console.log(segundoAtual);
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -87,19 +84,22 @@ export default function ProgressBarPlayer(props) {
 
     useEffect(() => {
         const intervalo = setInterval(() => {
-            // Caso o props.isPlaying seja true;
             if (props.isPlaying && tempoSegundosMaximo > refMusica.current.currentTime) {
-                let segundoAtualMusicaTocando = refMusica.current.currentTime;
-                console.log(segundoAtualMusicaTocando);
-
-                let segundosReais = (segundoAtualMusicaTocando / tempoSegundosMaximo) * widthElemento;
-                setTempoAtual(segundosReais);
-                setarInformacoes(tempoSegundosMaximo, segundoAtualMusicaTocando);
+                setarTempoAtual(widthElemento);
             }
         }, 100);
 
         return () => clearInterval(intervalo);
     }, [props.isPlaying])
+
+    function setarTempoAtual(width) {
+        let segundoAtualMusicaTocando = refMusica.current.currentTime;
+        // console.log(segundoAtualMusicaTocando);
+
+        let segundosReais = (segundoAtualMusicaTocando / tempoSegundosMaximo) * width;
+        setTempoAtual(segundosReais);
+        setarInformacoes(tempoSegundosMaximo, segundoAtualMusicaTocando);
+    }
 
     function setarInformacoes(pTempoMaximo, pSegundoAtual) {
         const tempoSegundosMaximoAjustado = FormatarSegundos(pTempoMaximo);

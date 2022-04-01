@@ -2,9 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/progressBar.module.css';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
-export default function ProgressBarPlayer(props) {
-    const [volume, setVolume] = useState(0);
-    const [volumeReal, setVolumeReal] = useState(0);
+export default function ProgressBarPlayer() {
+    const [tempoAtual, setTempoAtual] = useState(0);
+    const [tempoReal, setTempoReal] = useState(0);
+
+    // Constantes para verificar os segundos da música;
+    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(120);
+    const [tempoSegundosAtual, setTempoSegundosAtual] = useState(0);
+
     const [widthElemento, setWidthElemento] = useState(0);
     const refPointer = useRef(null);
     let x = 1;
@@ -14,11 +19,7 @@ export default function ProgressBarPlayer(props) {
         var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
         const widthElemento = rect.width;
         setWidthElemento(widthElemento);
-
-        // Definir o volume ao carregar, com base em props.volume;
-        const volumeInicial = (props.volume * widthElemento) / 100;
-        setVolume(volumeInicial);
-    }, [props.volume]);
+    }, []);
 
     function handleMouseMove(e) {
         e.preventDefault();
@@ -30,23 +31,30 @@ export default function ProgressBarPlayer(props) {
     }
 
     function handleMouseUp() {
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        // Parte #01 - Ajustar variaveis tempoAtual e tempoReal, referentes ao que é exibido no player;
         // Ajustar caso seja menor que 0;
         x = x < 0 ? 0 : x;
 
-        // Calcular o volume real, já que o volume pode passar de 100;
-        let volumeRealCalculo = ((x / (widthElemento - 1)) * 100);
-        setVolumeReal(volumeRealCalculo);
-        props.getVolume(volumeRealCalculo);
+        // Calcular o tempoReal, já que o tempoAtual pode passar de 100;
+        let tempoRealCalculo = ((x / (widthElemento - 1)) * 100);
+        setTempoReal(tempoRealCalculo);
 
         // Corrigir bug do "100";
-        if (volumeRealCalculo >= 99) {
+        if (tempoRealCalculo >= 99) {
             // console.log('100!!!' + widthElemento);
             x = widthElemento;
-            setVolumeReal(100);
+            setTempoReal(100);
         }
 
-        // Volume "bruto", para exibir no elemento;
-        setVolume(x);
+        // Tempo "bruto", para exibir no elemento;
+        setTempoAtual(x);
+
+        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        // Parte #02 - Usar variaveis tempoSegundosMaximo e tempoSegundosAtual, referentes ao tempo real da música tocada;
+        const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
+        setTempoSegundosAtual(segundoAtual);
+        // console.log(segundoAtual);
     }
 
     return (
@@ -54,7 +62,7 @@ export default function ProgressBarPlayer(props) {
             onMouseMove={(e) => handleMouseMove(e)}
             onMouseUp={() => handleMouseUp()}
         >
-            <div className={Styles.progress} style={{ width: volume }}>
+            <div className={Styles.progress} style={{ width: tempoAtual }}>
                 <div className={Styles.pointer} ref={refPointer}>
                     <div className={Styles.toast}></div>
                 </div>

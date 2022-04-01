@@ -148,14 +148,41 @@
     cursor: pointer;
 }
 
-.btnPlay:active{
+.btnPlay:active {
     -webkit-transform: scale(.9);
     transform: scale(.9);
 }
 
 .divPlayerInner {
+    /* background-color: pink; */
     width: 100%;
-    margin-top: 12px;
+    margin-top: 6.5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+}
+
+.tempoSpan{
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    color: #B3B3B3;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.tempoEsquerda {
+    /* background-color: pink; */
+    position: relative;
+    left: -3px;
+}
+
+.tempoDireita {
+    /* background-color: pink; */
+    position: relative;
+    left: -7px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Div 3 =-=-=-=-=-=-=-=-=-=-= */

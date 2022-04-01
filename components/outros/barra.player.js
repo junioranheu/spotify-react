@@ -79,15 +79,17 @@ export default function BarraPlayer() {
             {/* =-=-=-=-=-=-=-=-=-=-=-= Segunda div, meio =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divPlayer}>
                 <div className={Styles.divPlayerIcones}>
-                    <Aleatorio/>
-                    <BotaoVoltar/>
-                    <span className={Styles.btnPlay}><BotaoPlay/></span>
-                    <BotaoAvancar/>
-                    <Loop/>
+                    <Aleatorio />
+                    <BotaoVoltar />
+                    <span className={Styles.btnPlay}><BotaoPlay /></span>
+                    <BotaoAvancar />
+                    <Loop />
                 </div>
 
                 <div className={Styles.divPlayerInner}>
+                    <span className={`${Styles.tempoEsquerda} ${Styles.tempoSpan}`}>0:00</span>
                     <ProgressBarPlayer />
+                    <span className={`${Styles.tempoDireita} ${Styles.tempoSpan}`}>3:50</span>
                 </div>
             </div>
 

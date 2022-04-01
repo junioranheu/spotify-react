@@ -13,6 +13,8 @@
     align-items: center;
     gap: 100px;
 
+    border-top: 1px solid #282828;
+
     padding-left: 20px;
     padding-right: 20px;
 
@@ -62,7 +64,7 @@
     /* background-color: blue !important; */
     margin-left: 10px;
 
-    /* min-width: 150px !important;    */
+    /* min-width: 150px !important; */
     max-width: 150px !important;
 
     display: flex;
@@ -104,11 +106,56 @@
 
 /* =-=-=-=-=-=-=-=-=-=-= Div 2 =-=-=-=-=-=-=-=-=-=-= */
 .divPlayer {
-    background-color: red;
+    /* background-color: red !important; */
     width: 33%;
 
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divPlayerIcones {
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.btnPlay {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    border-radius: 32px;
+    color: #000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    min-width: 32px;
+    position: relative;
+    -webkit-transition: none 33ms cubic-bezier(.3, 0, .7, 1);
+    transition: none 33ms cubic-bezier(.3, 0, .7, 1);
+    -webkit-transition-property: all;
+    transition-property: all;
+    width: 32px;
+    cursor: pointer;
+}
+
+.btnPlay:active{
+    -webkit-transform: scale(.9);
+    transform: scale(.9);
+}
+
+.divPlayerInner {
+    width: 100%;
+    margin-top: 12px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Div 3 =-=-=-=-=-=-=-=-=-=-= */

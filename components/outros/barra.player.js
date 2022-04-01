@@ -2,17 +2,23 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import ImgTheStroke from '../../static/thestrokes.webp';
 import Styles from '../../styles/barra.player.module.css';
+import Aleatorio from '../svg/barra.player/aleatorio';
+import BotaoAvancar from '../svg/barra.player/botaoAvancar';
+import BotaoPlay from '../svg/barra.player/botaoPlay';
+import BotaoVoltar from '../svg/barra.player/botaoVoltar';
 import Coracao from '../svg/barra.player/coracao';
 import CoracaoPreenchido from '../svg/barra.player/coracaoPreenchido';
 import Dispositivo from '../svg/barra.player/dispositivo';
 import FullScreen from '../svg/barra.player/fullscreen';
 import Lista from '../svg/barra.player/lista';
+import Loop from '../svg/barra.player/loop';
 import Microfone from '../svg/barra.player/microfone';
 import Toggle from '../svg/barra.player/toggle';
 import Volume1 from '../svg/barra.player/volume1';
 import Volume2 from '../svg/barra.player/volume2';
 import Volume3 from '../svg/barra.player/volume3';
 import Volume4 from '../svg/barra.player/volume4';
+import ProgressBarPlayer from './progressBar.player';
 import ProgressBarVolume from './progressBar.volume';
 
 export default function BarraPlayer() {
@@ -46,7 +52,7 @@ export default function BarraPlayer() {
 
     return (
         <section className={Styles.barraPlayer}>
-            {/* Primeira div, esquerda */}
+            {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divInfo}>
                 <div>
                     <div>
@@ -70,12 +76,22 @@ export default function BarraPlayer() {
                 <Toggle />
             </div>
 
-            {/* Segunda div, meio */}
+            {/* =-=-=-=-=-=-=-=-=-=-=-= Segunda div, meio =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divPlayer}>
-                <h1>Parte 2</h1>
+                <div className={Styles.divPlayerIcones}>
+                    <Aleatorio/>
+                    <BotaoVoltar/>
+                    <span className={Styles.btnPlay}><BotaoPlay/></span>
+                    <BotaoAvancar/>
+                    <Loop/>
+                </div>
+
+                <div className={Styles.divPlayerInner}>
+                    <ProgressBarPlayer />
+                </div>
             </div>
 
-            {/* Terceira div, direita */}
+            {/* =-=-=-=-=-=-=-=-=-=-=-= Terceira div, direita =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divOpcoes}>
                 <Microfone />
                 <Lista />
@@ -103,15 +119,6 @@ export default function BarraPlayer() {
                     <FullScreen />
                 </span>
             </div>
-
-            {/* {
-                // Exibir o volume 
-                process.env.NODE_ENV === 'development' && (
-                    <span style={{ color: 'var(--verde)' }}>
-                        <code>{volume}</code>
-                    </span>
-                )
-            } */}
         </section>
     )
 }

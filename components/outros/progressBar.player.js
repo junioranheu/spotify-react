@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/progressBar.module.css';
+import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarPlayer(props) {
@@ -57,9 +58,9 @@ export default function ProgressBarPlayer(props) {
         // console.log(segundoAtual);
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        // Parte #03 - Verificar o tempo atual e máximo para enviar para o componente pai (barra.player.js);
-        const tempoSegundosMaximoAjustado = fancyTimeFormat(tempoSegundosMaximo);
-        const tempoSegundosAtualAjustado = fancyTimeFormat(segundoAtual);
+        // Parte #03 - Verificar o tempo atual e máximo para enviar para o componente pai (barra.player.js); 
+        const tempoSegundosMaximoAjustado = FormatarSegundos(tempoSegundosMaximo);
+        const tempoSegundosAtualAjustado = FormatarSegundos(segundoAtual);
 
         const infos = {
             tempoSegundosMaximo: tempoSegundosMaximoAjustado,
@@ -92,24 +93,6 @@ export default function ProgressBarPlayer(props) {
 
     //     return () => clearInterval(intervalo);
     // }, [props.isPlaying, tempoAtual, tempoSegundosAtual])
-
-    function fancyTimeFormat(duration) {
-        // Hours, minutes and seconds
-        var hrs = ~~(duration / 3600);
-        var mins = ~~((duration % 3600) / 60);
-        var secs = ~~duration % 60;
-
-        // Output like "1:01" or "4:03:59" or "123:03:59"
-        var ret = "";
-
-        if (hrs > 0) {
-            ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-        }
-
-        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-        ret += "" + secs;
-        return ret;
-    }
 
     return (
         <div className={Styles.progressWrapper} id='progressWrapperPlayer'

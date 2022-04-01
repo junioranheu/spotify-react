@@ -40,7 +40,7 @@ export default function ProgressBarVolume(props) {
 
         // Corrigir bug do "100";
         if (volumeRealCalculo >= 99) {
-            console.log('100!!!' + widthElemento);
+            // console.log('100!!!' + widthElemento);
             x = widthElemento;
             setVolumeReal(100);
         }

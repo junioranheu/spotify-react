@@ -88,7 +88,7 @@ export default function BarraPlayer() {
 
                 <div className={Styles.divPlayerInner}>
                     <span className={`${Styles.tempoEsquerda} ${Styles.tempoSpan}`}>0:00</span>
-                    <ProgressBarPlayer />
+                    <ProgressBarPlayer getVolume={getVolume} volume={volume} />
                     <span className={`${Styles.tempoDireita} ${Styles.tempoSpan}`}>3:50</span>
                 </div>
             </div>

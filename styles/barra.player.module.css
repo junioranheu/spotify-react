@@ -120,7 +120,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 }
 
 .btnPlay {
@@ -156,7 +156,7 @@
 .divPlayerInner {
     /* background-color: pink; */
     width: 100%;
-    margin-top: 6.5px;
+    margin-top: 8px;
 
     display: flex;
     justify-content: center;
@@ -165,7 +165,7 @@
     gap: 15px;
 }
 
-.tempoSpan{
+.tempoSpan {
     font-size: 0.6875rem;
     line-height: 1rem;
     color: #B3B3B3;

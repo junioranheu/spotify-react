@@ -136,15 +136,15 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    height: 32px;
     justify-content: center;
-    min-width: 32px;
     position: relative;
     -webkit-transition: none 33ms cubic-bezier(.3, 0, .7, 1);
     transition: none 33ms cubic-bezier(.3, 0, .7, 1);
     -webkit-transition-property: all;
     transition-property: all;
-    width: 32px;
+    min-width: 30px;
+    height: 30px;
+    width: 30px;
     cursor: pointer;
 }
 

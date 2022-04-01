@@ -14,7 +14,7 @@
   transition: all 0.01s ease-in;
 }
 
-.progressWrapper .progress:hover {
+.progressWrapper:hover .progress {
   background-color: var(--verde);
 }
 

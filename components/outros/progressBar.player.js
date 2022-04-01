@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/progressBar.module.css';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
-export default function ProgressBarPlayer() {
+export default function ProgressBarPlayer(props) {
     const [tempoAtual, setTempoAtual] = useState(0);
     const [tempoReal, setTempoReal] = useState(0);
 
     // Constantes para verificar os segundos da música;
-    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(120);
+    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(20);
     const [tempoSegundosAtual, setTempoSegundosAtual] = useState(0);
 
     const [widthElemento, setWidthElemento] = useState(0);
@@ -55,6 +55,56 @@ export default function ProgressBarPlayer() {
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
         setTempoSegundosAtual(segundoAtual);
         // console.log(segundoAtual);
+    }
+
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            // Caso o props.isPlaying seja true, "itere" os segundos para mostrar no tempoReal;
+            if (props.isPlaying) {
+                if (tempoAtual >= tempoSegundosMaximo) {
+                    console.log('FIMMMMMMMMMMMMM');
+                } else {
+                    // Iterar;
+                    setTempoAtual(tempoAtual + (widthElemento / tempoSegundosMaximo));
+                }
+            }
+
+            // Verificar o tempo atual e máximo para enviar para o componente pai (barra.player.js);
+            const tempoSegundosMaximoAjustado = fancyTimeFormat(tempoSegundosMaximo);
+            const tempoSegundosAtualAjustado = fancyTimeFormat(tempoSegundosAtual);
+
+            const infos = {
+                tempoSegundosMaximo: tempoSegundosMaximoAjustado,
+                tempoSegundosAtual: tempoSegundosAtualAjustado
+            };
+
+            // console.log(infos);
+            // props.getInfoPlayer(infos);
+        }, 1000);
+
+        return () => clearInterval(intervalo);
+    }, [props.isPlaying, tempoAtual, tempoSegundosAtual])
+
+    useEffect(() => {
+        console.log(tempoAtual);
+    }, [tempoAtual])
+
+    function fancyTimeFormat(duration) {
+        // Hours, minutes and seconds
+        var hrs = ~~(duration / 3600);
+        var mins = ~~((duration % 3600) / 60);
+        var secs = ~~duration % 60;
+
+        // Output like "1:01" or "4:03:59" or "123:03:59"
+        var ret = "";
+
+        if (hrs > 0) {
+            ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+        }
+
+        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+        ret += "" + secs;
+        return ret;
     }
 
     return (

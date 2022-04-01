@@ -5,6 +5,7 @@ import Styles from '../../styles/barra.player.module.css';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';
 import BotaoPlay from '../svg/barra.player/botaoPlay';
+import BotaoStop from '../svg/barra.player/botaoStop';
 import BotaoVoltar from '../svg/barra.player/botaoVoltar';
 import Coracao from '../svg/barra.player/coracao';
 import CoracaoPreenchido from '../svg/barra.player/coracaoPreenchido';
@@ -50,6 +51,17 @@ export default function BarraPlayer() {
         }
     }
 
+    const [playingInfos, setPlayingInfos] = useState(false);
+    function getInfoPlayer(infos) {
+        // console.log(infos);
+        setPlayingInfos(infos);
+    }
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    function handleIsPlaying() {
+        setIsPlaying(!isPlaying);
+    }
+
     return (
         <section className={Styles.barraPlayer}>
             {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
@@ -81,15 +93,23 @@ export default function BarraPlayer() {
                 <div className={Styles.divPlayerIcones}>
                     <Aleatorio />
                     <BotaoVoltar />
-                    <span className={Styles.btnPlay}><BotaoPlay /></span>
+
+                    <span className={Styles.btnPlay} onClick={() => handleIsPlaying()} >
+                        {isPlaying ? (
+                            <BotaoStop /> 
+                        ) : (
+                            <BotaoPlay />
+                        )}
+                    </span>
+
                     <BotaoAvancar />
                     <Loop />
                 </div>
 
                 <div className={Styles.divPlayerInner}>
-                    <span className={`${Styles.tempoEsquerda} ${Styles.tempoSpan}`}>0:00</span>
-                    <ProgressBarPlayer />
-                    <span className={`${Styles.tempoDireita} ${Styles.tempoSpan}`}>3:50</span>
+                    <span className={`${Styles.tempoEsquerda} ${Styles.tempoSpan}`}>{playingInfos.tempoSegundosAtual ?? '0:00'}</span>
+                    <ProgressBarPlayer getInfoPlayer={getInfoPlayer} isPlaying={isPlaying} />
+                    <span className={`${Styles.tempoDireita} ${Styles.tempoSpan}`}>{playingInfos.tempoSegundosMaximo ?? '0:00'}</span>
                 </div>
             </div>
 

@@ -1,15 +1,17 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import Musica from '../../static/music/yolo.mp3';
+import Musica from '../../static/music/yolocut.mp3';
 import Styles from '../../styles/progressBar.module.css';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarPlayer(props) {
+    const refMusica = useRef();
+
     const [tempoAtual, setTempoAtual] = useState(0);
     const [tempoReal, setTempoReal] = useState(0);
 
     // Constantes para verificar os segundos da música;
-    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(5);
+    const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(0);
     const [tempoSegundosAtual, setTempoSegundosAtual] = useState(0);
 
     const [widthElemento, setWidthElemento] = useState(0);
@@ -17,10 +19,21 @@ export default function ProgressBarPlayer(props) {
     let x = 1;
 
     useEffect(() => {
-        // Pegar uma vez o tamanho do elemento;
+        // Pegar uma vez o width do elemento;
         var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
-        const widthElemento = rect.width;
-        setWidthElemento(widthElemento);
+        setWidthElemento(rect.width);
+
+        // Ajustar novamente o width do elemento ao dar resize;
+        window.addEventListener('resize', handleResize);
+        function handleResize() {
+            var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
+            setWidthElemento(rect.width);
+        }
+
+        // Pegar a duração da música;
+        // console.log(refMusica.current.duration);
+        setTempoSegundosMaximo(refMusica.current.duration);
+        setarInformacoes(refMusica.current.duration, 0);
     }, []);
 
     function handleMouseMove(e) {
@@ -60,8 +73,37 @@ export default function ProgressBarPlayer(props) {
 
         // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
         // Parte #03 - Verificar o tempo atual e máximo para enviar para o componente pai (barra.player.js); 
-        const tempoSegundosMaximoAjustado = FormatarSegundos(tempoSegundosMaximo);
-        const tempoSegundosAtualAjustado = FormatarSegundos(segundoAtual);
+        setarInformacoes(tempoSegundosMaximo, segundoAtual);
+    }
+
+    useEffect(() => {
+        // console.log(props.isPlaying);
+        if (props.isPlaying) {
+            refMusica.current.play();
+        } else {
+            refMusica.current.pause();
+        }
+    }, [props.isPlaying]);
+
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            // Caso o props.isPlaying seja true;
+            if (props.isPlaying && tempoSegundosMaximo > refMusica.current.currentTime) {
+                let segundoAtualMusicaTocando = refMusica.current.currentTime;
+                console.log(segundoAtualMusicaTocando);
+
+                let segundosReais = (segundoAtualMusicaTocando / tempoSegundosMaximo) * widthElemento;
+                setTempoAtual(segundosReais);
+                setarInformacoes(tempoSegundosMaximo, segundoAtualMusicaTocando);
+            }
+        }, 100);
+
+        return () => clearInterval(intervalo);
+    }, [props.isPlaying])
+
+    function setarInformacoes(pTempoMaximo, pSegundoAtual) {
+        const tempoSegundosMaximoAjustado = FormatarSegundos(pTempoMaximo);
+        const tempoSegundosAtualAjustado = FormatarSegundos(pSegundoAtual);
 
         const infos = {
             tempoSegundosMaximo: tempoSegundosMaximoAjustado,
@@ -71,29 +113,6 @@ export default function ProgressBarPlayer(props) {
         // console.log(infos);
         props.getInfoPlayer(infos);
     }
-
-    // useEffect(() => {
-    //     const intervalo = setInterval(() => {
-    //         // Caso o props.isPlaying seja true;
-    //         if (props.isPlaying) {
-    //             //
-    //         }
-
-    //         // Verificar o tempo atual e máximo para enviar para o componente pai (barra.player.js);
-    //         const tempoSegundosMaximoAjustado = fancyTimeFormat(tempoSegundosMaximo);
-    //         const tempoSegundosAtualAjustado = fancyTimeFormat(tempoSegundosAtual);
-
-    //         const infos = {
-    //             tempoSegundosMaximo: tempoSegundosMaximoAjustado,
-    //             tempoSegundosAtual: tempoSegundosAtualAjustado
-    //         };
-
-    //         // console.log(infos);
-    //         props.getInfoPlayer(infos);
-    //     }, 1000);
-
-    //     return () => clearInterval(intervalo);
-    // }, [props.isPlaying, tempoAtual, tempoSegundosAtual])
 
     return (
         <Fragment>
@@ -108,13 +127,7 @@ export default function ProgressBarPlayer(props) {
                 </div>
             </div>
 
-            <audio
-                src={Musica}
-                autoPlay={true}
-                controls={true}
-            // onPlay={() => setPlayingState(true)}
-            // onPause={() => setPlayingState(false)}
-            />
+            <audio ref={refMusica} src={Musica} autoPlay={false} controls={false} />
         </Fragment>
     )
 }

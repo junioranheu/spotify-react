@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ImgTheStroke from '../../static/image/thestrokes.webp';
 import Styles from '../../styles/barra.player.module.css';
+import { MusicaContext } from '../../utils/context/musicaContext';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';
 import BotaoPlay from '../svg/barra.player/botaoPlay';
@@ -55,6 +56,12 @@ export default function BarraPlayer() {
     function handleIsPlaying() {
         setIsPlaying(!isPlaying);
     }
+
+    // Quando uma música é selecionada no MusicaContext;
+    const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
+    useEffect(() => {
+        console.log(musicaContext);
+    }, [musicaContext]);
 
     return (
         <section className={Styles.barraPlayer}>

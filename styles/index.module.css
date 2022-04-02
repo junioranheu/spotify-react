@@ -5,3 +5,8 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.aea:hover {
+    cursor: pointer;
+    color: pink;
+}

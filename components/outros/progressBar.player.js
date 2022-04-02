@@ -5,34 +5,25 @@ import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarPlayer(props) {
-    // Importar músicas dinamicamente: https://stackoverflow.com/questions/64317730/how-to-dynamically-import-sound-files-in-react;
-    const [arquivoMusica, setArquivoMusica] = useState();
     useEffect(() => {
-        async function importDinamico() {
-            // Importar música dinamicamente;
-            const arquivo = await import(`../../static/music/${props.musicaId}.mp3`);
-            setArquivoMusica(arquivo.default);
+        // Tentar infinitas vezes encontrar o refMusica.current.duration;
+        function forcarDuracao() {
+            if (!refMusica.current.duration) {
+                window.setTimeout(forcarDuracao, 100);
+                // console.log('Tentando de novo');
+            } else {
+                // console.log(refMusica.current.duration);
+                setTempoSegundosMaximo(refMusica.current.duration);
+                setTempoAtual(0);
+                setarInformacoes(refMusica.current.duration, 0);
 
-            // Tentar infinitas vezes encontrar o refMusica.current.duration;
-            function forcarDuracao() {
-                if (!refMusica.current.duration) {
-                    window.setTimeout(forcarDuracao, 100); 
-                    // console.log('Tentando de novo');
-                } else {
-                    // console.log(refMusica.current.duration);
-                    setTempoSegundosMaximo(refMusica.current.duration);
-                    setarInformacoes(refMusica.current.duration, 0);
-
-                    // Tocar automaticamente;
-                    refMusica.current.play();
-                }
+                // Tocar automaticamente;
+                refMusica.current.play();
             }
-
-            forcarDuracao();
         }
 
-        importDinamico();
-    }, [props.musicaId]);
+        forcarDuracao();
+    }, [props.arquivoMusica]);
 
     const refMusica = useRef();
     const refPointer = useRef(null);
@@ -81,8 +72,8 @@ export default function ProgressBarPlayer(props) {
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
         // console.log(segundoAtual);
 
-        setTempoAtual(segundoAtual);
         refMusica.current.currentTime = segundoAtual;
+        setTempoAtual(segundoAtual);
     }
 
     useEffect(() => {
@@ -108,7 +99,7 @@ export default function ProgressBarPlayer(props) {
         }, 100);
 
         return () => clearInterval(intervalo);
-    }, [props.isPlaying])
+    }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo])
 
     function setarTempoAtual(width) {
         let segundoAtualMusicaTocando = refMusica.current.currentTime;
@@ -153,7 +144,7 @@ export default function ProgressBarPlayer(props) {
             <span className={Styles.tempoSpan}>{playingInfos.tempoSegundosMaximo ?? '0:00'}</span>
 
             {/* Áudio */}
-            <audio ref={refMusica} src={arquivoMusica} autoPlay={false} controls={false} />
+            <audio ref={refMusica} src={props.arquivoMusica} autoPlay={false} controls={false} />
         </Fragment>
     )
 }

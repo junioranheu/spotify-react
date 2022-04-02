@@ -64,6 +64,28 @@ export default function BarraPlayer() {
         // console.log(musicaContext.musicaId);
     }, [musicaContext]);
 
+    // Importar músicas dinamicamente: https://stackoverflow.com/questions/64317730/how-to-dynamically-import-sound-files-in-react;
+    const [arquivoMusica, setArquivoMusica] = useState();
+    const [isFirstLoad, setIsFirstLoad] = useState(true);
+    useEffect(() => {
+        async function importDinamico() {
+            // Importar música dinamicamente;
+            const arquivo = await import(`../../static/music/${musicaContext.musicaId}.mp3`);
+            setArquivoMusica(arquivo.default);
+
+            console.log(`Música "${musicaContext.nome}" (${musicaContext.musicaId}) importada`);
+
+            // Lógica para não dar play automaticamente ao carregar página;
+            if (!isFirstLoad) {
+                setIsPlaying(true);
+            } else {
+                setIsFirstLoad(false);
+            }
+        }
+
+        importDinamico();
+    }, [musicaContext.musicaId]);
+
     return (
         <section className={Styles.barraPlayer}>
             {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
@@ -125,7 +147,7 @@ export default function BarraPlayer() {
                 </div>
 
                 <div className={Styles.divPlayerInner}>
-                    <ProgressBarPlayer isPlaying={isPlaying} volume={volume} musicaId={musicaContext.musicaId} />
+                    <ProgressBarPlayer isPlaying={isPlaying} volume={volume} arquivoMusica={arquivoMusica} />
                 </div>
             </div>
 

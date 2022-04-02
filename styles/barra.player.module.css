@@ -50,7 +50,7 @@
     margin-right: 5px;
 }
 
-.spanCoracao, .spanVolume, .spanFullScreen {
+.spanIcone {
     /* background-color: red; */
     display: flex;
     justify-content: center;

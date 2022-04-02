@@ -57,8 +57,8 @@ export default function ProgressBarPlayer(props) {
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
         // console.log(segundoAtual);
 
-        refMusica.current.currentTime = segundoAtual;
         setTempoAtual(segundoAtual);
+        refMusica.current.currentTime = segundoAtual;
     }
 
     useEffect(() => {
@@ -111,8 +111,10 @@ export default function ProgressBarPlayer(props) {
 
     return (
         <Fragment>
+            {/* Esquerda, tempo atual */}
             <span className={Styles.tempoSpan}>{playingInfos.tempoSegundosAtual ?? '0:00'}</span>
-            
+
+            {/* Meio, progress bar */}
             <div className={Styles.progressWrapper} id='progressWrapperPlayer'
                 onClick={(e) => handleClick(e)}
             >
@@ -123,8 +125,10 @@ export default function ProgressBarPlayer(props) {
                 </div>
             </div>
 
+            {/* Direita, tempo total da música em questão */}
             <span className={Styles.tempoSpan}>{playingInfos.tempoSegundosMaximo ?? '0:00'}</span>
 
+            {/* Áudio */}
             <audio ref={refMusica} src={Musica} autoPlay={false} controls={false} />
         </Fragment>
     )

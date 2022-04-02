@@ -10,8 +10,8 @@ import BotaoVoltar from '../svg/barra.player/botaoVoltar';
 import Coracao from '../svg/barra.player/coracao';
 import CoracaoPreenchido from '../svg/barra.player/coracaoPreenchido';
 import Dispositivo from '../svg/barra.player/dispositivo';
+import Fila from '../svg/barra.player/fila';
 import FullScreen from '../svg/barra.player/fullscreen';
-import Lista from '../svg/barra.player/lista';
 import Loop from '../svg/barra.player/loop';
 import Microfone from '../svg/barra.player/microfone';
 import Toggle from '../svg/barra.player/toggle';
@@ -71,7 +71,7 @@ export default function BarraPlayer() {
                     </div>
                 </div>
 
-                <span onClick={() => handleCoracao()} className={Styles.spanCoracao}>
+                <span onClick={() => handleCoracao()} className={Styles.spanIcone} title='Curtir/descurtir música'>
                     {isMusicaCurtida ? (
                         <CoracaoPreenchido />
                     ) : (
@@ -79,14 +79,21 @@ export default function BarraPlayer() {
                     )}
                 </span>
 
-                <Toggle />
+                <span className={Styles.spanIcone} title='Ativar/desativar modo picture-in-picture'>
+                    <Toggle />
+                </span>
             </div>
 
             {/* =-=-=-=-=-=-=-=-=-=-=-= Segunda div, meio =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divPlayer}>
                 <div className={Styles.divPlayerIcones}>
-                    <Aleatorio />
-                    <BotaoVoltar />
+                    <span className={Styles.spanIcone} title='Ativar/desativar modo aleatório'>
+                        <Aleatorio />
+                    </span>
+
+                    <span className={Styles.spanIcone} title='Voltar uma música'>
+                        <BotaoVoltar />
+                    </span>
 
                     <span className={Styles.btnPlay} onClick={() => handleIsPlaying()} >
                         {isPlaying ? (
@@ -96,8 +103,13 @@ export default function BarraPlayer() {
                         )}
                     </span>
 
-                    <BotaoAvancar />
-                    <Loop />
+                    <span className={Styles.spanIcone} title='Avançar uma música'>
+                        <BotaoAvancar />
+                    </span>
+
+                    <span className={Styles.spanIcone} title='Ativar/desativar modo loop'>
+                        <Loop />
+                    </span>
                 </div>
 
                 <div className={Styles.divPlayerInner}>
@@ -107,11 +119,19 @@ export default function BarraPlayer() {
 
             {/* =-=-=-=-=-=-=-=-=-=-=-= Terceira div, direita =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divOpcoes}>
-                <Microfone />
-                <Lista />
-                <Dispositivo />
+                <span className={Styles.spanIcone} title='Visualizar letra'>
+                    <Microfone />
+                </span>
 
-                <span onClick={() => handleVolume()} className={Styles.spanVolume}>
+                <span className={Styles.spanIcone} title='Visualizar fila'>
+                    <Fila />
+                </span>
+
+                <span className={Styles.spanIcone} title='Transmitir para outro dispositivo'>
+                    <Dispositivo />
+                </span>
+
+                <span onClick={() => handleVolume()} className={Styles.spanIcone}>
                     {
                         volume >= 65 ? (
                             <Volume4 />
@@ -129,7 +149,7 @@ export default function BarraPlayer() {
                     <ProgressBarVolume getVolume={getVolume} volume={volume} />
                 </div>
 
-                <span onClick={() => handleFullScreen()} className={Styles.spanFullScreen}>
+                <span onClick={() => handleFullScreen()} className={Styles.spanIcone}>
                     <FullScreen />
                 </span>
             </div>

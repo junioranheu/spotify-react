@@ -51,12 +51,6 @@ export default function BarraPlayer() {
         }
     }
 
-    const [playingInfos, setPlayingInfos] = useState(false);
-    function getInfoPlayer(infos) {
-        // console.log(infos);
-        setPlayingInfos(infos);
-    }
-
     const [isPlaying, setIsPlaying] = useState(false);
     function handleIsPlaying() {
         setIsPlaying(!isPlaying);
@@ -96,7 +90,7 @@ export default function BarraPlayer() {
 
                     <span className={Styles.btnPlay} onClick={() => handleIsPlaying()} >
                         {isPlaying ? (
-                            <BotaoStop /> 
+                            <BotaoStop />
                         ) : (
                             <BotaoPlay />
                         )}
@@ -107,9 +101,7 @@ export default function BarraPlayer() {
                 </div>
 
                 <div className={Styles.divPlayerInner}>
-                    <span className={`${Styles.tempoEsquerda} ${Styles.tempoSpan}`}>{playingInfos.tempoSegundosAtual ?? '0:00'}</span>
-                    <ProgressBarPlayer getInfoPlayer={getInfoPlayer} isPlaying={isPlaying} />
-                    <span className={`${Styles.tempoDireita} ${Styles.tempoSpan}`}>{playingInfos.tempoSegundosMaximo ?? '0:00'}</span>
+                    <ProgressBarPlayer isPlaying={isPlaying} volume={volume} />
                 </div>
             </div>
 

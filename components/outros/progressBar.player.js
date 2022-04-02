@@ -62,13 +62,17 @@ export default function ProgressBarPlayer(props) {
     }
 
     useEffect(() => {
+        let volumeAjustado = props.volume / 100;
+        // console.log(volumeAjustado);
+        refMusica.current.volume = volumeAjustado;
+
         // console.log(props.isPlaying);
         if (props.isPlaying) {
             refMusica.current.play();
         } else {
             refMusica.current.pause();
         }
-    }, [props.isPlaying]);
+    }, [props.isPlaying, props.volume]);
 
     useEffect(() => {
         const intervalo = setInterval(() => {
@@ -76,7 +80,7 @@ export default function ProgressBarPlayer(props) {
 
             if (props.isPlaying && tempoSegundosMaximo > refMusica.current.currentTime) {
                 setarTempoAtual(widthElemento);
-            } 
+            }
         }, 100);
 
         return () => clearInterval(intervalo);
@@ -91,6 +95,7 @@ export default function ProgressBarPlayer(props) {
         setarInformacoes(tempoSegundosMaximo, segundoAtualMusicaTocando);
     }
 
+    const [playingInfos, setPlayingInfos] = useState({});
     function setarInformacoes(pTempoMaximo, pSegundoAtual) {
         const tempoSegundosMaximoAjustado = FormatarSegundos(pTempoMaximo);
         const tempoSegundosAtualAjustado = FormatarSegundos(pSegundoAtual);
@@ -101,11 +106,13 @@ export default function ProgressBarPlayer(props) {
         };
 
         // console.log(infos);
-        props.getInfoPlayer(infos);
+        setPlayingInfos(infos);
     }
 
     return (
         <Fragment>
+            <span className={Styles.tempoSpan}>{playingInfos.tempoSegundosAtual ?? '0:00'}</span>
+            
             <div className={Styles.progressWrapper} id='progressWrapperPlayer'
                 onClick={(e) => handleClick(e)}
             >
@@ -115,6 +122,8 @@ export default function ProgressBarPlayer(props) {
                     </div>
                 </div>
             </div>
+
+            <span className={Styles.tempoSpan}>{playingInfos.tempoSegundosMaximo ?? '0:00'}</span>
 
             <audio ref={refMusica} src={Musica} autoPlay={false} controls={false} />
         </Fragment>

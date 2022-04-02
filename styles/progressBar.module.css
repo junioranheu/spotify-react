@@ -59,3 +59,11 @@
   transform: translateX(-50%);
   display: none;
 }
+
+.tempoSpan {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  color: #B3B3B3;
+  text-transform: none;
+  letter-spacing: normal;
+}

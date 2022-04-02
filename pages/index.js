@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Styles from '../styles/index.module.css';
-import { MusicaContext } from '../utils/context/musicaContext';
+import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 
 export default function Index({ musicas }) {
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
@@ -18,6 +18,7 @@ export default function Index({ musicas }) {
         const musica = await res.json();
         // console.log(musica);
 
+        MusicaStorage.set(musica);
         setMusicaContext(musica);
     }
 

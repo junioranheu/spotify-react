@@ -58,9 +58,10 @@ export default function BarraPlayer() {
     }
 
     // Quando uma música é selecionada no MusicaContext;
-    const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
+    const [musicaContext] = useContext(MusicaContext); // Context da música;
     useEffect(() => {
-        console.log(musicaContext);
+        // console.log(musicaContext);
+        // console.log(musicaContext.musicaId);
     }, [musicaContext]);
 
     return (
@@ -73,8 +74,8 @@ export default function BarraPlayer() {
                     </div>
 
                     <div className={Styles.infoMusica}>
-                        <span className={Styles.infoTitulo} title={'You Only Live Once'}>You Only Live Once</span>
-                        <span className={Styles.infoDescricao} title={'The Strokes'}>The Strokes</span>
+                        <span className={Styles.infoTitulo} title={'You Only Live Once'}>{musicaContext.nome}</span>
+                        <span className={Styles.infoDescricao} title={'The Strokes'}>{musicaContext.musicasBandas[0].bandas.nome}</span>
                     </div>
                 </div>
 

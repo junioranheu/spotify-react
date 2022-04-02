@@ -72,7 +72,7 @@ export default function BarraPlayer() {
                     <Fragment>
                         <div>
                             <div>
-                                <Image src={ImgTheStroke} width={56} height={56} />
+                                <Image src={ImgTheStroke} width={56} height={56} alt='' />
                             </div>
 
                             <div className={Styles.infoMusica}>

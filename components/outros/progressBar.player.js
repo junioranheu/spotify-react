@@ -8,7 +8,7 @@ export default function ProgressBarPlayer(props) {
     // Importar músicas dinamicamente: https://stackoverflow.com/questions/64317730/how-to-dynamically-import-sound-files-in-react;
     const [arquivoMusica, setArquivoMusica] = useState();
     useEffect(() => {
-        async function importFile() {
+        async function importDinamico() {
             // Importar música dinamicamente;
             const arquivo = await import(`../../static/music/${props.musicaId}.mp3`);
             setArquivoMusica(arquivo.default);
@@ -22,13 +22,16 @@ export default function ProgressBarPlayer(props) {
                     // console.log(refMusica.current.duration);
                     setTempoSegundosMaximo(refMusica.current.duration);
                     setarInformacoes(refMusica.current.duration, 0);
+
+                    // Tocar automaticamente;
+                    refMusica.current.play();
                 }
             }
 
             forcarDuracao();
         }
 
-        importFile();
+        importDinamico();
     }, [props.musicaId]);
 
     const refMusica = useRef();
@@ -76,7 +79,7 @@ export default function ProgressBarPlayer(props) {
 
         // Usar variaveis referentes ao tempo real da música tocada;
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
-        console.log(segundoAtual);
+        // console.log(segundoAtual);
 
         setTempoAtual(segundoAtual);
         refMusica.current.currentTime = segundoAtual;

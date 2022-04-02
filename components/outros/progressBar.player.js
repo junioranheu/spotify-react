@@ -1,10 +1,21 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import Musica from '../../static/music/yolo.mp3';
+// import Musica from '../../static/music/3.mp3';
 import Styles from '../../styles/progressBar.module.css';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarPlayer(props) {
+    // Importar músicas dinamicamente: https://stackoverflow.com/questions/64317730/how-to-dynamically-import-sound-files-in-react;
+    const [arquivoMusica, setArquivoMusica] = useState();
+    useEffect(() => {
+        async function importFile() {
+            const arquivo = await import(`../../static/music/${props.musicaId}.mp3`);
+            setArquivoMusica(arquivo.default);
+        }
+
+        importFile();
+    }, [props.musicaId]);
+
     const refMusica = useRef();
     const refPointer = useRef(null);
 
@@ -129,7 +140,7 @@ export default function ProgressBarPlayer(props) {
             <span className={Styles.tempoSpan}>{playingInfos.tempoSegundosMaximo ?? '0:00'}</span>
 
             {/* Áudio */}
-            <audio ref={refMusica} src={Musica} autoPlay={false} controls={false} />
+            <audio ref={refMusica} src={arquivoMusica} autoPlay={false} controls={false} />
         </Fragment>
     )
 }

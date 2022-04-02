@@ -125,7 +125,7 @@ export default function BarraPlayer() {
                 </div>
 
                 <div className={Styles.divPlayerInner}>
-                    <ProgressBarPlayer isPlaying={isPlaying} volume={volume} />
+                    <ProgressBarPlayer isPlaying={isPlaying} volume={volume} musicaId={musicaContext.musicaId} />
                 </div>
             </div>
 

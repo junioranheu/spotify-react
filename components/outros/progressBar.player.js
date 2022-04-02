@@ -7,7 +7,6 @@ import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 export default function ProgressBarPlayer(props) {
     const refMusica = useRef();
     const refPointer = useRef(null);
-    let x = 1;
 
     const [tempoAtual, setTempoAtual] = useState(0);
     const [tempoSegundosMaximo, setTempoSegundosMaximo] = useState(0);
@@ -36,41 +35,30 @@ export default function ProgressBarPlayer(props) {
         setarInformacoes(refMusica.current.duration, 0);
     }, []);
 
-    function handleMouseMove(e) {
+    function handleClick(e) {
         e.preventDefault();
         var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
-        x = e.clientX - rect.left;
-
+        let posicaoClick = e.clientX - rect.left;
         // console.log(`${e.clientX} - ${rect.left}`);
-        // console.log(x);
-    }
+        // console.log(posicaoClick);
 
-    function handleMouseUp() {
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        // Parte #01 - Ajustar variaveis tempoAtual e tempoReal, referentes ao que é exibido no player;
         // Ajustar caso seja menor que 0;
-        x = x < 0 ? 0 : x;
+        posicaoClick = posicaoClick < 0 ? 0 : posicaoClick;
 
-        // Calcular o tempoReal, já que o tempoAtual pode passar de 100;
-        let tempoRealCalculo = ((x / (widthElemento - 1)) * 100);
+        // Calcular o "tempo real";
+        let tempoRealCalculo = ((posicaoClick / (widthElemento - 1)) * 100);
 
         // Corrigir bug do "100";
         if (tempoRealCalculo >= 99) {
-            // console.log('100!!!' + widthElemento);
-            x = widthElemento;
+            posicaoClick = widthElemento;
         }
 
-        // Tempo "bruto", para exibir no elemento;
-        setTempoAtual(x);
-
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        // Parte #02 - Usar variaveis tempoSegundosMaximo e tempoSegundosAtual, referentes ao tempo real da música tocada;
+        // Usar variaveis referentes ao tempo real da música tocada;
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
         // console.log(segundoAtual);
 
-        // =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-        // Parte #03 - Verificar o tempo atual e máximo para enviar para o componente pai (barra.player.js); 
-        setarInformacoes(tempoSegundosMaximo, segundoAtual);
+        refMusica.current.currentTime = segundoAtual;
+        setTempoAtual(segundoAtual);
     }
 
     useEffect(() => {
@@ -84,9 +72,11 @@ export default function ProgressBarPlayer(props) {
 
     useEffect(() => {
         const intervalo = setInterval(() => {
+            // console.table([props.isPlaying, tempoSegundosMaximo, refMusica.current.currentTime]);
+
             if (props.isPlaying && tempoSegundosMaximo > refMusica.current.currentTime) {
                 setarTempoAtual(widthElemento);
-            }
+            } 
         }, 100);
 
         return () => clearInterval(intervalo);
@@ -117,8 +107,7 @@ export default function ProgressBarPlayer(props) {
     return (
         <Fragment>
             <div className={Styles.progressWrapper} id='progressWrapperPlayer'
-                onMouseMove={(e) => handleMouseMove(e)}
-                onMouseUp={() => handleMouseUp()}
+                onClick={(e) => handleClick(e)}
             >
                 <div className={Styles.progress} style={{ width: tempoAtual }}>
                     <div className={Styles.pointer} ref={refPointer}>

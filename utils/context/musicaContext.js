@@ -9,8 +9,6 @@ export const MusicaProvider = props => {
     if (typeof window !== 'undefined') {
         const [musica, setMusica] = useState(localStorage.getItem('musicaContext') ? JSON.parse(localStorage.getItem('musicaContext')) : {});
 
-        // const [musica, setMusica] = useState({});
-
         return (
             <MusicaContext.Provider value={[musica, setMusica]}>
                 {props.children}

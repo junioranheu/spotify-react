@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import ImgTheStroke from '../../static/image/thestrokes.webp';
 import Styles from '../../styles/barra.player.module.css';
 import { MusicaContext } from '../../utils/context/musicaContext';
@@ -68,28 +68,32 @@ export default function BarraPlayer() {
         <section className={Styles.barraPlayer}>
             {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divInfo}>
-                <div>
-                    <div>
-                        <Image src={ImgTheStroke} width={56} height={56} />
-                    </div>
+                {musicaContext.musicaId > 0 && (
+                    <Fragment>
+                        <div>
+                            <div>
+                                <Image src={ImgTheStroke} width={56} height={56} />
+                            </div>
 
-                    <div className={Styles.infoMusica}>
-                        <span className={Styles.infoTitulo} title={'You Only Live Once'}>{musicaContext.nome}</span>
-                        <span className={Styles.infoDescricao} title={'The Strokes'}>{musicaContext.musicasBandas[0].bandas.nome}</span>
-                    </div>
-                </div>
+                            <div className={Styles.infoMusica}>
+                                <span className={Styles.infoTitulo} title={'You Only Live Once'}>{musicaContext.nome}</span>
+                                <span className={Styles.infoDescricao} title={'The Strokes'}>{musicaContext.musicasBandas[0].bandas.nome}</span>
+                            </div>
+                        </div>
 
-                <span onClick={() => handleCoracao()} className={Styles.spanIcone} title='Curtir/descurtir música'>
-                    {isMusicaCurtida ? (
-                        <CoracaoPreenchido />
-                    ) : (
-                        <Coracao />
-                    )}
-                </span>
+                        <span onClick={() => handleCoracao()} className={Styles.spanIcone} title='Curtir/descurtir música'>
+                            {isMusicaCurtida ? (
+                                <CoracaoPreenchido />
+                            ) : (
+                                <Coracao />
+                            )}
+                        </span>
 
-                <span className={Styles.spanIcone} title='Ativar/desativar modo picture-in-picture'>
-                    <Toggle />
-                </span>
+                        <span className={Styles.spanIcone} title='Ativar/desativar modo picture-in-picture'>
+                            <Toggle />
+                        </span>
+                    </Fragment>
+                )}
             </div>
 
             {/* =-=-=-=-=-=-=-=-=-=-=-= Segunda div, meio =-=-=-=-=-=-=-=-=-=-=-= */}

@@ -9,8 +9,23 @@ export default function ProgressBarPlayer(props) {
     const [arquivoMusica, setArquivoMusica] = useState();
     useEffect(() => {
         async function importFile() {
+            // Importar música dinamicamente;
             const arquivo = await import(`../../static/music/${props.musicaId}.mp3`);
             setArquivoMusica(arquivo.default);
+
+            // Tentar infinitas vezes encontrar o refMusica.current.duration;
+            function forcarDuracao() {
+                if (!refMusica.current.duration) {
+                    window.setTimeout(forcarDuracao, 100); 
+                    // console.log('Tentando de novo');
+                } else {
+                    // console.log(refMusica.current.duration);
+                    setTempoSegundosMaximo(refMusica.current.duration);
+                    setarInformacoes(refMusica.current.duration, 0);
+                }
+            }
+
+            forcarDuracao();
         }
 
         importFile();
@@ -39,11 +54,6 @@ export default function ProgressBarPlayer(props) {
                 setarTempoAtual(rect.width);
             }
         }
-
-        // Pegar a duração da música;
-        // console.log(refMusica.current.duration);
-        setTempoSegundosMaximo(refMusica.current.duration);
-        setarInformacoes(refMusica.current.duration, 0);
     }, []);
 
     function handleClick(e) {
@@ -66,7 +76,7 @@ export default function ProgressBarPlayer(props) {
 
         // Usar variaveis referentes ao tempo real da música tocada;
         const segundoAtual = (tempoRealCalculo / 100) * tempoSegundosMaximo;
-        // console.log(segundoAtual);
+        console.log(segundoAtual);
 
         setTempoAtual(segundoAtual);
         refMusica.current.currentTime = segundoAtual;

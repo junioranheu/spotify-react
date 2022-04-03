@@ -264,7 +264,7 @@ export default function BarraPlayer() {
                     <Microfone />
                 </span>
 
-                <span className={Styles.spanIcone} title='Visualizar fila'>
+                <span className={Styles.spanIcone} onClick={() => { window.open('/fila', '_self') }} title='Visualizar fila'>
                     <Fila />
                 </span>
 

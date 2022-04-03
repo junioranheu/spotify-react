@@ -1,33 +1,16 @@
 import React, { useContext, useEffect } from 'react';
-import { Aviso } from '../components/outros/aviso';
 import Styles from '../styles/index.module.css';
-import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
+import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
-import EmojiAleatorio from '../utils/outros/emojiAleatorio';
 
-export default function Index({ musicas }) {
+export default function Fila({ musicas }) {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
     useEffect(() => {
         // Título da página;
-        document.title = 'Spotify — React.js — junioranheu';
-
-        // Aviso;
-        if (process.env.NODE_ENV === 'production') {
-            const msg =
-                `Olá! ${EmojiAleatorio()}<br/><br/> 
-            Esse projeto foi replicado, sem fins lucrativos, a fim de estudo apenas, utilizando React.js e Next.js, a partir de um projeto real, de uma empresa real.<br/><br/> 
-            Feito por @junioranheu.<br/><br/> 
-            Todos os direitos reservados à @spotify.`;
-            Aviso.custom(msg, 20000);
-        }
-
-        // Salvar no Context e no localStorage;
-        // Guardar provisoriamente a lista de músicas em ListaMusicasContext;
-        ListaMusicasStorage.set(musicas);
-        setListaMusicasContext(musicas);
-    }, [musicas]);
+        document.title = 'Spotify — Fila de reprodução';
+    }, []);
 
     async function handleClick(e) {
         const id = e.target.id;
@@ -44,7 +27,7 @@ export default function Index({ musicas }) {
 
     return (
         <section className={Styles.container}>
-            <h1>Página inicial</h1>
+            <h1>Fila</h1>
 
             <ul>
                 {musicas.map((m) => (

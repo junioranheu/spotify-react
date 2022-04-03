@@ -110,7 +110,8 @@ export default function ProgressBarPlayer(props) {
     }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo])
 
     function setarTempoAtual(width) {
-        let segundoAtualMusicaTocando = refMusica.current.currentTime;
+        const currentTime = refMusica.current.currentTime ?? 0;
+        let segundoAtualMusicaTocando = currentTime;
         // console.log(segundoAtualMusicaTocando);
 
         let segundosReais = (segundoAtualMusicaTocando / tempoSegundosMaximo) * width;

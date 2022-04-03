@@ -78,7 +78,6 @@ export default function ProgressBarPlayer(props) {
 
     useEffect(() => {
         let volumeAjustado = props.volume / 100;
-        // console.log(volumeAjustado);
         refMusica.current.volume = volumeAjustado;
 
         // console.log(props.isPlaying);
@@ -94,14 +93,16 @@ export default function ProgressBarPlayer(props) {
         const intervalo = setInterval(() => {
             // console.table([props.isPlaying, tempoSegundosMaximo, refMusica.current.currentTime]);
 
-            if (props.isPlaying && tempoSegundosMaximo > refMusica.current.currentTime) {
+            if (props.isPlaying && props.arquivoMusica && tempoSegundosMaximo > refMusica.current.currentTime) {
                 // console.log(refMusica.current.currentTime);
                 setarTempoAtual(widthElemento);
             } else {
-                if (props.isPlaying) {
-                    console.log('Pular para a próxima música');
-                } else {
-                    console.log(`Música "${props.musicaContext.nome}" pausada`);
+                if (props.arquivoMusica) {
+                    if (props.isPlaying) {
+                        console.log('Pular para a próxima música');
+                    } else {
+                        console.log(`Música "${props.musicaContext.nome}" pausada`);
+                    }
                 }
             }
         }, 100);

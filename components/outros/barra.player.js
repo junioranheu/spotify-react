@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Styles from '../../styles/barra.player.module.css';
-import { MusicaContext } from '../../utils/context/musicaContext';
+import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
+import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';
 import BotaoPlay from '../svg/barra.player/botaoPlay';
@@ -56,7 +57,7 @@ export default function BarraPlayer() {
     }
 
     // Quando uma música é selecionada no MusicaContext;
-    const [musicaContext] = useContext(MusicaContext); // Context da música;
+    const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
     useEffect(() => {
         // console.log(musicaContext);
         // console.log(musicaContext.musicaId);
@@ -81,7 +82,9 @@ export default function BarraPlayer() {
             }
         }
 
-        importDinamico();
+        if (musicaContext.musicaId > 0) {
+            importDinamico();
+        }
     }, [musicaContext.musicaId]);
 
     // Import dinâmico: capa da banda;
@@ -90,9 +93,32 @@ export default function BarraPlayer() {
         const foto = musicaContext.musicasBandas[0].bandas.foto;
         ImagemBanda = require(`../../static/capas/${foto}`);
         // console.log(ImagemBanda);
-    } catch (err) {   
+    } catch (err) {
         ImagemBanda = require('../../static/image/cinza.webp');
         // console.log(err);
+    }
+
+    const [listaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
+    function handleAvancar() {
+        // console.log(listaMusicasContext);
+
+        if (listaMusicasContext.length) {
+            // console.log(musicaContext.musicaId);
+            const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
+            let proximaMusica = listaMusicasContext[index + 1];
+
+            // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;
+            if (!proximaMusica) {
+                // console.log('Não existe index + 1... voltar para o 0');
+                proximaMusica = listaMusicasContext[0];
+            }
+
+            // console.log(proximaMusica);
+
+            // Salvar no Context e no localStorage;
+            MusicaStorage.set(proximaMusica);
+            setMusicaContext(proximaMusica);
+        }
     }
 
     return (
@@ -147,7 +173,7 @@ export default function BarraPlayer() {
                         )}
                     </span>
 
-                    <span className={Styles.spanIcone} title='Avançar uma música'>
+                    <span className={Styles.spanIcone} onClick={() => handleAvancar()} title='Avançar uma música'>
                         <BotaoAvancar />
                     </span>
 

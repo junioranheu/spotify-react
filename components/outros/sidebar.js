@@ -27,8 +27,12 @@ export default function Sidebar() {
                 </div>
 
                 <div className={Styles.divIcones}>
-                    <span onClick={() => { window.open('/', '_self') }}>
-                        <Casa width='24px' /> <span>Início</span>
+                    <span>
+                        <Link href={'/'}>
+                            <a>
+                                <Casa width='24px' /> <span>Início</span>
+                            </a>
+                        </Link>
                     </span>
 
                     <span>

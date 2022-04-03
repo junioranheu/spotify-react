@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
@@ -264,8 +265,12 @@ export default function BarraPlayer() {
                     <Microfone />
                 </span>
 
-                <span className={Styles.spanIcone} onClick={() => { window.open('/fila', '_self') }} title='Visualizar fila'>
-                    <Fila />
+                <span className={Styles.spanIcone} title='Visualizar fila'>
+                    <Link href={'/fila'}>
+                        <a>
+                            <Fila />
+                        </a>
+                    </Link>
                 </span>
 
                 <span className={Styles.spanIcone} onClick={() => handleDispositivo()} title='Transmitir para outro dispositivo'>

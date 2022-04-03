@@ -18,7 +18,9 @@ export default function ProgressBarPlayer(props) {
                 setarInformacoes(refMusica.current.duration, 0);
 
                 // Tocar automaticamente;
-                refMusica.current.play();
+                if (props.isPlaying) {
+                    refMusica.current.play();
+                }
             }
         }
 
@@ -80,7 +82,6 @@ export default function ProgressBarPlayer(props) {
         let volumeAjustado = props.volume / 100;
         refMusica.current.volume = volumeAjustado;
 
-        // console.log(props.isPlaying);
         if (props.isPlaying) {
             refMusica.current.play();
         } else {
@@ -111,7 +112,7 @@ export default function ProgressBarPlayer(props) {
     }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo])
 
     function setarTempoAtual(width) {
-        const currentTime = refMusica.current.currentTime ?? 0;
+        const currentTime = refMusica.current ? refMusica.current.currentTime : 0;
         let segundoAtualMusicaTocando = currentTime;
         // console.log(segundoAtualMusicaTocando);
 

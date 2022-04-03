@@ -102,10 +102,32 @@ export default function BarraPlayer() {
     function handleAvancar() {
         // console.log(listaMusicasContext);
 
-        if (listaMusicasContext.length) {
+        if (listaMusicasContext.length > 0) {
             // console.log(musicaContext.musicaId);
             const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
-            let proximaMusica = listaMusicasContext[index + 1];
+            let proximaMusica = listaMusicasContext[index + 1]; // Avançar;
+
+            // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;
+            if (!proximaMusica) {
+                // console.log('Não existe index + 1... voltar para o 0');
+                proximaMusica = listaMusicasContext[0];
+            }
+
+            // console.log(proximaMusica);
+
+            // Salvar no Context e no localStorage;
+            MusicaStorage.set(proximaMusica);
+            setMusicaContext(proximaMusica);
+        }
+    }
+
+    function handleVoltar() {
+        // console.log(listaMusicasContext);
+
+        if (listaMusicasContext.length > 0) {
+            // console.log(musicaContext.musicaId);
+            const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
+            let proximaMusica = listaMusicasContext[index - 1]; // Voltar;
 
             // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;
             if (!proximaMusica) {
@@ -161,7 +183,7 @@ export default function BarraPlayer() {
                         <Aleatorio />
                     </span>
 
-                    <span className={Styles.spanIcone} title='Voltar uma música'>
+                    <span className={Styles.spanIcone} onClick={() => handleVoltar()} title='Voltar uma música'>
                         <BotaoVoltar />
                     </span>
 

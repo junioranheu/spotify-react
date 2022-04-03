@@ -73,7 +73,7 @@ export default function ProgressBarPlayer(props) {
         // console.log(segundoAtual);
 
         refMusica.current.currentTime = segundoAtual;
-        setTempoAtual(posicaoClick); 
+        setTempoAtual(posicaoClick);
     }
 
     useEffect(() => {
@@ -89,12 +89,20 @@ export default function ProgressBarPlayer(props) {
         }
     }, [props.isPlaying, props.volume]);
 
+    // "Core do Player";
     useEffect(() => {
         const intervalo = setInterval(() => {
             // console.table([props.isPlaying, tempoSegundosMaximo, refMusica.current.currentTime]);
 
             if (props.isPlaying && tempoSegundosMaximo > refMusica.current.currentTime) {
+                // console.log(refMusica.current.currentTime);
                 setarTempoAtual(widthElemento);
+            } else {
+                if (props.isPlaying) {
+                    console.log('Pular para a próxima música');
+                } else {
+                    console.log(`Música "${props.musicaContext.nome}" pausada`);
+                }
             }
         }, 100);
 

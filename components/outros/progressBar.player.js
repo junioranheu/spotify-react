@@ -92,7 +92,7 @@ export default function ProgressBarPlayer(props) {
     // "Core do Player";
     useEffect(() => {
         const intervalo = setInterval(() => {
-            // console.table([props.isPlaying, tempoSegundosMaximo, refMusica.current.currentTime]);
+            // console.table([props.isPlaying, tempoSegundosMaximo, refMusica.current.currentTime, props.isModoLoop]);
 
             if (props.isPlaying && props.arquivoMusica && tempoSegundosMaximo > refMusica.current.currentTime) {
                 // console.log(refMusica.current.currentTime);
@@ -100,8 +100,15 @@ export default function ProgressBarPlayer(props) {
             } else {
                 if (props.arquivoMusica) {
                     if (props.isPlaying) {
-                        // console.log('Pular para a próxima música');
-                        props.handleAvancar();
+                        if (props.isModoLoop) {
+                            // console.log('Modo loop ativado');
+                            refMusica.current.currentTime = 0;
+                            setTempoAtual(0);
+                            refMusica.current.play();
+                        } else {
+                            // console.log('Pular para a próxima música');
+                            props.handleAvancar();
+                        }
                     } else {
                         console.log(`Música "${props.musicaContext.nome}" pausada`);
                     }
@@ -110,7 +117,7 @@ export default function ProgressBarPlayer(props) {
         }, 100);
 
         return () => clearInterval(intervalo);
-    }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo])
+    }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo, props.isModoLoop])
 
     function setarTempoAtual(width) {
         const currentTime = refMusica.current ? refMusica.current.currentTime : 0;

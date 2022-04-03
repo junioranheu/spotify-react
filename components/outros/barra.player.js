@@ -107,10 +107,11 @@ export default function BarraPlayer() {
         setIsModoAleatorio(!isModoAleatorio);
     }
 
+    const [isModoLoop, setIsModoLoop] = useState(false);
     function handleModoLoop() {
-        avisoNaoDesenvolvido();
+        setIsModoLoop(!isModoLoop);
     }
-
+    
     const [listaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     function handleAvancar() {
         // console.log(listaMusicasContext);
@@ -244,7 +245,7 @@ export default function BarraPlayer() {
                     </span>
 
                     <span className={Styles.spanIcone} onClick={() => handleModoLoop()} title='Ativar/desativar modo loop'>
-                        <Loop />
+                        <Loop cor={(isModoLoop ? 'var(--verde)' : '')} />
                     </span>
                 </div>
 
@@ -255,6 +256,7 @@ export default function BarraPlayer() {
                         arquivoMusica={arquivoMusica}
                         musicaContext={musicaContext}
                         handleAvancar={handleAvancar}
+                        isModoLoop={isModoLoop}
                     />
                 </div>
             </div>

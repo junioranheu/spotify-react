@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import ImgTheStroke from '../../static/image/thestrokes.webp';
 import Styles from '../../styles/barra.player.module.css';
 import { MusicaContext } from '../../utils/context/musicaContext';
 import Aleatorio from '../svg/barra.player/aleatorio';
@@ -85,6 +84,17 @@ export default function BarraPlayer() {
         importDinamico();
     }, [musicaContext.musicaId]);
 
+    // Import dinâmico: capa da banda;
+    let ImagemBanda = '';
+    try {
+        const foto = musicaContext.musicasBandas[0].bandas.foto;
+        ImagemBanda = require(`../../static/capas/${foto}`);
+        // console.log(ImagemBanda);
+    } catch (err) {   
+        ImagemBanda = require('../../static/image/cinza.webp');
+        // console.log(err);
+    }
+
     return (
         <section className={Styles.barraPlayer}>
             {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
@@ -93,12 +103,17 @@ export default function BarraPlayer() {
                     <Fragment>
                         <div>
                             <div>
-                                <Image src={ImgTheStroke} width={56} height={56} alt='' />
+                                <Image src={ImagemBanda} width={56} height={56} alt='' />
                             </div>
 
                             <div className={Styles.infoMusica}>
-                                <span className={Styles.infoTitulo} title={'You Only Live Once'}>{musicaContext.nome}</span>
-                                <span className={Styles.infoDescricao} title={'The Strokes'}>{musicaContext.musicasBandas[0].bandas.nome}</span>
+                                <span className={Styles.infoTitulo} title={musicaContext.nome}>
+                                    {musicaContext.nome}
+                                </span>
+
+                                <span className={Styles.infoDescricao} title={musicaContext.musicasBandas[0].bandas.nome}>
+                                    {musicaContext.musicasBandas[0].bandas.nome}
+                                </span>
                             </div>
                         </div>
 

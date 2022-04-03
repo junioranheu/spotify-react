@@ -39,7 +39,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 15px;
+    gap: 0px;
 }
 
 .divInfo div {
@@ -54,6 +54,11 @@
     /* background-color: red; */
     display: flex;
     justify-content: center;
+}
+
+.iconeCoracao{
+    /* background-color: rebeccapurple; */
+    margin-left: 10px;
 }
 
 .divInfo img {
@@ -184,3 +189,4 @@
     display: flex;
     align-items: center;
 }
+

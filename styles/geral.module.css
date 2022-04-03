@@ -1,41 +1,67 @@
 .container {
-    /* background-color: pink; */
-    width: 100vw;
-    height: 100vh;
+  /* background-color: pink; */
+  width: 100vw;
+  height: 100vh;
 
-    overflow-y: hidden;
-    overflow-x: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 
-    display: flex;
+  display: flex;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
 .botao {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    height: 40px;
-    margin: 8px 0 12px;
-    padding: 8px 48px;
-    border: none;
-    background: var(--branco);
-    border-radius: 500px;
-    color: var(--preto);
-    cursor: pointer;
-    font: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 180px;
-    white-space: nowrap;
-    outline: none;
-    place-content: center;
-    place-items: center;
-    -webkit-transition: opacity .2s;
-    transition: opacity .2s;
-    text-transform: uppercase;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  height: 40px;
+  margin: 8px 0 12px;
+  padding: 8px 48px;
+  border: none;
+  background: var(--branco);
+  border-radius: 500px;
+  color: var(--preto);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 180px;
+  white-space: nowrap;
+  outline: none;
+  place-content: center;
+  place-items: center;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s;
+  text-transform: uppercase;
+}
+
+.botao:hover {
+  transform: scale(1.06);
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Coração =-=-=-=-=-=-=-=-=-=-= */
+.coracao {
+  /* background-color: red; */
+  background-image: url('../static/image/coracao-animacao.png');
+  background-repeat: no-repeat;
+  background-size: 2900%;
+  background-position: left;
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.animarCoracao {
+  animation: heart-burst .8s steps(28) forwards;
+}
+
+@keyframes heart-burst {
+  0% {
+    background-position: left;
   }
-  
-  .botao:hover {
-    transform: scale(1.06);
+
+  100% {
+    background-position: right;
   }
-  
+}

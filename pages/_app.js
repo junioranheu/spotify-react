@@ -8,7 +8,7 @@ import { MusicaProvider } from '../utils/context/musicaContext';
 export default function App({ Component, pageProps }) {
     return (
         <MusicaProvider>
-            <section className={Styles.container}>
+            <section className={`${Styles.container} semHighlight`}>
                 <Sidebar />
                 <Component {...pageProps} />
                 <Barra />

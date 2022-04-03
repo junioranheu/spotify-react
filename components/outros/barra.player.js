@@ -8,8 +8,6 @@ import BotaoAvancar from '../svg/barra.player/botaoAvancar';
 import BotaoPlay from '../svg/barra.player/botaoPlay';
 import BotaoStop from '../svg/barra.player/botaoStop';
 import BotaoVoltar from '../svg/barra.player/botaoVoltar';
-import Coracao from '../svg/barra.player/coracao';
-import CoracaoPreenchido from '../svg/barra.player/coracaoPreenchido';
 import Dispositivo from '../svg/barra.player/dispositivo';
 import Fila from '../svg/barra.player/fila';
 import FullScreen from '../svg/barra.player/fullscreen';
@@ -20,6 +18,7 @@ import Volume1 from '../svg/barra.player/volume1';
 import Volume2 from '../svg/barra.player/volume2';
 import Volume3 from '../svg/barra.player/volume3';
 import Volume4 from '../svg/barra.player/volume4';
+import Coracao from './coracao';
 import ProgressBarPlayer from './progressBar.player';
 import ProgressBarVolume from './progressBar.volume';
 
@@ -103,12 +102,8 @@ export default function BarraPlayer() {
                             </div>
                         </div>
 
-                        <span onClick={() => handleCoracao()} className={Styles.spanIcone} title='Curtir/descurtir música'>
-                            {isMusicaCurtida ? (
-                                <CoracaoPreenchido />
-                            ) : (
-                                <Coracao />
-                            )}
+                        <span onClick={() => handleCoracao()} className={`${Styles.spanIcone} ${Styles.iconeCoracao}`} title='Curtir/descurtir música'>
+                            <Coracao isMusicaCurtida={isMusicaCurtida} />
                         </span>
 
                         <span className={Styles.spanIcone} title='Ativar/desativar modo picture-in-picture'>

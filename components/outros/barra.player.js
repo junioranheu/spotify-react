@@ -1,8 +1,10 @@
 import Image from 'next/image';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
+import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import NumeroAleatorio from '../../utils/outros/numeroAleatorio';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';
@@ -100,13 +102,12 @@ export default function BarraPlayer() {
     }
 
     const [isModoAleatorio, setIsModoAleatorio] = useState(false);
-    function handleMooAleatorio() {
+    function handleModoAleatorio() {
         setIsModoAleatorio(!isModoAleatorio);
     }
 
-    const [isModoLoop, setIsModoLoop] = useState(false);
     function handleModoLoop() {
-        setIsModoLoop(!isModoLoop);
+        avisoNaoDesenvolvido();
     }
 
     const [listaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
@@ -128,7 +129,7 @@ export default function BarraPlayer() {
                 const listaLenght = listaMusicasContext.length;
                 const random = NumeroAleatorio(0, listaLenght - 1);
                 // console.log(random);
-                proximaMusica = listaMusicasContext[random]; 
+                proximaMusica = listaMusicasContext[random];
             }
 
             // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;
@@ -167,6 +168,24 @@ export default function BarraPlayer() {
         }
     }
 
+    function avisoNaoDesenvolvido() {
+        const msg = `Essa função ainda não foi desenvolvida! ${EmojiAleatorio()}`;
+        // console.log(msg);
+        Aviso.custom(msg, 20000);
+    }
+
+    function handleToggle() {
+        avisoNaoDesenvolvido();
+    }
+
+    function handleMicrofone() {
+        avisoNaoDesenvolvido();
+    }
+
+    function handleDispositivo() {
+        avisoNaoDesenvolvido();
+    }
+
     return (
         <section className={Styles.barraPlayer}>
             {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
@@ -189,11 +208,11 @@ export default function BarraPlayer() {
                             </div>
                         </div>
 
-                        <span onClick={() => handleCoracao()} className={`${Styles.spanIcone} ${Styles.iconeCoracao}`} title='Curtir/descurtir música'>
+                        <span className={`${Styles.spanIcone} ${Styles.iconeCoracao}`} onClick={() => handleCoracao()} title='Curtir/descurtir música'>
                             <Coracao isMusicaCurtida={isMusicaCurtida} />
                         </span>
 
-                        <span className={Styles.spanIcone} title='Ativar/desativar modo picture-in-picture'>
+                        <span className={Styles.spanIcone} onClick={() => handleToggle()} title='Ativar/desativar modo picture-in-picture'>
                             <Toggle />
                         </span>
                     </Fragment>
@@ -203,8 +222,8 @@ export default function BarraPlayer() {
             {/* =-=-=-=-=-=-=-=-=-=-=-= Segunda div, meio =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divPlayer}>
                 <div className={Styles.divPlayerIcones}>
-                    <span className={Styles.spanIcone} onClick={() => handleMooAleatorio()} title='Ativar/desativar modo aleatório'>
-                        <Aleatorio cor={(isModoAleatorio ? 'var(--verde)' : 'var(--branco)')} />
+                    <span className={Styles.spanIcone} onClick={() => handleModoAleatorio()} title='Ativar/desativar modo aleatório'>
+                        <Aleatorio cor={(isModoAleatorio ? 'var(--verde)' : '')} />
                     </span>
 
                     <span className={Styles.spanIcone} onClick={() => handleVoltar()} title='Voltar uma música'>
@@ -224,18 +243,24 @@ export default function BarraPlayer() {
                     </span>
 
                     <span className={Styles.spanIcone} onClick={() => handleModoLoop()} title='Ativar/desativar modo loop'>
-                        <Loop cor={(isModoLoop ? 'var(--verde)' : 'var(--branco)')} />
+                        <Loop />
                     </span>
                 </div>
 
                 <div className={Styles.divPlayerInner}>
-                    <ProgressBarPlayer isPlaying={isPlaying} volume={volume} arquivoMusica={arquivoMusica} musicaContext={musicaContext} />
+                    <ProgressBarPlayer
+                        isPlaying={isPlaying}
+                        volume={volume}
+                        arquivoMusica={arquivoMusica}
+                        musicaContext={musicaContext}
+                        handleAvancar={handleAvancar}
+                    />
                 </div>
             </div>
 
             {/* =-=-=-=-=-=-=-=-=-=-=-= Terceira div, direita =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divOpcoes}>
-                <span className={Styles.spanIcone} title='Visualizar letra'>
+                <span className={Styles.spanIcone} onClick={() => handleMicrofone()} title='Visualizar letra'>
                     <Microfone />
                 </span>
 
@@ -243,11 +268,11 @@ export default function BarraPlayer() {
                     <Fila />
                 </span>
 
-                <span className={Styles.spanIcone} title='Transmitir para outro dispositivo'>
+                <span className={Styles.spanIcone} onClick={() => handleDispositivo()} title='Transmitir para outro dispositivo'>
                     <Dispositivo />
                 </span>
 
-                <span onClick={() => handleVolume()} className={Styles.spanIcone}>
+                <span className={Styles.spanIcone} onClick={() => handleVolume()}>
                     {
                         volume >= 65 ? (
                             <Volume4 />
@@ -265,7 +290,7 @@ export default function BarraPlayer() {
                     <ProgressBarVolume getVolume={getVolume} volume={volume} />
                 </div>
 
-                <span onClick={() => handleFullScreen()} className={Styles.spanIcone}>
+                <span className={Styles.spanIcone} onClick={() => handleFullScreen()}>
                     <FullScreen />
                 </span>
             </div>

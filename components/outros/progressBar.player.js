@@ -100,7 +100,8 @@ export default function ProgressBarPlayer(props) {
             } else {
                 if (props.arquivoMusica) {
                     if (props.isPlaying) {
-                        console.log('Pular para a próxima música');
+                        // console.log('Pular para a próxima música');
+                        props.handleAvancar();
                     } else {
                         console.log(`Música "${props.musicaContext.nome}" pausada`);
                     }

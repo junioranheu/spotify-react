@@ -1,9 +1,10 @@
-:root{
+:root {
   --preto: #181818;
   --super-preto: #000000;
   --cinza: #2D2D35;
   --branco: #FFFFFF;
   --verde: #1DB954;
+  --toastify-color-progress-light: var(--verde);
 }
 
 html, body {
@@ -35,7 +36,7 @@ a {
   user-select: none
 }
 
-.svg16px{
+.svg16px {
   min-width: 16px;
   min-height: 16px;
   max-width: 16px;
@@ -59,4 +60,3 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #949799;
 }
-

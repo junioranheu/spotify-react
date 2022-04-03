@@ -29,12 +29,12 @@ export default function Index({ musicas }) {
         setListaMusicasContext(musicas);
     }, [musicas]);
 
-    async function handleClick(e) {
+    function handleClick(e) {
         const id = e.target.id;
         // console.log(id);
 
-        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
-        const musica = await res.json();
+        const musicaJson = listaMusicasContext.filter(x => x.musicaId === parseInt(id));
+        const musica = musicaJson[0];
         // console.log(musica);
 
         // Salvar no Context e no localStorage;

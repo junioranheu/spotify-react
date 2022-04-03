@@ -3,6 +3,7 @@ import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
+import NumeroAleatorio from '../../utils/outros/numeroAleatorio';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';
 import BotaoPlay from '../svg/barra.player/botaoPlay';
@@ -98,14 +99,37 @@ export default function BarraPlayer() {
         // console.log(err);
     }
 
+    const [isModoAleatorio, setIsModoAleatorio] = useState(false);
+    function handleMooAleatorio() {
+        setIsModoAleatorio(!isModoAleatorio);
+    }
+
+    const [isModoLoop, setIsModoLoop] = useState(false);
+    function handleModoLoop() {
+        setIsModoLoop(!isModoLoop);
+    }
+
     const [listaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     function handleAvancar() {
         // console.log(listaMusicasContext);
 
         if (listaMusicasContext.length > 0) {
             // console.log(musicaContext.musicaId);
-            const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
-            let proximaMusica = listaMusicasContext[index + 1]; // Avançar;
+            let proximaMusica;
+
+            // Caso o isModoAleatorio NÃO seja true, pegue o próximo, normalmente;
+            if (!isModoAleatorio) {
+                const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
+                proximaMusica = listaMusicasContext[index + 1]; // Avançar;
+            }
+
+            // Caso o isModoAleatorio seja true, o Avançar não pode ser simplesmente "+1";
+            if (isModoAleatorio) {
+                const listaLenght = listaMusicasContext.length;
+                const random = NumeroAleatorio(0, listaLenght - 1);
+                // console.log(random);
+                proximaMusica = listaMusicasContext[random]; 
+            }
 
             // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;
             if (!proximaMusica) {
@@ -179,8 +203,8 @@ export default function BarraPlayer() {
             {/* =-=-=-=-=-=-=-=-=-=-=-= Segunda div, meio =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divPlayer}>
                 <div className={Styles.divPlayerIcones}>
-                    <span className={Styles.spanIcone} title='Ativar/desativar modo aleatório'>
-                        <Aleatorio />
+                    <span className={Styles.spanIcone} onClick={() => handleMooAleatorio()} title='Ativar/desativar modo aleatório'>
+                        <Aleatorio cor={(isModoAleatorio ? 'var(--verde)' : 'var(--branco)')} />
                     </span>
 
                     <span className={Styles.spanIcone} onClick={() => handleVoltar()} title='Voltar uma música'>
@@ -199,8 +223,8 @@ export default function BarraPlayer() {
                         <BotaoAvancar />
                     </span>
 
-                    <span className={Styles.spanIcone} title='Ativar/desativar modo loop'>
-                        <Loop />
+                    <span className={Styles.spanIcone} onClick={() => handleModoLoop()} title='Ativar/desativar modo loop'>
+                        <Loop cor={(isModoLoop ? 'var(--verde)' : 'var(--branco)')} />
                     </span>
                 </div>
 

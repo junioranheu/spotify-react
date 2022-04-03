@@ -73,7 +73,6 @@ export default function ProgressBarPlayer(props) {
         // console.log(segundoAtual);
 
         refMusica.current.currentTime = segundoAtual;
-        setTempoAtual(segundoAtual);
     }
 
     useEffect(() => {

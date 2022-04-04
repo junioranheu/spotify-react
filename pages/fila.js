@@ -40,12 +40,13 @@ export default function Fila() {
                 <div>
                     {musicaContext.musicaId > 0 ? (
                         <MusicaRow
-                            id={1}
+                            i={1}
+                            id={musicaContext.musicaId}
                             foto={musicaContext.musicasBandas[0].bandas.foto}
                             titulo={musicaContext.nome}
                             banda={musicaContext.musicasBandas[0].bandas.nome}
                             album={'teste'}
-                            tempo='3000'
+                            tempo='xx:xx'
                         />
                     ) : (
                         <div>Nenhuma música em reprodução agora</div>
@@ -60,14 +61,15 @@ export default function Fila() {
                 <div>
                     {listaMusicasContext.length > 0 ? (
                         <Fragment>
-                            {listaMusicasContext.map((m) => (
+                            {listaMusicasContext.map((m, i) => (
                                 <MusicaRow
+                                    i={i + 2} // A ordem tem que começar no 2;
                                     id={m.musicaId}
                                     foto={m.musicasBandas[0].bandas.foto}
                                     titulo={m.nome}
                                     banda={m.musicasBandas[0].bandas.nome}
                                     album={'teste'}
-                                    tempo='3000'
+                                    tempo='xx:xx'
                                 />
                             ))}
                         </Fragment>

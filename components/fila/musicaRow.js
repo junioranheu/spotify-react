@@ -4,7 +4,7 @@ import Coracao from '../../components/outros/coracao';
 import Reticencias from '../../components/svg/reticencias';
 import Styles from '../../styles/fila.module.css';
 
-export default function MusicaRow({ id, foto, titulo, banda, album, tempo }) {
+export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo }) {
 
     // Import dinâmico: capa da banda;
     let ImagemBanda = '';
@@ -22,9 +22,9 @@ export default function MusicaRow({ id, foto, titulo, banda, album, tempo }) {
     }
 
     return (
-        <div className={Styles.divMusica}>
+        <div className={Styles.divMusica} id={id}>
             <div className={Styles.divEsquerda}>
-                <span className={Styles.verde}>{id}</span>
+                <span className={Styles.verde}>{i}</span>
 
                 <div>
                     <Image src={ImagemBanda} width={40} height={40} alt='' />
@@ -36,7 +36,7 @@ export default function MusicaRow({ id, foto, titulo, banda, album, tempo }) {
                 </div>
             </div>
 
-            <div>
+            <div className={Styles.divMeio}>
                 <span>{album}</span>
             </div>
 

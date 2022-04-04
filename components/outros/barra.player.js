@@ -127,8 +127,14 @@ export default function BarraPlayer() {
     }
 
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
+    const [isPodeAvancar, setIsPodeAvancar] = useState(true);
     function handleAvancar() {
         // console.log(listaMusicasContext);
+
+        if (!isPodeAvancar) {
+            console.log('Não pode avançar a música agora, aguarde um momento');
+            return false;
+        }
 
         if (listaMusicasContext?.length > 0) {
             // console.log(musicaContext.musicaId);
@@ -159,11 +165,28 @@ export default function BarraPlayer() {
             // Salvar no Context e no localStorage;
             MusicaStorage.set(proximaMusica);
             setMusicaContext(proximaMusica);
+
+            // Não permitir avançar até que passe o x segundos;
+            setIsPodeAvancar(false);
         }
     }
 
+    useEffect(() => {
+        // Aguardar x segundos para poder avançar novamente, para evitar bugs;
+        if (!isPodeAvancar) {
+            setTimeout(function () {
+                setIsPodeAvancar(true);
+            }, 1000);
+        }
+    }, [isPodeAvancar]);
+
     function handleVoltar() {
         // console.log(listaMusicasContext);
+
+        if (!isPodeAvancar) {
+            console.log('Não pode voltar a música agora, aguarde um momento');
+            return false;
+        }
 
         if (listaMusicasContext.length > 0) {
             // console.log(musicaContext.musicaId);
@@ -181,6 +204,9 @@ export default function BarraPlayer() {
             // Salvar no Context e no localStorage;
             MusicaStorage.set(proximaMusica);
             setMusicaContext(proximaMusica);
+
+            // Não permitir voltar até que passe o x segundos;
+            setIsPodeAvancar(false);
         }
     }
 

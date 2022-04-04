@@ -1,4 +1,4 @@
 https://open.spotify.com/
 
 --
-Depois que finalizar o projeto, colocar css para nao permitir copiar e arrastar nada
+Arrumar algum modo de ajustar o "Voltar";

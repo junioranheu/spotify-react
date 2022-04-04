@@ -3,7 +3,7 @@ import BarraDeslogado from './barra.deslogado';
 import BarraPlayer from './barra.player';
 
 export default function Barra() {
-    const [isLogado, setIsLogado] = useState(true);
+    const [isLogado, setIsLogado] = useState(false);
     function handleClick() {
         setIsLogado(!isLogado);
     }

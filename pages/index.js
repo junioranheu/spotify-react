@@ -25,10 +25,10 @@ export default function Index({ musicas }) {
 
         // Salvar no Context e no localStorage;
         // Guardar provisoriamente a lista de músicas em ListaMusicasContext;
-        console.log(musicas);
+        // console.log(musicas);
         ListaMusicasStorage.set(musicas);
         setListaMusicasContext(musicas);
-    }, [musicas]);
+    }, [musicas, setListaMusicasContext]);
 
     function handleClick(e) {
         const id = e.target.id;
@@ -62,6 +62,7 @@ export async function getStaticProps() {
     // const res = await fetch('https://spotifyapi.azurewebsites.net/api/Musicas/todos')
     // const musicas = await res.json();
 
+    // Mocado;
     const musicas = [
         {
             "musicaId": 8,

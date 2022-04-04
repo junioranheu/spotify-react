@@ -48,7 +48,7 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                 </span>
 
                 <span>{tempo}</span>
-                <span><Reticencias width='16' cor='#A7A7A7' /></span>
+                <span className='pointer'><Reticencias width='16' cor='#A7A7A7' /></span>
             </div>
         </div>
     )

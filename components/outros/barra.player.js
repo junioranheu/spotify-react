@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router'
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
@@ -94,10 +94,10 @@ export default function BarraPlayer() {
             }
         }
 
-        if (musicaContext.musicaId > 0) {
+        if (musicaContext?.musicaId > 0) {
             importDinamico();
         }
-    }, [musicaContext.musicaId]);
+    }, [musicaContext?.musicaId]);
 
     // Import dinâmico: capa da banda;
     let ImagemBanda = '';
@@ -200,7 +200,7 @@ export default function BarraPlayer() {
         <section className={Styles.barraPlayer}>
             {/* =-=-=-=-=-=-=-=-=-=-=-= Primeira div, esquerda =-=-=-=-=-=-=-=-=-=-=-= */}
             <div className={Styles.divInfo}>
-                {musicaContext.musicaId > 0 && (
+                {musicaContext?.musicaId > 0 && (
                     <Fragment>
                         <div>
                             <div>

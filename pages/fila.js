@@ -36,7 +36,7 @@ export default function Fila() {
                 <span className={Styles.subtitulo}>Em reprodução</span>
 
                 <div>
-                    {musicaContext.musicaId > 0 ? (
+                    {musicaContext?.musicaId > 0 ? (
                         <MusicaRow
                             i={1}
                             id={musicaContext.musicaId}
@@ -62,7 +62,7 @@ export default function Fila() {
                         <Fragment>
                             {listaMusicasContext.map((m, i) => (
                                 <Fragment key={m.musicaId}>
-                                    {m.musicaId !== musicaContext.musicaId && (
+                                    {m.musicaId !== musicaContext?.musicaId && (
                                         <MusicaRow
                                             i={i + 2} // A ordem tem que começar no 2;
                                             id={m.musicaId}

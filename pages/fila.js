@@ -48,7 +48,9 @@ export default function Fila() {
                             setarMusica={setarMusica}
                         />
                     ) : (
-                        <div>Nenhuma música em reprodução agora</div>
+                        <div>
+                            <span className={Styles.textoNormal}>Nenhuma música em reprodução agora</span>
+                        </div>
                     )}
                 </div>
             </div>
@@ -78,7 +80,9 @@ export default function Fila() {
                             ))}
                         </Fragment>
                     ) : (
-                        <div>Sem músicas na sua fila de reprodução</div>
+                        <div>
+                            <span className={Styles.textoNormal}>Sem músicas na sua fila de reprodução</span>
+                        </div>
                     )}
                 </div>
             </div>

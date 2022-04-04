@@ -31,9 +31,16 @@
 .subtitulo {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.5rem;
     font-weight: 700;
+    color: #A7A7A7;
+}
+
+.textoNormal {
+    font-size: 1rem;
+    line-height: 1rem;
+    font-weight: 400;
     color: #A7A7A7;
 }
 
@@ -59,7 +66,7 @@
 .divMusica>div {
     flex: 1 1 30%;
 }
-
+ 
 .divMusica:hover {
     border: 1px solid transparent;
     border-radius: 4px;

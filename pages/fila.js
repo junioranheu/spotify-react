@@ -43,7 +43,7 @@ export default function Fila() {
                             foto={musicaContext.musicasBandas[0].bandas.foto}
                             titulo={musicaContext.nome}
                             banda={musicaContext.musicasBandas[0].bandas.nome}
-                            album={'teste'}
+                            album={'xxx'}
                             tempo='xx:xx'
                             setarMusica={setarMusica}
                         />
@@ -68,7 +68,7 @@ export default function Fila() {
                                     foto={m.musicasBandas[0].bandas.foto}
                                     titulo={m.nome}
                                     banda={m.musicasBandas[0].bandas.nome}
-                                    album={'teste'}
+                                    album={'xxx'}
                                     tempo='xx:xx'
                                     setarMusica={setarMusica}
                                 />

@@ -6,7 +6,7 @@ import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 export default function Fila() {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
-
+ 
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';

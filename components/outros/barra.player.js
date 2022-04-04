@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router'
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
@@ -27,6 +28,13 @@ import ProgressBarPlayer from './progressBar.player';
 import ProgressBarVolume from './progressBar.volume';
 
 export default function BarraPlayer() {
+    const asPath = useRouter();
+    const [url, setUrl] = useState('');
+    useEffect(() => {
+        // console.log(asPath.pathname);
+        setUrl(asPath.pathname);
+    }, [asPath]);
+
     const [isMusicaCurtida, setIsMusicaCurtida] = useState(false);
     function handleCoracao() {
         setIsMusicaCurtida(!isMusicaCurtida);
@@ -111,7 +119,7 @@ export default function BarraPlayer() {
     function handleModoLoop() {
         setIsModoLoop(!isModoLoop);
     }
-    
+
     const [listaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     function handleAvancar() {
         // console.log(listaMusicasContext);
@@ -270,7 +278,7 @@ export default function BarraPlayer() {
                 <span className={Styles.spanIcone} title='Visualizar fila'>
                     <Link href={'/fila'}>
                         <a>
-                            <Fila />
+                            <Fila cor={(url === '/fila' ? 'var(--verde)' : '')} />
                         </a>
                     </Link>
                 </span>

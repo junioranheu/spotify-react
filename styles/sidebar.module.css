@@ -16,6 +16,7 @@
 }
 
 .sidebar span {
+    /* background-color: pink; */
     font-size: 0.875rem;
     line-height: 1rem;
     text-transform: none;
@@ -28,11 +29,14 @@
     text-overflow: ellipsis;
 }
 
+.sidebar span a {
+    cursor: pointer;
+}
+
 .sidebar span:hover {
     -webkit-transition: opacity .3s;
     transition: opacity .3s;
-    opacity: 1;
-    cursor: pointer;
+    opacity: 1; 
 }
 
 .divIcones {

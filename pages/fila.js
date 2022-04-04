@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
-
+ 
 export default function Fila() {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;

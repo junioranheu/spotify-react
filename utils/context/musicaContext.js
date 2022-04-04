@@ -7,7 +7,7 @@ export const MusicaContext = createContext();
 export const MusicaProvider = props => {
     // https://stackoverflow.com/questions/68189273/referenceerror-localstorage-is-not-defined-using-local-storage-in-nextjs
     if (typeof window !== 'undefined') {
-        const [musica, setMusica] = useState(localStorage.getItem('musicaContext') ? JSON.parse(localStorage.getItem('musicaContext')) : {});
+        const [musica, setMusica] = useState(localStorage.getItem('musicaContext') == 'undefined' ? {} : JSON.parse(localStorage.getItem('musicaContext')));
 
         return (
             <MusicaContext.Provider value={[musica, setMusica]}>

@@ -56,8 +56,8 @@
     font-weight: 400;
 }
 
-.divMusica > div {
-    flex: 1 1 30%; 
+.divMusica>div {
+    flex: 1 1 30%;
 }
 
 .divMusica:hover {
@@ -66,8 +66,12 @@
     background-color: rgba(255, 255, 255, .3);
 }
 
-.divMusica:hover .verde {
-    color: var(--verde) !important;
+.divMusica:hover .verdeOnHover {
+    color: var(--verde);
+}
+
+.verde{
+    color: var(--verde);
 }
 
 .divEsquerda {
@@ -77,6 +81,11 @@
     justify-content: flex-start;
     align-items: center;
     gap: 25px;
+}
+
+.contador {
+    /* background-color: pink; */
+    min-width: 20px;
 }
 
 .divInfoMusica {
@@ -99,4 +108,17 @@
     justify-content: flex-end;
     align-items: center;
     gap: 25px;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Exibir/esconder play =-=-=-=-=-=-=-=-=-=-= */
+.esconderPlay {
+    display: none;
+}
+
+.divMusica:hover .esconderPlay {
+    display: block;
+}
+
+.divMusica:hover .contador {
+    display: none;
 }

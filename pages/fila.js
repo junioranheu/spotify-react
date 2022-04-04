@@ -11,12 +11,10 @@ export default function Fila() {
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
-
-        console.log(musicaContext);
     }, []);
 
-    function handleClick(e) {
-        const id = e.target.id;
+    function setarMusica(e) {
+        const id = e.currentTarget.id;
         // console.log(id);
 
         // const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
@@ -32,7 +30,7 @@ export default function Fila() {
 
     return (
         <section className={Styles.container}>
-            {/* Fila */}
+            {/* Atual */}
             <div className={Styles.div}>
                 <span className={Styles.titulo}>Fila</span>
                 <span className={Styles.subtitulo}>Em reprodução</span>
@@ -47,6 +45,7 @@ export default function Fila() {
                             banda={musicaContext.musicasBandas[0].bandas.nome}
                             album={'teste'}
                             tempo='xx:xx'
+                            setarMusica={setarMusica}
                         />
                     ) : (
                         <div>Nenhuma música em reprodução agora</div>
@@ -54,7 +53,7 @@ export default function Fila() {
                 </div>
             </div>
 
-            {/* Próximas */}
+            {/* Próximas na fila */}
             <div className={Styles.div}>
                 <span className={Styles.titulo}>Próximas</span>
 
@@ -70,6 +69,7 @@ export default function Fila() {
                                     banda={m.musicasBandas[0].bandas.nome}
                                     album={'teste'}
                                     tempo='xx:xx'
+                                    setarMusica={setarMusica}
                                 />
                             ))}
                         </Fragment>

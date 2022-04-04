@@ -124,19 +124,19 @@ export default function BarraPlayer() {
     function handleAvancar() {
         // console.log(listaMusicasContext);
 
-        if (listaMusicasContext.length > 0) {
+        if (listaMusicasContext?.length > 0) {
             // console.log(musicaContext.musicaId);
             let proximaMusica;
 
             // Caso o isModoAleatorio NÃO seja true, pegue o próximo, normalmente;
             if (!isModoAleatorio) {
-                const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
+                const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext?.musicaId);
                 proximaMusica = listaMusicasContext[index + 1]; // Avançar;
             }
 
             // Caso o isModoAleatorio seja true, o Avançar não pode ser simplesmente "+1";
             if (isModoAleatorio) {
-                const listaLenght = listaMusicasContext.length;
+                const listaLenght = listaMusicasContext?.length;
                 const random = NumeroAleatorio(0, listaLenght - 1);
                 // console.log(random);
                 proximaMusica = listaMusicasContext[random];
@@ -161,7 +161,7 @@ export default function BarraPlayer() {
 
         if (listaMusicasContext.length > 0) {
             // console.log(musicaContext.musicaId);
-            const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext.musicaId);
+            const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext?.musicaId);
             let proximaMusica = listaMusicasContext[index - 1]; // Voltar;
 
             // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;

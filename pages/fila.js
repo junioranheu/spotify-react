@@ -60,7 +60,7 @@ export default function Fila() {
                 <span className={Styles.titulo}>Próximas</span>
 
                 <div>
-                    {listaMusicasContext.length > 0 ? (
+                    {listaMusicasContext?.length > 0 ? (
                         <Fragment>
                             {listaMusicasContext.map((m, i) => (
                                 <Fragment key={m.musicaId}>

@@ -12,6 +12,7 @@ export default function Fila() {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
 
+       // console.log(musicaContext);
         // console.log(listaMusicasContext);
     }, []);
 
@@ -45,8 +46,7 @@ export default function Fila() {
                             foto={musicaContext.musicasBandas[0]?.bandas.foto}
                             titulo={musicaContext.nome}
                             banda={musicaContext.musicasBandas[0]?.bandas.nome}
-                            album={musicaContext.albunsMusicas[0]?.albuns.nome}
-                            tempo='xx:xx'
+                            album={(musicaContext.albunsMusicas ? musicaContext.albunsMusicas[0]?.albuns.nome : '')}
                             setarMusica={setarMusica}
                         />
                     ) : (

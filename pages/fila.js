@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import Styles from '../styles/index.module.css';
+import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 
 export default function Fila() {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
- 
+
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
@@ -29,19 +29,41 @@ export default function Fila() {
 
     return (
         <section className={Styles.container}>
-            <h1>Fila</h1>
+            {/* Fila */}
+            <div className={Styles.div}>
+                <span className={Styles.titulo}>Fila</span>
+                <span className={Styles.subtitulo}>Em reprodução</span>
 
-            {listaMusicasContext.length > 0 ? (
-                <ul>
-                    {listaMusicasContext.map((m) => (
-                        <li key={m.musicaId} id={m.musicaId} onClick={(e) => handleClick(e)} className={Styles.aea}>
-                            {m.nome} - {m.musicasBandas[0].bandas.nome}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <div>Sem músicas na sua fila de reprodução</div>
-            )}
+                <div>
+                    {musicaContext.musicaId > 0 ? (
+                        <div>
+                            <span>{musicaContext.nome}</span>
+                            <span>{musicaContext.musicasBandas[0].bandas.nome}</span>
+                        </div>
+                    ) : (
+                        <div>Nenhuma música em reprodução agora</div>
+                    )}
+                </div>
+            </div>
+
+            {/* Próximas */}
+            <div className={Styles.div}>
+                <span className={Styles.titulo}>Próximas</span>
+
+                <div>
+                    {listaMusicasContext.length > 0 ? (
+                        <ul>
+                            {listaMusicasContext.map((m) => (
+                                <li key={m.musicaId} id={m.musicaId} onClick={(e) => handleClick(e)} className={Styles.aea}>
+                                    {m.nome} - {m.musicasBandas[0].bandas.nome}
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <div>Sem músicas na sua fila de reprodução</div>
+                    )}
+                </div>
+            </div>
         </section>
     )
 }

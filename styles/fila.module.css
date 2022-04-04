@@ -1,0 +1,40 @@
+.container {
+    background-color: var(--preto2);
+    width: 100%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 60px;
+}
+
+.div {
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    margin-top: 40px;
+}
+
+.titulo {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    letter-spacing: -0.04em;
+    font-weight: 700;
+    color: var(--branco);
+}
+
+.subtitulo {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    color: var(--branco);
+    opacity: 0.7;
+}

@@ -180,33 +180,39 @@ export default function BarraPlayer() {
         }
     }, [isPodeAvancar]);
 
+    const [historicoListaMusicasContext, setHistoricoListaMusicasContext] = useState();
+    useEffect(() => {
+        // console.log('Histórico inicial copiado');
+        setHistoricoListaMusicasContext({ ...listaMusicasContext });
+    }, [listaMusicasContext]);
+
     function handleVoltar() {
-        // console.log(listaMusicasContext);
+        // A FUNÇÃO handleVoltar ESTÁ MEIO BUGADA;
+        // console.log(historicoListaMusicasContext);
+        // console.log(musicaContext.musicaId);
 
         if (!isPodeAvancar) {
             console.log('Não pode voltar a música agora, aguarde um momento');
             return false;
         }
 
-        if (listaMusicasContext.length > 0) {
-            // console.log(musicaContext.musicaId);
-            const index = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
-            let proximaMusica = listaMusicasContext[index - 1]; // Voltar;
+        // Converter o objeto para array de objetos;
+        const arrayHistorico = Object.entries(historicoListaMusicasContext).map(e => e[1]);
 
-            // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;
-            if (!proximaMusica) {
-                // console.log('Não existe index + 1... voltar para o 0');
-                proximaMusica = listaMusicasContext[0];
-            }
+        if (arrayHistorico?.length > 0) {
+            const index = arrayHistorico?.findIndex(m => m.musicaId == musicaContext?.musicaId);
+            let proximaMusica = arrayHistorico[index - 1]; // Voltar;
 
             // console.log(proximaMusica);
 
-            // Salvar no Context e no localStorage;
-            MusicaStorage.set(proximaMusica);
-            setMusicaContext(proximaMusica);
+            if (proximaMusica) {
+                // Salvar no Context e no localStorage;
+                MusicaStorage.set(proximaMusica);
+                setMusicaContext(proximaMusica);
 
-            // Não permitir voltar até que passe o x segundos;
-            setIsPodeAvancar(false);
+                // Não permitir voltar até que passe o x segundos;
+                setIsPodeAvancar(false);
+            }
         }
     }
 

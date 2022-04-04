@@ -62,6 +62,7 @@ export default function Fila() {
                         <Fragment>
                             {listaMusicasContext.map((m, i) => (
                                 <MusicaRow
+                                    key={m.musicaId}
                                     i={i + 2} // A ordem tem que começar no 2;
                                     id={m.musicaId}
                                     foto={m.musicasBandas[0].bandas.foto}

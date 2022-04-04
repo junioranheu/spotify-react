@@ -47,6 +47,7 @@ export default function Fila() {
                             titulo={musicaContext.nome}
                             banda={musicaContext.musicasBandas[0]?.bandas.nome}
                             album={(musicaContext.albunsMusicas ? musicaContext.albunsMusicas[0]?.albuns.nome : '')}
+                            tempo='xx:xx'
                             setarMusica={setarMusica}
                         />
                     ) : (

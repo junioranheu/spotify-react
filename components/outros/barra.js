@@ -10,7 +10,7 @@ export default function Barra() {
 
     return (
         <Fragment>
-            <div style={{ position: 'absolute', top: 15, right: 20, cursor: 'pointer' }} onClick={() => handleClick()}>
+            <div style={{ position: 'absolute', top: 15, right: 20, cursor: 'pointer', color: 'white' }} onClick={() => handleClick()}>
                 <span><code>Autenticar</code></span>
             </div>
 

@@ -87,8 +87,8 @@ export default function BarraPlayer() {
             console.log(`Música "${musicaContext.nome}" (${musicaContext.musicaId}) importada`);
 
             // Quando a música for importada, é necessário removê-la da lista/fila;
-            const indexMusicaTocando = listaMusicasContext.findIndex(m => m.musicaId === musicaContext?.musicaId);
-            listaMusicasContext.splice(indexMusicaTocando, 1);
+            const indexMusicaTocando = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
+            listaMusicasContext?.splice(indexMusicaTocando, 1);
             ListaMusicasStorage.set(listaMusicasContext);
             setListaMusicasContext(listaMusicasContext);
 
@@ -136,7 +136,7 @@ export default function BarraPlayer() {
 
             // Caso o isModoAleatorio NÃO seja true, pegue o próximo, normalmente;
             if (!isModoAleatorio) {
-                const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext?.musicaId);
+                const index = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
                 proximaMusica = listaMusicasContext[index + 1]; // Avançar;
             }
 
@@ -167,7 +167,7 @@ export default function BarraPlayer() {
 
         if (listaMusicasContext.length > 0) {
             // console.log(musicaContext.musicaId);
-            const index = listaMusicasContext.findIndex(m => m.musicaId === musicaContext?.musicaId);
+            const index = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
             let proximaMusica = listaMusicasContext[index - 1]; // Voltar;
 
             // Caso "proximaMusica" esteja vazia, pegue a primeira da lista novamente;

@@ -25,17 +25,16 @@ export default function Index({ musicas }) {
         }
     }, [musicas, setListaMusicasContext]);
 
-    function handleClick(e) {
+    async function handleClick(e) {
         const id = e.target.id;
         // console.log(id);
 
-        const musicaJson = listaMusicasContext.filter(x => x.musicaId === parseInt(id));
-        const musica = musicaJson[0];
-        // console.log(musica);
+        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
+        const musicaJson = await res.json();
 
         // Salvar no Context e no localStorage;
-        MusicaStorage.set(musica);
-        setMusicaContext(musica);
+        MusicaStorage.set(musicaJson);
+        setMusicaContext(musicaJson);
     }
 
     function renovarLista() {

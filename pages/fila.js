@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import Coracao from '../components/outros/coracao';
 import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
- 
+
 export default function Fila() {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
@@ -27,6 +28,11 @@ export default function Fila() {
         setMusicaContext(musica);
     }
 
+    const [isMusicaCurtida, setIsMusicaCurtida] = useState(false);
+    function handleCoracao() {
+        setIsMusicaCurtida(!isMusicaCurtida);
+    }
+
     return (
         <section className={Styles.container}>
             {/* Fila */}
@@ -36,9 +42,28 @@ export default function Fila() {
 
                 <div>
                     {musicaContext.musicaId > 0 ? (
-                        <div>
-                            <span>{musicaContext.nome}</span>
-                            <span>{musicaContext.musicasBandas[0].bandas.nome}</span>
+                        <div className={Styles.divMusica}>
+                            <div className={Styles.divEsquerda}>
+                                <span className={Styles.verde}>1</span>
+                                <span>Imagem</span>
+
+                                <div className={Styles.divInfoMusica}>
+                                    <span className={Styles.verde}>{musicaContext.nome}</span>
+                                    <span>{musicaContext.musicasBandas[0].bandas.nome}</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span>Album</span>
+                            </div>
+
+                            <div className={Styles.divDireita}>
+                                <span onClick={() => handleCoracao()} title={`Curtir/descurtir "${musicaContext.nome}"`}>
+                                    <Coracao isMusicaCurtida={isMusicaCurtida} />
+                                </span>
+
+                                <span>Tempo</span>
+                            </div>
                         </div>
                     ) : (
                         <div>Nenhuma música em reprodução agora</div>

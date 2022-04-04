@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Coracao from '../components/outros/coracao';
+import React, { Fragment, useContext, useEffect } from 'react';
+import MusicaRow from '../components/fila/musicaRow';
 import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
@@ -11,6 +11,8 @@ export default function Fila() {
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
+
+        console.log(musicaContext);
     }, []);
 
     function handleClick(e) {
@@ -28,11 +30,6 @@ export default function Fila() {
         setMusicaContext(musica);
     }
 
-    const [isMusicaCurtida, setIsMusicaCurtida] = useState(false);
-    function handleCoracao() {
-        setIsMusicaCurtida(!isMusicaCurtida);
-    }
-
     return (
         <section className={Styles.container}>
             {/* Fila */}
@@ -42,29 +39,14 @@ export default function Fila() {
 
                 <div>
                     {musicaContext.musicaId > 0 ? (
-                        <div className={Styles.divMusica}>
-                            <div className={Styles.divEsquerda}>
-                                <span className={Styles.verde}>1</span>
-                                <span>Imagem</span>
-
-                                <div className={Styles.divInfoMusica}>
-                                    <span className={Styles.verde}>{musicaContext.nome}</span>
-                                    <span>{musicaContext.musicasBandas[0].bandas.nome}</span>
-                                </div>
-                            </div>
-
-                            <div>
-                                <span>Album</span>
-                            </div>
-
-                            <div className={Styles.divDireita}>
-                                <span onClick={() => handleCoracao()} title={`Curtir/descurtir "${musicaContext.nome}"`}>
-                                    <Coracao isMusicaCurtida={isMusicaCurtida} />
-                                </span>
-
-                                <span>Tempo</span>
-                            </div>
-                        </div>
+                        <MusicaRow
+                            id={1}
+                            foto={musicaContext.musicasBandas[0].bandas.foto}
+                            titulo={musicaContext.nome}
+                            banda={musicaContext.musicasBandas[0].bandas.nome}
+                            album={'teste'}
+                            tempo='3000'
+                        />
                     ) : (
                         <div>Nenhuma música em reprodução agora</div>
                     )}
@@ -77,13 +59,18 @@ export default function Fila() {
 
                 <div>
                     {listaMusicasContext.length > 0 ? (
-                        <ul>
+                        <Fragment>
                             {listaMusicasContext.map((m) => (
-                                <li key={m.musicaId} id={m.musicaId} onClick={(e) => handleClick(e)} className={Styles.aea}>
-                                    {m.nome} - {m.musicasBandas[0].bandas.nome}
-                                </li>
+                                <MusicaRow
+                                    id={m.musicaId}
+                                    foto={m.musicasBandas[0].bandas.foto}
+                                    titulo={m.nome}
+                                    banda={m.musicasBandas[0].bandas.nome}
+                                    album={'teste'}
+                                    tempo='3000'
+                                />
                             ))}
-                        </ul>
+                        </Fragment>
                     ) : (
                         <div>Sem músicas na sua fila de reprodução</div>
                     )}

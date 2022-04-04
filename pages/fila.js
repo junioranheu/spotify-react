@@ -11,6 +11,8 @@ export default function Fila() {
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
+
+        // console.log(listaMusicasContext);
     }, []);
 
     function setarMusica(e) {
@@ -40,10 +42,10 @@ export default function Fila() {
                         <MusicaRow
                             i={1}
                             id={musicaContext.musicaId}
-                            foto={musicaContext.musicasBandas[0].bandas.foto}
+                            foto={musicaContext.musicasBandas[0]?.bandas.foto}
                             titulo={musicaContext.nome}
-                            banda={musicaContext.musicasBandas[0].bandas.nome}
-                            album={'xxx'}
+                            banda={musicaContext.musicasBandas[0]?.bandas.nome}
+                            album={musicaContext.albunsMusicas[0]?.albuns.nome}
                             tempo='xx:xx'
                             setarMusica={setarMusica}
                         />
@@ -67,10 +69,10 @@ export default function Fila() {
                                     key={m.musicaId}
                                     i={(i + 2)} // A ordem tem que começar no 2;
                                     id={m.musicaId}
-                                    foto={m.musicasBandas[0].bandas.foto}
+                                    foto={m.musicasBandas[0]?.bandas.foto}
                                     titulo={m.nome}
-                                    banda={m.musicasBandas[0].bandas.nome}
-                                    album={'xxx'}
+                                    banda={m.musicasBandas[0]?.bandas.nome}
+                                    album={m.albunsMusicas[0]?.albuns.nome}
                                     tempo='xx:xx'
                                     setarMusica={setarMusica}
                                 />

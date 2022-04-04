@@ -70,7 +70,7 @@
     color: var(--verde);
 }
 
-.verde{
+.verde {
     color: var(--verde);
 }
 
@@ -121,4 +121,13 @@
 
 .divMusica:hover .contador {
     display: none;
+}
+
+.esconderItem1 {
+    display: none;
+}
+
+.contadorItem1 {
+    /* background-color: pink; */
+    min-width: 20px;
 }

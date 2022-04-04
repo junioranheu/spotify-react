@@ -62,21 +62,18 @@ export default function Fila() {
                 <div>
                     {listaMusicasContext?.length > 0 ? (
                         <Fragment>
-                            {listaMusicasContext.map((m, i) => (
-                                <Fragment key={m.musicaId}>
-                                    {m.musicaId !== musicaContext?.musicaId && (
-                                        <MusicaRow
-                                            i={i + 2} // A ordem tem que começar no 2;
-                                            id={m.musicaId}
-                                            foto={m.musicasBandas[0].bandas.foto}
-                                            titulo={m.nome}
-                                            banda={m.musicasBandas[0].bandas.nome}
-                                            album={'xxx'}
-                                            tempo='xx:xx'
-                                            setarMusica={setarMusica}
-                                        />
-                                    )}
-                                </Fragment>
+                            {listaMusicasContext.filter(x => x.musicaId !== musicaContext?.musicaId).map((m, i) => (
+                                <MusicaRow
+                                    key={m.musicaId}
+                                    i={(i + 2)} // A ordem tem que começar no 2;
+                                    id={m.musicaId}
+                                    foto={m.musicasBandas[0].bandas.foto}
+                                    titulo={m.nome}
+                                    banda={m.musicasBandas[0].bandas.nome}
+                                    album={'xxx'}
+                                    tempo='xx:xx'
+                                    setarMusica={setarMusica}
+                                />
                             ))}
                         </Fragment>
                     ) : (

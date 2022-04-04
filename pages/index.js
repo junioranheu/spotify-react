@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useContext, useEffect } from 'react';
 import { Aviso } from '../components/outros/aviso';
 import Styles from '../styles/index.module.css';
@@ -22,12 +23,6 @@ export default function Index({ musicas }) {
             Todos os direitos reservados à @spotify.`;
             Aviso.custom(msg, 20000);
         }
-
-        // Salvar no Context e no localStorage;
-        // Guardar provisoriamente a lista de músicas em ListaMusicasContext;
-        // console.log(musicas);
-        ListaMusicasStorage.set(musicas);
-        setListaMusicasContext(musicas);
     }, [musicas, setListaMusicasContext]);
 
     function handleClick(e) {
@@ -43,9 +38,20 @@ export default function Index({ musicas }) {
         setMusicaContext(musica);
     }
 
+    function renovarLista() {
+        // Salvar no Context e no localStorage;
+        // Guardar provisoriamente a lista de músicas em ListaMusicasContext;
+        // console.log(musicas);
+        ListaMusicasStorage.set(musicas);
+        setListaMusicasContext(musicas);
+    }
+
     return (
-        <section className={Styles.container}>
+        <section className={Styles.container} style={{ color: 'white' }}>
             <h1>Página inicial</h1>
+
+            <button onClick={() => renovarLista()}>TESTE: Renovar lista</button>
+            <button><Link href={'/fila'}><a>Sua fila</a></Link></button>
 
             <ul>
                 {musicas.map((m) => (

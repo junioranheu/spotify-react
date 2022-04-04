@@ -110,7 +110,7 @@ export default function ProgressBarPlayer(props) {
                             props.handleAvancar();
                         }
                     } else {
-                        console.log(`Música "${props.musicaContext.nome}" pausada`);
+                        console.log(`Música "${props.musicaContext?.nome}" pausada`);
                     }
                 }
             }

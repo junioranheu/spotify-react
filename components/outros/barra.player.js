@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
-import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
+import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
 import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import NumeroAleatorio from '../../utils/outros/numeroAleatorio';
@@ -86,6 +86,12 @@ export default function BarraPlayer() {
 
             console.log(`Música "${musicaContext.nome}" (${musicaContext.musicaId}) importada`);
 
+            // Quando a música for importada, é necessário removê-la da lista/fila;
+            const indexMusicaTocando = listaMusicasContext.findIndex(m => m.musicaId === musicaContext?.musicaId);
+            listaMusicasContext.splice(indexMusicaTocando, 1);
+            ListaMusicasStorage.set(listaMusicasContext);
+            setListaMusicasContext(listaMusicasContext);
+
             // Lógica para não dar play automaticamente ao carregar página;
             if (!isFirstLoad) {
                 setIsPlaying(true);
@@ -120,7 +126,7 @@ export default function BarraPlayer() {
         setIsModoLoop(!isModoLoop);
     }
 
-    const [listaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
+    const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     function handleAvancar() {
         // console.log(listaMusicasContext);
 

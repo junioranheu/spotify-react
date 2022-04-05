@@ -36,7 +36,7 @@
 .sidebar span:hover {
     -webkit-transition: opacity .3s;
     transition: opacity .3s;
-    opacity: 1; 
+    opacity: 1;
 }
 
 .divIcones {

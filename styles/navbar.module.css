@@ -20,6 +20,10 @@
     margin-right: 30px;
 }
 
+.botaoCustom button {
+    height: 33px;
+}
+
 .divOpcoes {
     /* background-color: pink; */
     background-color: var(--super-preto);

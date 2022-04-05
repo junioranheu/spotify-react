@@ -71,12 +71,17 @@ export default function Index({ musicas, playlists }) {
                 </div>
             </div>
 
+            <div className={Styles.div}>
+                <span className={Styles.titulo}>Outras playlists</span>
+                <span className={Styles.textoNormal}>Novas playlists serão criadas e, mais para frente, será permitido criar suas proprias!</span>
+            </div>
+
             {/* {process.env.NODE_ENV === 'development' && ( */}
-                <div className={Styles.div}>
-                    <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
-                        <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
-                    </div>
+            <div className={Styles.div}>
+                <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
+                    <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
                 </div>
+            </div>
             {/* )} */}
         </section>
     )

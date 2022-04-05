@@ -60,7 +60,9 @@ export default function Navbar() {
                         )}
                     </Fragment>
                 ) : (
-                    <Botao texto={'Entrar'} url={'/entrar'} isNovaAba={false} Svg='' />
+                    <div className={Styles.botaoCustom}>
+                        <Botao texto={'Entrar'} url={'/entrar'} isNovaAba={false} Svg='' />
+                    </div>
                 )}
             </div>
         </nav>

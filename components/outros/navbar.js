@@ -1,10 +1,12 @@
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Aviso } from '../../components/outros/aviso';
 import Botao from '../../components/outros/botao.js';
 import SetinhaBaixo from '../../components/svg/setinhaBaixo';
 import Styles from '../../styles/navbar.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
+import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 
 export default function Navbar() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
@@ -16,6 +18,17 @@ export default function Navbar() {
 
         setNomeUsuario(isAuth ? Auth.getUsuarioLogado()?.nome : null);
     }, [isAuth]);
+
+    const [isExibirSubmenu, setIsExibirSubmenu] = useState(false);
+    function mostrarSubmenu() {
+        setIsExibirSubmenu(!isExibirSubmenu);
+    }
+
+    function avisoNaoDesenvolvido() {
+        const msg = `Essa função ainda não foi desenvolvida! ${EmojiAleatorio()}`;
+        // console.log(msg);
+        Aviso.custom(msg, 20000);
+    }
 
     function deslogar() {
         NProgress.start();
@@ -40,16 +53,18 @@ export default function Navbar() {
             <div className={Styles.divDireita}>
                 {isAuth ? (
                     <Fragment>
-                        <div className={Styles.divOpcoes}>
+                        <div className={Styles.divOpcoes} onClick={() => mostrarSubmenu()}>
                             {nomeUsuario}
                             <SetinhaBaixo width='12' cor='var(--branco)' />
                         </div>
 
-                        <div className={Styles.subMenu}>
-                           <span>Conta</span>
-                           <span>Perfil</span>
-                           <span>Terminar sessão</span>
-                        </div>
+                        {isExibirSubmenu && (
+                            <div className={Styles.subMenu}>
+                                <span onClick={avisoNaoDesenvolvido}>Conta</span>
+                                <span onClick={avisoNaoDesenvolvido}>Perfil</span>
+                                <span onClick={deslogar}>Terminar sessão</span>
+                            </div>
+                        )}
                     </Fragment>
                 ) : (
                     <Botao texto={'Entrar'} url={'/entrar'} isNovaAba={false} Svg='' />

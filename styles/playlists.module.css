@@ -32,8 +32,8 @@
 
 .divThumbnail {
     /* background-color: pink; */
-    min-height: 250px;
-    max-height: 250px;
+    /* min-height: 250px;
+    max-height: 250px; */
 
     display: flex;
     justify-content: center;
@@ -51,7 +51,7 @@
     line-height: 1.5rem;
     font-weight: 500;
 
-    margin-top: 3px;
+    margin-top: 10px;
 
     white-space: nowrap;
     overflow: hidden;
@@ -76,11 +76,9 @@
 
 /* =-=-=-=-=-=-=-=-=-=-= btnPlay =-=-=-=-=-=-=-=-=-=-= */
 .btnPlay {
-    background-color: pink;
-
     position: relative;
     margin-top: -23.5%;
-    top: -10%;
+    top: -4%;
     left: 70%;
     width: 50px;
     height: 50px;
@@ -96,7 +94,7 @@
     -webkit-box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
     box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
 
-    visibility: hidden;
+    visibility: hidden; 
     opacity: 0;
     -webkit-transition: opacity 300ms, visibility 300ms;
     transition: opacity 300ms, visibility 300ms;

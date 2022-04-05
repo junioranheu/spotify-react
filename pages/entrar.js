@@ -124,8 +124,8 @@ export default function Index() {
                             name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
                         />
 
-                        <div className={`${Styles.botaoCustom} ${Styles.margemTopP}`} onClick={handleSubmit} ref={refBtn}>
-                            <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' />
+                        <div className={`${Styles.botaoCustom} ${Styles.margemTopP}`} onClick={handleSubmit}>
+                            <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' refBtn={refBtn} />
                         </div>
                     </div>
 

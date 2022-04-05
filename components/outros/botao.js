@@ -1,6 +1,6 @@
 import Styles from '../../styles/geral.module.css';
 
-export default function Botao({ texto, url, isNovaAba, Svg }) {
+export default function Botao({ texto, url, isNovaAba, Svg, refBtn }) {
     function abrirUrl() {
         // console.log(isNovaAba);
 
@@ -16,6 +16,6 @@ export default function Botao({ texto, url, isNovaAba, Svg }) {
     }
 
     return (
-        <button className={Styles.botao} onClick={() => abrirUrl()}>{Svg ? Svg : ''}{texto}</button>
+        <button className={Styles.botao} onClick={() => abrirUrl()} ref={refBtn}>{Svg ? Svg : ''}{texto}</button>
     )
 }

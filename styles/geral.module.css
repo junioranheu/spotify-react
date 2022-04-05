@@ -52,6 +52,11 @@
   transition: all 0.3s;
 }
 
+.botao:disabled {
+  cursor: not-allowed;
+  filter: brightness(50%);
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Coração =-=-=-=-=-=-=-=-=-=-= */
 .coracao {
   /* background-color: red; */

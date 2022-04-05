@@ -5,6 +5,7 @@ import Styles from '../styles/index.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
+import HorarioBrasilia from '../utils/outros/horarioBrasilia';
 
 export default function Index({ musicas, playlists }) {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
@@ -48,6 +49,22 @@ export default function Index({ musicas, playlists }) {
         setListaMusicasContext(musicas);
     }
 
+    function gerarOla() {
+        var hora = HorarioBrasilia().hour();
+        console.log(hora);
+        var msg = '';
+  
+        if (hora >= 5 && hora < 12) {
+            msg = 'Bom dia';
+        } else if (hora >= 12 && hora < 18) {
+            msg = 'Boa tarde';
+        } else {
+            msg = 'Boa noite';
+        }
+
+        return msg;
+    }
+
     return (
         <section className={Styles.container} style={{ color: 'white' }}>
             <h1>Página inicial</h1>
@@ -55,14 +72,17 @@ export default function Index({ musicas, playlists }) {
             <button onClick={() => renovarLista()}>TESTE: Renovar lista</button>
             <button><Link href={'/fila'}><a>Sua fila</a></Link></button>
 
-            <h1>Músicas</h1>
-            <ul>
-                {musicas.map((m) => (
-                    <li key={m.musicaId} id={m.musicaId} onClick={(e) => setarMusica(e)} className={Styles.aea}>
-                        {m.nome} - {m.musicasBandas[0].bandas.nome}
-                    </li>
-                ))}
-            </ul>
+            {/* xxxxxxxxxxxxxxxxxxxxxxxxxxx */}
+            <div style={{ display: 'none' }}>
+                <h1>Músicas</h1>
+                <ul>
+                    {musicas.map((m) => (
+                        <li key={m.musicaId} id={m.musicaId} onClick={(e) => setarMusica(e)} className={Styles.aea}>
+                            {m.nome} - {m.musicasBandas[0].bandas.nome}
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
             <h1>Playlists</h1>
             <ul>
@@ -72,6 +92,15 @@ export default function Index({ musicas, playlists }) {
                     </li>
                 ))}
             </ul>
+
+            <div>
+                <span className={Styles.titulo}>{gerarOla()}</span>
+            </div>
+
+            <div>
+                <span className={Styles.titulo}>Fila</span>
+                <span className={Styles.subtitulo}>Em reprodução</span>
+            </div>
         </section>
     )
 }

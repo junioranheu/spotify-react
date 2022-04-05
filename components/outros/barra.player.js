@@ -132,7 +132,7 @@ export default function BarraPlayer() {
         // console.log(listaMusicasContext);
 
         if (!isPodeAvancar) {
-            console.log('Não pode avançar a música agora, aguarde um momento');
+            console.log('Não é possível avançar a música agora, aguarde um momento');
             return false;
         }
 
@@ -212,6 +212,8 @@ export default function BarraPlayer() {
 
                 // Não permitir voltar até que passe o x segundos;
                 setIsPodeAvancar(false);
+            } else {
+                console.log('Sem música para voltar!');
             }
         }
     }
@@ -303,6 +305,7 @@ export default function BarraPlayer() {
                         musicaContext={musicaContext}
                         handleAvancar={handleAvancar}
                         isModoLoop={isModoLoop}
+                        isPodeAvancar={isPodeAvancar}
                     />
                 </div>
             </div>

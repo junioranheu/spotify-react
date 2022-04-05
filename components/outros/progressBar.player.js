@@ -117,7 +117,7 @@ export default function ProgressBarPlayer(props) {
         }, 100);
 
         return () => clearInterval(intervalo);
-    }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo, props.isModoLoop, widthElemento])
+    }, [props.isPlaying, props.arquivoMusica, tempoSegundosMaximo, props.isModoLoop, widthElemento, props.isPodeAvancar])
 
     function setarTempoAtual(width) {
         const currentTime = refMusica.current ? refMusica.current.currentTime : 0;

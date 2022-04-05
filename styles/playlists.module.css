@@ -52,6 +52,10 @@
     font-weight: 500;
 
     margin-top: 3px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .descricaoPlaylist {
@@ -73,4 +77,32 @@
 /* =-=-=-=-=-=-=-=-=-=-= btnPlay =-=-=-=-=-=-=-=-=-=-= */
 .btnPlay {
     background-color: pink;
+
+    position: relative;
+    margin-top: -23.5%;
+    top: -10%;
+    left: 70%;
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--verde);
+    box-sizing: border-box;
+    border-radius: 500px;
+
+    -webkit-box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
+    box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
+
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 300ms, visibility 300ms;
+    transition: opacity 300ms, visibility 300ms;
+}
+
+.playlist:hover>.btnPlay {
+    visibility: visible;
+    opacity: 1;
 }

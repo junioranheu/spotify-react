@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import Styles from '../../styles/playlists.module.css';
+import BotaoPlay from '../svg/botaoPlay';
 
 export default function Playlists({ playlist }) {
     // console.log(playlist);
@@ -21,10 +22,12 @@ export default function Playlists({ playlist }) {
                 <Image src={Thumbnail} objectFit='contain' alt='' />
             </div>
 
+            <div className={`${Styles.btnPlay}`}>
+                <BotaoPlay width='18' cor='var(--preto)' />
+            </div>
+
             <span className={Styles.tituloPlaylist}>{playlist.nome}</span>
             <span className={Styles.descricaoPlaylist}>{playlist.sobre}</span>
-
-            <div className={Styles.btnPlay}>btn</div>
         </div>
     )
 }

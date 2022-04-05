@@ -76,7 +76,7 @@ export default function Index({ musicas, playlists }) {
 
                 <div className={StylesPlaylist.divPlaylists}>
                     {playlists.map((p) => (
-                        <Playlists playlist={p} key={p.playlistId}/>
+                        <Playlists playlist={p} key={p.playlistId} />
                     ))}
                 </div>
             </div>

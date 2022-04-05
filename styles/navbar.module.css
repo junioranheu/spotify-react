@@ -1,0 +1,19 @@
+.navbar {
+    /* background-color: pink; */
+    /* background-color: var(--super-preto); */
+    background-color: var(--preto2);
+    width: 100%;
+
+    display: flex;
+
+    color: var(--branco);
+    font-size: 0.8rem;
+    line-height: 1rem;
+    font-weight: 800;
+    opacity: 0.8;
+}
+
+.divDireita{
+    background-color: pink;
+    margin-left: auto;
+}

@@ -9,6 +9,18 @@
   display: flex;
 }
 
+.containerInner {
+  background-color: var(--preto2);
+  width: 100vw;
+  height: 100vh;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
 .botao {
   position: relative;

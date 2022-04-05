@@ -72,11 +72,11 @@ export default function Index({ musicas, playlists }) {
             <span className={Styles.bomDia}>{gerarOla()}</span>
 
             <div className={Styles.div}>
-                <span className={Styles.titulo}>Playlists disponíveis</span>
+                <span className={Styles.titulo}>Playlists disponíveis no momento {EmojiAleatorio()}</span>
 
                 <div className={StylesPlaylist.divPlaylists}>
                     {playlists.map((p) => (
-                        <Playlists playlist={p} />
+                        <Playlists playlist={p} key={p.playlistId}/>
                     ))}
                 </div>
             </div>

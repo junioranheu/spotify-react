@@ -16,7 +16,7 @@ export default function Playlists({ playlist }) {
     }
 
     return (
-        <div className={Styles.playlist} key={playlist.playlistId} id={playlist.playlistId}>
+        <div className={Styles.playlist} id={playlist.playlistId}>
             <div className={Styles.divThumbnail}>
                 <Image src={Thumbnail} objectFit='contain' alt='' />
             </div>

@@ -67,7 +67,7 @@
 .divMusica>div {
     flex: 1 1 30%;
 }
- 
+
 .divMusica:hover {
     border: 1px solid transparent;
     border-radius: 4px;
@@ -138,4 +138,8 @@
 .contadorItem1 {
     /* background-color: pink; */
     min-width: 20px;
+}
+
+.esconderPlay:hover svg path {
+    fill: var(--verde) !important;
 }

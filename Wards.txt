@@ -2,4 +2,3 @@ https://open.spotify.com/
 
 --
 Ajustar z-index da navbar
-Se o usuário estiver deslogado, n pode ouvir musica em playlist

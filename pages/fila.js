@@ -27,14 +27,18 @@ export default function Fila() {
         }
     }, [isAuth]);
 
-    function setarMusica(e) {
+    async function setarMusica(e) {
+        // Se o usuário estiver deslogado;
+        if (!isAuth) {
+            Aviso.custom('Inicie uma sessão para escutar essa música', 5000);
+            return false;
+        }
+
         const id = e.currentTarget.id;
         // console.log(id);
 
-        // const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
-        // const musica = await res.json();
-        const musicaJson = listaMusicasContext.filter(x => x.musicaId === parseInt(id));
-        const musica = musicaJson[0];
+        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
+        const musica = await res.json();
         // console.log(musica);
 
         // Salvar no Context e no localStorage;

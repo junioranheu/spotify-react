@@ -2,16 +2,19 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import MusicaRow from '../../components/fila/musicaRow';
+import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/fila.module.css';
 import StylesPlaylist from '../../styles/playlistDetalhes.module.css';
 import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
+import { UsuarioContext } from '../../utils/context/usuarioContext';
 import FormatarSegundosComLegenda from '../../utils/outros/formatarSegundosComLegenda.js';
 
 export default function Playlist() {
     const router = useRouter();
     const [playlistId, setPlaylistId] = useState(0);
 
+    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
@@ -61,14 +64,18 @@ export default function Playlist() {
         }
     }, [router]);
 
-    function setarMusica(e) {
+    async function setarMusica(e) {
+        // Se o usuário estiver deslogado;
+        if (!isAuth) {
+            Aviso.custom('Inicie uma sessão para escutar essa música', 5000);
+            return false;
+        }
+
         const id = e.currentTarget.id;
         // console.log(id);
 
-        // const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
-        // const musica = await res.json();
-        const musicaJson = listaMusicasContext.filter(x => x.musicaId === parseInt(id));
-        const musica = musicaJson[0];
+        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
+        const musica = await res.json();
         // console.log(musica);
 
         // Salvar no Context e no localStorage;

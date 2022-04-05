@@ -2,6 +2,7 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { useContext, useEffect, useState } from 'react';
 import Botao from '../../components/outros/botao.js';
+import SetinhaBaixo from '../../components/svg/setinhaBaixo';
 import Styles from '../../styles/navbar.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 
@@ -38,7 +39,11 @@ export default function Navbar() {
 
             <div className={Styles.divDireita}>
                 {isAuth ? (
-                    <h1 onClick={() => deslogar()}>{nomeUsuario}</h1>
+                    // <h1 onClick={() => deslogar()}>{nomeUsuario}</h1>
+                    <div className={Styles.divOpcoes}>
+                        {nomeUsuario}
+                        <SetinhaBaixo width='12' cor='var(--branco)' />
+                    </div>
                 ) : (
                     <Botao texto={'Entrar'} url={'/entrar'} isNovaAba={false} Svg='' />
                 )}

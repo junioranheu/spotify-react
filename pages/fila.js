@@ -66,6 +66,7 @@ export default function Fila() {
                                     album={(musicaContext.albunsMusicas ? musicaContext.albunsMusicas[0]?.albuns.nome : '')}
                                     tempo={musicaContext.duracaoSegundos}
                                     setarMusica={setarMusica}
+                                    isDesativarUm={true}
                                 />
                             ) : (
                                 <div>
@@ -93,6 +94,7 @@ export default function Fila() {
                                             album={m.albunsMusicas[0]?.albuns.nome}
                                             tempo={m.duracaoSegundos}
                                             setarMusica={setarMusica}
+                                            isDesativarUm={true}
                                         />
                                     ))}
                                 </Fragment>

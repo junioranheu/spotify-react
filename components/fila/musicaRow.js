@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import Coracao from '../../components/outros/coracao';
 import Reticencias from '../../components/svg/reticencias';
 import Styles from '../../styles/fila.module.css';
@@ -7,7 +7,7 @@ import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvo
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 import BotaoPlay from '../svg/botaoPlay';
 
-export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, setarMusica }) {
+export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, setarMusica, isDesativarUm }) {
 
     // Import dinâmico: capa da banda;
     let ImagemBanda = '';
@@ -27,8 +27,18 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
     return (
         <div className={Styles.divMusica}>
             <div className={Styles.divEsquerda}>
-                <span className={`${(i > 1 ? Styles.contador : Styles.contadorItem1)} ${(i === 1 ? Styles.verde : '')}`}>{i}</span>
-                <span className={`${(i > 1 ? Styles.esconderPlay : Styles.esconderItem1)}`} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
+
+                {isDesativarUm ? (
+                    <Fragment>
+                        <span className={`${(i > 1 ? Styles.contador : Styles.contadorItem1)} ${(i === 1 ? Styles.verde : '')}`}>{i}</span>
+                        <span className={`${(i > 1 ? Styles.esconderPlay : Styles.esconderItem1)}`} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
+                    </Fragment>
+                ) : (
+                    <Fragment>
+                        <span className={Styles.contador}>{i}</span>
+                        <span className={Styles.esconderPlay} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
+                    </Fragment>
+                )}
 
                 <div>
                     <Image src={ImagemBanda} width={40} height={40} alt='' />

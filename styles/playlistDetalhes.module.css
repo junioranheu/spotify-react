@@ -1,0 +1,58 @@
+.banner {
+    /* background-color: pink; */
+
+    display: flex;
+    align-items: flex-end;
+    gap: 25px;
+
+    width: 100%;
+}
+
+.divDireita {
+    /* background-color: pink; */
+
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5px;
+}
+
+.span1 {
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--branco);
+    opacity: 0.85;
+}
+
+.span2 {
+    margin-top: 10px;
+    font-size: 4rem;
+    line-height: 4rem;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+    color: var(--branco);
+    opacity: 0.9;
+}
+
+.span3 {
+    margin-top: 20px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    max-height: 74px;
+    overflow: hidden;
+    word-break: break-word;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.span4 {
+    margin-top: 10px;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--branco);
+    opacity: 0.9;
+}

@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import React, { Fragment, useContext, useEffect } from 'react';
 import MusicaRow from '../components/fila/musicaRow';
+import { Aviso } from '../components/outros/aviso';
 import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
@@ -21,9 +22,10 @@ export default function Fila() {
         // Verificar se o usuário está logado;
         // Se NÃO estiver, redirecione-o;
         if (!isAuth) {
+            Aviso.custom('Inicie uma sessão para visualizar sua fila', 5000);
             Router.push('/entrar');
         }
-    }, []);
+    }, [isAuth]);
 
     function setarMusica(e) {
         const id = e.currentTarget.id;
@@ -41,60 +43,69 @@ export default function Fila() {
     }
 
     return (
-        <section className={Styles.container}>
-            {/* Atual */}
-            <div className={Styles.div}>
-                <span className={Styles.titulo}>Fila</span>
-                <span className={Styles.subtitulo}>Em reprodução</span>
-
+        <Fragment>
+            {!isAuth ? (
                 <div>
-                    {musicaContext?.musicaId > 0 ? (
-                        <MusicaRow
-                            i={1}
-                            id={musicaContext.musicaId}
-                            foto={musicaContext.musicasBandas[0]?.bandas.foto}
-                            titulo={musicaContext.nome}
-                            banda={musicaContext.musicasBandas[0]?.bandas.nome}
-                            album={(musicaContext.albunsMusicas ? musicaContext.albunsMusicas[0]?.albuns.nome : '')}
-                            tempo='xx:xx'
-                            setarMusica={setarMusica}
-                        />
-                    ) : (
-                        <div>
-                            <span className={Styles.textoNormal}>Nenhuma música em reprodução agora</span>
-                        </div>
-                    )}
+                    {/* <span>Usuário não está autenticado</span> */}
                 </div>
-            </div>
+            ) : (
+                <section className={Styles.container}>
+                    {/* Atual */}
+                    <div className={Styles.div}>
+                        <span className={Styles.titulo}>Fila</span>
+                        <span className={Styles.subtitulo}>Em reprodução</span>
 
-            {/* Próximas na fila */}
-            <div className={Styles.div}>
-                <span className={Styles.titulo}>Próximas</span>
-
-                <div>
-                    {listaMusicasContext?.length > 0 ? (
-                        <Fragment>
-                            {listaMusicasContext.filter(x => x.musicaId !== musicaContext?.musicaId).map((m, i) => (
+                        <div>
+                            {musicaContext?.musicaId > 0 ? (
                                 <MusicaRow
-                                    key={m.musicaId}
-                                    i={(i + 2)} // A ordem tem que começar no 2;
-                                    id={m.musicaId}
-                                    foto={m.musicasBandas[0]?.bandas.foto}
-                                    titulo={m.nome}
-                                    banda={m.musicasBandas[0]?.bandas.nome}
-                                    album={m.albunsMusicas[0]?.albuns.nome}
+                                    i={1}
+                                    id={musicaContext.musicaId}
+                                    foto={musicaContext.musicasBandas[0]?.bandas.foto}
+                                    titulo={musicaContext.nome}
+                                    banda={musicaContext.musicasBandas[0]?.bandas.nome}
+                                    album={(musicaContext.albunsMusicas ? musicaContext.albunsMusicas[0]?.albuns.nome : '')}
                                     tempo='xx:xx'
                                     setarMusica={setarMusica}
                                 />
-                            ))}
-                        </Fragment>
-                    ) : (
-                        <div>
-                            <span className={Styles.textoNormal}>Sem músicas na sua fila de reprodução</span>
+                            ) : (
+                                <div>
+                                    <span className={Styles.textoNormal}>Nenhuma música em reprodução agora</span>
+                                </div>
+                            )}
                         </div>
-                    )}
-                </div>
-            </div>
-        </section>
+                    </div>
+
+                    {/* Próximas na fila */}
+                    <div className={Styles.div}>
+                        <span className={Styles.titulo}>Próximas</span>
+
+                        <div>
+                            {listaMusicasContext?.length > 0 ? (
+                                <Fragment>
+                                    {listaMusicasContext.filter(x => x.musicaId !== musicaContext?.musicaId).map((m, i) => (
+                                        <MusicaRow
+                                            key={m.musicaId}
+                                            i={(i + 2)} // A ordem tem que começar no 2;
+                                            id={m.musicaId}
+                                            foto={m.musicasBandas[0]?.bandas.foto}
+                                            titulo={m.nome}
+                                            banda={m.musicasBandas[0]?.bandas.nome}
+                                            album={m.albunsMusicas[0]?.albuns.nome}
+                                            tempo='xx:xx'
+                                            setarMusica={setarMusica}
+                                        />
+                                    ))}
+                                </Fragment>
+                            ) : (
+                                <div>
+                                    <span className={Styles.textoNormal}>Sem músicas na sua fila de reprodução</span>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </section>
+            )
+            }
+        </Fragment >
     )
 }

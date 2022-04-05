@@ -23,6 +23,8 @@ export default function Playlists({ playlist }) {
 
             <span className={Styles.tituloPlaylist}>{playlist.nome}</span>
             <span className={Styles.descricaoPlaylist}>{playlist.sobre}</span>
+
+            <div className={Styles.btnPlay}>btn</div>
         </div>
     )
 }

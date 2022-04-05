@@ -69,3 +69,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-= btnPlay =-=-=-=-=-=-=-=-=-=-= */
+.btnPlay {
+    background-color: pink;
+}

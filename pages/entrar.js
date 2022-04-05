@@ -1,6 +1,6 @@
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import { Aviso } from '../components/outros/aviso';
 import Botao from '../components/outros/botao.js';
 import Styles from '../styles/entrar.module.css';
@@ -12,7 +12,7 @@ export default function Index() {
     const refUsuario = useRef();
     const refSenha = useRef();
     const refBtn = useRef();
- 
+
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Entrar';
@@ -22,7 +22,7 @@ export default function Index() {
         if (isAuth) {
             Router.push('/');
         }
-    }, []);
+    }, [isAuth]);
 
     // Ao alterar os valores dos inputs, insira os valores nas variaveis do formData;
     const [formData, setFormData] = useState(null);
@@ -106,30 +106,38 @@ export default function Index() {
     }
 
     return (
-        <section className={Styles.container}>
-            <span className={Styles.titulo}>Bem-vindo ao Spotify</span>
-
-            <div>
-                <input className={`${Styles.input} ${Styles.margemTopP}`} type='text' placeholder='E-mail ou nome de usuário'
-                    name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
-                />
-
-                <input className={`${Styles.input} ${Styles.margemTopP}`} type='password' placeholder='Senha'
-                    name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
-                />
-
-                <div className={`${Styles.botaoCustom} ${Styles.margemTopP}`} onClick={handleSubmit} ref={refBtn}>
-                    <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' />
+        <Fragment>
+            {isAuth ? (
+                <div>
+                    {/* <span>Usuário já está autenticado</span> */}
                 </div>
-            </div>
+            ) : (
+                <section className={Styles.container}>
+                    <span className={Styles.titulo}>Bem-vindo ao Spotify</span>
 
-            <div className={Styles.divCode}>
-                <code>
-                    Por enquanto não é possível criar uma nova conta.<br />
-                    Entre com o usuário <b className='verde'>usuario</b> e a senha <b className='verde'>123</b>.
-                </code>
-            </div>
-        </section>
+                    <div>
+                        <input className={`${Styles.input} ${Styles.margemTopP}`} type='text' placeholder='E-mail ou nome de usuário'
+                            name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
+                        />
+
+                        <input className={`${Styles.input} ${Styles.margemTopP}`} type='password' placeholder='Senha'
+                            name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
+                        />
+
+                        <div className={`${Styles.botaoCustom} ${Styles.margemTopP}`} onClick={handleSubmit} ref={refBtn}>
+                            <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' />
+                        </div>
+                    </div>
+
+                    <div className={Styles.divCode}>
+                        <code>
+                            Por enquanto não é possível criar uma nova conta.<br />
+                            Entre com o usuário <b className='verde'>usuario</b> e a senha <b className='verde'>123</b>.
+                        </code>
+                    </div>
+                </section>
+            )}
+        </Fragment>
     )
 }
 

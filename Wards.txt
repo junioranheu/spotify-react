@@ -1,4 +1,4 @@
 https://open.spotify.com/
 
 --
-Arrumar algum modo de ajustar o "Voltar";
+Criar playlist

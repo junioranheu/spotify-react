@@ -1,12 +1,11 @@
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Aviso } from '../../components/outros/aviso';
 import Botao from '../../components/outros/botao.js';
 import SetinhaBaixo from '../../components/svg/setinhaBaixo';
 import Styles from '../../styles/navbar.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
-import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
+import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 
 export default function Navbar() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
@@ -22,12 +21,6 @@ export default function Navbar() {
     const [isExibirSubmenu, setIsExibirSubmenu] = useState(false);
     function mostrarSubmenu() {
         setIsExibirSubmenu(!isExibirSubmenu);
-    }
-
-    function avisoNaoDesenvolvido() {
-        const msg = `Essa função ainda não foi desenvolvida! ${EmojiAleatorio()}`;
-        // console.log(msg);
-        Aviso.custom(msg, 20000);
     }
 
     function deslogar() {
@@ -60,8 +53,8 @@ export default function Navbar() {
 
                         {isExibirSubmenu && (
                             <div className={Styles.subMenu}>
-                                <span onClick={avisoNaoDesenvolvido}>Conta</span>
-                                <span onClick={avisoNaoDesenvolvido}>Perfil</span>
+                                <span onClick={AvisoFuncaoNaoDesenvolvida}>Conta</span>
+                                <span onClick={AvisoFuncaoNaoDesenvolvida}>Perfil</span>
                                 <span onClick={deslogar}>Terminar sessão</span>
                             </div>
                         )}

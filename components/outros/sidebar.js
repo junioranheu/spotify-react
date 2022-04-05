@@ -2,9 +2,8 @@ import { loremIpsum } from 'lorem-ipsum';
 import Link from 'next/link';
 import { Resizable } from 're-resizable';
 import React from 'react';
-import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/sidebar.module.css';
-import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
+import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import Biblioteca from '../svg/biblioteca';
 import Casa from '../svg/casa';
 import Coracao from '../svg/coracao';
@@ -13,12 +12,6 @@ import Mais from '../svg/mais';
 import SpotifyLogo from '../svg/spotifyLogo';
 
 export default function Sidebar() {
-
-    function avisoNaoDesenvolvido() {
-        const msg = `Essa função ainda não foi desenvolvida! ${EmojiAleatorio()}`;
-        // console.log(msg);
-        Aviso.custom(msg, 20000);
-    }
 
     return (
         <Resizable
@@ -45,7 +38,7 @@ export default function Sidebar() {
                     </span>
 
                     <span>
-                        <Lupa width='24px' /> <span className='pointer' onClick={avisoNaoDesenvolvido}>Procurar</span>
+                        <Lupa width='24px' /> <span className='pointer' onClick={AvisoFuncaoNaoDesenvolvida}>Procurar</span>
                     </span>
 
                     <span>
@@ -63,7 +56,7 @@ export default function Sidebar() {
                             <Mais width='12px' cor='var(--preto)' />
                         </span>
 
-                        <span className='pointer' onClick={avisoNaoDesenvolvido}>Criar lista de reprodução</span>
+                        <span className='pointer' onClick={AvisoFuncaoNaoDesenvolvida}>Criar lista de reprodução</span>
                     </span>
 
                     <span>
@@ -71,7 +64,7 @@ export default function Sidebar() {
                             <Coracao width='12px' cor='var(--branco)' />
                         </span>
 
-                        <span className='pointer' onClick={avisoNaoDesenvolvido}>Músicas curtidas</span>
+                        <span className='pointer' onClick={AvisoFuncaoNaoDesenvolvida}>Músicas curtidas</span>
                     </span>
                 </div>
 

@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Coracao from '../../components/outros/coracao';
 import Reticencias from '../../components/svg/reticencias';
 import Styles from '../../styles/fila.module.css';
+import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
+import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 import BotaoPlay from '../svg/botaoPlay';
 
 export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, setarMusica }) {
@@ -47,8 +49,8 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                     <Coracao isMusicaCurtida={isMusicaCurtida} />
                 </span>
 
-                <span>{tempo}</span>
-                <span className='pointer'><Reticencias width='16' cor='#A7A7A7' /></span>
+                <span>{FormatarSegundos(tempo)}</span>
+                <span className='pointer' onClick={AvisoFuncaoNaoDesenvolvida}><Reticencias width='16' cor='#A7A7A7' /></span>
             </div>
         </div>
     )

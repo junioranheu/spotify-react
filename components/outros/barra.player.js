@@ -2,11 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
-import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
-import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
+import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import NumeroAleatorio from '../../utils/outros/numeroAleatorio';
 import Aleatorio from '../svg/barra.player/aleatorio';
 import BotaoAvancar from '../svg/barra.player/botaoAvancar';
@@ -218,22 +217,16 @@ export default function BarraPlayer() {
         }
     }
 
-    function avisoNaoDesenvolvido() {
-        const msg = `Essa função ainda não foi desenvolvida! ${EmojiAleatorio()}`;
-        // console.log(msg);
-        Aviso.custom(msg, 20000);
-    }
-
     function handleToggle() {
-        avisoNaoDesenvolvido();
+        AvisoFuncaoNaoDesenvolvida();
     }
 
     function handleMicrofone() {
-        avisoNaoDesenvolvido();
+        AvisoFuncaoNaoDesenvolvida();
     }
 
     function handleDispositivo() {
-        avisoNaoDesenvolvido();
+        AvisoFuncaoNaoDesenvolvida();
     }
 
     return (

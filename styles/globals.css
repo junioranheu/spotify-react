@@ -48,6 +48,10 @@ a {
   cursor: pointer;
 }
 
+.verde{
+  color: var(--verde);
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Scroll =-=-=-=-=-=-=-=-=-=-= */
 ::-webkit-scrollbar {
   width: 10px;

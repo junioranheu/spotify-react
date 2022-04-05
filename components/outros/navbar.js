@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Botao from '../../components/outros/botao.js';
 import Styles from '../../styles/navbar.module.css';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
 
@@ -7,13 +8,13 @@ export default function Navbar() {
 
     return (
         <nav className={Styles.navbar}>
-            <h1>aea</h1>
+            {/* <h1>aea</h1> */}
 
             <div className={Styles.divDireita}>
                 {isAuth ? (
                     <h1>LOGADO</h1>
                 ) : (
-                    <h1>DESLOGADO</h1>
+                    <Botao texto={'Entrar'} url={'/entrar'} isNovaAba={false} Svg='' />
                 )}
             </div>
         </nav>

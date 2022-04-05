@@ -12,7 +12,7 @@ export default function BarraDeslogado() {
 
             <div>
                 <div className={Styles.botaoCustom}>
-                    <Botao texto={'Registre-se já gratuitamente'} url={'/'} isNovaAba={false} Svg='' />
+                    <Botao texto={'Registre-se já gratuitamente'} url={'/entrar'} isNovaAba={false} Svg='' />
                 </div>
             </div>
         </section>

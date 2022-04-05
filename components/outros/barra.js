@@ -1,20 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext } from 'react';
+import { UsuarioContext } from '../../utils/context/usuarioContext';
 import BarraDeslogado from './barra.deslogado';
 import BarraPlayer from './barra.player';
 
 export default function Barra() {
-    const [isLogado, setIsLogado] = useState(true);
-    function handleClick() {
-        setIsLogado(!isLogado);
-    }
+    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
 
     return (
         <Fragment>
-            <div style={{ position: 'absolute', top: 15, right: 20, cursor: 'pointer', color: 'white' }} onClick={() => handleClick()}>
-                <span><code>Autenticar</code></span>
-            </div>
-
-            {isLogado ? (
+            {isAuth ? (
                 <BarraPlayer />
             ) : (
                 <BarraDeslogado />

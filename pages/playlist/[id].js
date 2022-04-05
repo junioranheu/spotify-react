@@ -6,6 +6,7 @@ import Styles from '../../styles/fila.module.css';
 import StylesPlaylist from '../../styles/playlistDetalhes.module.css';
 import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
+import FormatarSegundosComLegenda from '../../utils/outros/formatarSegundosComLegenda.js';
 
 export default function Playlist() {
     const router = useRouter();
@@ -17,6 +18,7 @@ export default function Playlist() {
     const [playlist, setPlaylist] = useState({});
     const [capaPlaylist, setCapaPlaylist] = useState();
     const [concatBandas, setConcatBandas] = useState('');
+    const [duracaoPlaylist, setDuracaoPlaylist] = useState('');
     useEffect(() => {
         async function fetchPlaylist(id) {
             const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Playlists/${id}`)
@@ -40,17 +42,23 @@ export default function Playlist() {
             setCapaPlaylist(ImagemCapaPlaylist);
 
             // Setar o valor das bandas da playlist em setConcatBandas();
+            // Setar o tempo todal da playlist;
             if (playlist.playlistsMusicas) {
                 const c = concatenarBandas(playlist.playlistsMusicas);
                 setConcatBandas(c);
+
+                const d = somarDuracaoTotal(playlist.playlistsMusicas);
+                setDuracaoPlaylist(d);
             }
         }
 
-        // Setar o ID da URL;
-        setPlaylistId(router.query.id);
+        if (router.query.id) {
+            // Setar o ID da URL;
+            setPlaylistId(router.query.id);
 
-        // Buscar playlist;
-        fetchPlaylist(router.query.id);
+            // Buscar playlist;
+            fetchPlaylist(router.query.id);
+        }
     }, [router]);
 
     function setarMusica(e) {
@@ -95,6 +103,17 @@ export default function Playlist() {
         return bandas;
     }
 
+    function somarDuracaoTotal(lista) {
+        let duracao = 0;
+        lista.forEach(function (playlist, index) {
+            // console.log(playlist);
+            const d = playlist.musicas.duracaoSegundos;
+            duracao += d;
+        });
+
+        return duracao;
+    }
+
     return (
         <section className={Styles.container}>
             {/* Banner */}
@@ -110,7 +129,7 @@ export default function Playlist() {
                     <span className={StylesPlaylist.span2}>{playlist.nome}</span>
                     <span className={StylesPlaylist.span3}>{concatBandas}</span>
                     <span className={StylesPlaylist.span4}>
-                        {playlist.usuarios?.nomeCompleto} • {playlist.playlistsMusicas?.length} {(playlist.playlistsMusicas?.length > 1 ? 'músicas' : 'música')}, 3h 20 min
+                        {playlist.usuarios?.nomeCompleto} • {playlist.playlistsMusicas?.length} {(playlist.playlistsMusicas?.length > 1 ? 'músicas' : 'música')}, {FormatarSegundosComLegenda(duracaoPlaylist)}
                     </span>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-function formatarSegundos(duration) {
+function formatarSegundosComLegenda(duration) {
     // Hours, minutes and seconds
     var hrs = ~~(duration / 3600);
     var mins = ~~((duration % 3600) / 60);
@@ -8,12 +8,12 @@ function formatarSegundos(duration) {
     var ret = '';
 
     if (hrs > 0) {
-        ret += '' + hrs + ':' + (mins < 10 ? '0' : '');
+        ret += '' + hrs + ' h ' + (mins < 10 ? '0' : '');
     }
 
-    ret += '' + mins + ':' + (secs < 10 ? '0' : '');
-    ret += '' + secs;
+    ret += '' + mins + ' min ' + (secs < 10 ? '0' : '');
+    ret += '' + secs + ' seg ';
     return ret;
 }
 
-export default formatarSegundos;
+export default formatarSegundosComLegenda;

@@ -37,11 +37,13 @@
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
+    /* z-index: -1; */
 }
 
 .divThumbnail img {
     border-radius: 5px;
+    /* z-index: -1; */
 }
 
 .tituloPlaylist {
@@ -94,7 +96,7 @@
     -webkit-box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
     box-shadow: 0 8px 8px rgb(0 0 0 / 30%);
 
-    visibility: hidden; 
+    visibility: hidden;
     opacity: 0;
     -webkit-transition: opacity 300ms, visibility 300ms;
     transition: opacity 300ms, visibility 300ms;

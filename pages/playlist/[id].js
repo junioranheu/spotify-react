@@ -69,17 +69,30 @@ export default function Playlist() {
     }
 
     function concatenarBandas(lista) {
-        lista.forEach(function (item, index) {
-            console.log(item, index);
+        let bandas = '';
+        const limite = 3;
+        let isPassouLimite = false;
+        lista.forEach(function (playlist, index) {
+            // console.log(playlist);
+
+            if (index <= (limite - 1)) {
+                const banda = playlist.musicas.musicasBandas[0]?.bandas.nome;
+                // console.log(banda);
+
+                bandas = bandas + `, ${banda}`;
+            } else {
+                isPassouLimite = true;
+            }
         });
 
-        //         const l = lista.reduce(function (a, b) {
-        //             return a.concat(b).concat(",");
-        //         }, []).slice(0, -1);
+        bandas = bandas.replace(', ', '');
 
-        // console.log(l);
+        // Se passou do limite...
+        if (isPassouLimite) {
+            bandas = bandas + ' e mais';
+        }
 
-        return 'a';
+        return bandas;
     }
 
     return (

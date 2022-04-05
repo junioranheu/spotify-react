@@ -1,10 +1,13 @@
+import Router from 'next/router';
 import React, { Fragment, useContext, useEffect } from 'react';
 import MusicaRow from '../components/fila/musicaRow';
 import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
+import { UsuarioContext } from '../utils/context/usuarioContext';
 
 export default function Fila() {
+    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
@@ -12,8 +15,14 @@ export default function Fila() {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
 
-       // console.log(musicaContext);
+        // console.log(musicaContext);
         // console.log(listaMusicasContext);
+
+        // Verificar se o usuário está logado;
+        // Se NÃO estiver, redirecione-o;
+        if (!isAuth) {
+            Router.push('/entrar');
+        }
     }, []);
 
     function setarMusica(e) {

@@ -6,7 +6,7 @@ import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/lista
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
 
-export default function Index({ musicas }) {
+export default function Index({ musicas, playlists }) {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
@@ -23,9 +23,12 @@ export default function Index({ musicas }) {
             Todos os direitos reservados à @spotify.`;
             Aviso.custom(msg, 20000);
         }
-    }, [musicas, setListaMusicasContext]);
 
-    async function handleClick(e) {
+        // console.log(musicas);
+        // console.log(playlists);
+    }, []);
+
+    async function setarMusica(e) {
         const id = e.target.id;
         // console.log(id);
 
@@ -52,10 +55,20 @@ export default function Index({ musicas }) {
             <button onClick={() => renovarLista()}>TESTE: Renovar lista</button>
             <button><Link href={'/fila'}><a>Sua fila</a></Link></button>
 
+            <h1>Músicas</h1>
             <ul>
                 {musicas.map((m) => (
-                    <li key={m.musicaId} id={m.musicaId} onClick={(e) => handleClick(e)} className={Styles.aea}>
+                    <li key={m.musicaId} id={m.musicaId} onClick={(e) => setarMusica(e)} className={Styles.aea}>
                         {m.nome} - {m.musicasBandas[0].bandas.nome}
+                    </li>
+                ))}
+            </ul>
+
+            <h1>Playlists</h1>
+            <ul>
+                {playlists.map((p) => (
+                    <li key={p.playlistId} id={p.playlistId} className={Styles.aea}>
+                        {p.nome} - {p.sobre}
                     </li>
                 ))}
             </ul>
@@ -64,12 +77,15 @@ export default function Index({ musicas }) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch('https://spotifyapi.azurewebsites.net/api/Musicas/todos')
-    const musicas = await res.json();
+    const res1 = await fetch('https://spotifyapi.azurewebsites.net/api/Musicas/todos')
+    const musicas = await res1.json();
+
+    const res2 = await fetch('https://spotifyapi.azurewebsites.net/api/Playlists/todos')
+    const playlists = await res2.json();
 
     return {
         props: {
-            musicas,
+            musicas, playlists
         },
     }
 }

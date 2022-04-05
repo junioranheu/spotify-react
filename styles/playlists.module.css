@@ -1,0 +1,64 @@
+/* =-=-=-=-=-=-=-=-=-=-= playlists =-=-=-=-=-=-=-=-=-=-= */
+.divPlaylists {
+    /* background-color: pink; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.divPlaylists>.playlist {
+    flex: 1 1 25%;
+}
+
+.playlist {
+    background-color: rgb(24, 24, 24);
+    padding: 18px;
+    max-width: 250px;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist:hover {
+    background-color: #272727;
+    cursor: pointer;
+    -webkit-transition: background-color 150ms linear;
+    -ms-transition: background-color 150ms linear;
+    transition: background-color 150ms linear;
+}
+
+.divThumbnail {
+    /* background-color: pink; */
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divThumbnail img {
+    border-radius: 5px;
+}
+
+.tituloPlaylist {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+
+    margin-top: 10px;
+}
+
+.descricaoPlaylist {
+    font-size: 0.95rem;
+    line-height: 1rem;
+    font-weight: 400;
+    opacity: 0.9;
+
+    margin-top: 3px;
+}

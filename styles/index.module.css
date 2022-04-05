@@ -10,11 +10,11 @@
 
     padding-left: 30px;
     padding-right: 30px;
-
     padding-bottom: 100px;
+    padding-top: 30px;
 }
 
-.titulo {
+.bomDia {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
     font-size: 2rem;
@@ -24,18 +24,20 @@
     color: var(--branco);
 }
 
-.subtitulo {
+.titulo {
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    font-size: 1.1rem;
-    line-height: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    letter-spacing: -0.04em;
     font-weight: 700;
-    color: #A7A7A7;
+    color: var(--branco);
 }
 
-.textoNormal {
-    font-size: 1rem;
-    line-height: 1rem;
-    font-weight: 400;
-    color: #A7A7A7;
+.div {
+    /* background-color: pink; */
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 30px;
 }

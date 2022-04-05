@@ -40,7 +40,11 @@ export default function Sidebar() {
                     </span>
 
                     <span>
-                        <Biblioteca width='24px' /> <span>Biblioteca</span>
+                        <Link href={'/fila'}>
+                            <a>
+                                <Biblioteca width='24px' /> <span>Sua fila</span>
+                            </a>
+                        </Link>
                     </span>
                 </div>
 

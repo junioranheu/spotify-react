@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import React, { useContext, useEffect } from 'react';
 import { Aviso } from '../components/outros/aviso';
+import Playlists from '../components/playlists/playlists';
 import Styles from '../styles/index.module.css';
+import StylesPlaylist from '../styles/playlists.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
@@ -51,9 +53,9 @@ export default function Index({ musicas, playlists }) {
 
     function gerarOla() {
         var hora = HorarioBrasilia().hour();
-        console.log(hora);
+        // console.log(hora);
         var msg = '';
-  
+
         if (hora >= 5 && hora < 12) {
             msg = 'Bom dia';
         } else if (hora >= 12 && hora < 18) {
@@ -67,12 +69,19 @@ export default function Index({ musicas, playlists }) {
 
     return (
         <section className={Styles.container} style={{ color: 'white' }}>
-            <h1>Página inicial</h1>
+            <span className={Styles.bomDia}>{gerarOla()}</span>
 
-            <button onClick={() => renovarLista()}>TESTE: Renovar lista</button>
-            <button><Link href={'/fila'}><a>Sua fila</a></Link></button>
+            <div className={Styles.div}>
+                <span className={Styles.titulo}>Playlists disponíveis</span>
 
-            {/* xxxxxxxxxxxxxxxxxxxxxxxxxxx */}
+                <div className={StylesPlaylist.divPlaylists}>
+                    {playlists.map((p) => (
+                        <Playlists playlist={p} />
+                    ))}
+                </div>
+            </div>
+
+            {/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
             <div style={{ display: 'none' }}>
                 <h1>Músicas</h1>
                 <ul>
@@ -84,22 +93,9 @@ export default function Index({ musicas, playlists }) {
                 </ul>
             </div>
 
-            <h1>Playlists</h1>
-            <ul>
-                {playlists.map((p) => (
-                    <li key={p.playlistId} id={p.playlistId} className={Styles.aea}>
-                        {p.nome} - {p.sobre}
-                    </li>
-                ))}
-            </ul>
-
             <div>
-                <span className={Styles.titulo}>{gerarOla()}</span>
-            </div>
-
-            <div>
-                <span className={Styles.titulo}>Fila</span>
-                <span className={Styles.subtitulo}>Em reprodução</span>
+                <button onClick={() => renovarLista()}>TESTE: Renovar lista</button>
+                <button><Link href={'/fila'}><a>Sua fila</a></Link></button>
             </div>
         </section>
     )

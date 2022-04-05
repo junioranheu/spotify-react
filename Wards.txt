@@ -2,3 +2,4 @@ https://open.spotify.com/
 
 --
 Ajustar z-index da navbar
+Ajustar responsividade

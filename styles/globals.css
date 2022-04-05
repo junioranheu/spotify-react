@@ -48,7 +48,7 @@ a {
   cursor: pointer;
 }
 
-.verde{
+.verde {
   color: var(--verde);
 }
 
@@ -68,4 +68,30 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #949799;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= nprogress =-=-=-=-=-=-=-=-=-=-= */
+#nprogress .bar {
+  background: var(--verde) !important;
+  height: 4px !important
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px var(--verde), 0 0 5px var(--verde) !important
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--verde) !important;
+  border-left-color: var(--verde) !important
+}
+
+#nprogress .bar, .peg {
+  background: var(--verde) !important;
+  box-shadow: none !important;
+  height: 3px !important
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--verde) !important;
+  border-left-color: var(--verde) !important
 }

@@ -4,6 +4,10 @@ export default function Botao({ texto, url, isNovaAba, Svg }) {
     function abrirUrl() {
         // console.log(isNovaAba);
 
+        if (!url) {
+            return false;
+        }
+
         if (isNovaAba) {
             window.open(url, '_blank');
         } else {

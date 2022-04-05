@@ -71,13 +71,13 @@ export default function Index({ musicas, playlists }) {
                 </div>
             </div>
 
-            {process.env.NODE_ENV === 'development' && (
+            {/* {process.env.NODE_ENV === 'development' && ( */}
                 <div className={Styles.div}>
                     <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
                         <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
                     </div>
                 </div>
-            )}
+            {/* )} */}
         </section>
     )
 }

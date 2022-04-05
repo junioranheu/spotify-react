@@ -1,11 +1,11 @@
-import Link from 'next/link';
 import React, { useContext, useEffect } from 'react';
 import { Aviso } from '../components/outros/aviso';
+import Botao from '../components/outros/botao.js';
 import Playlists from '../components/playlists/playlists';
 import Styles from '../styles/index.module.css';
 import StylesPlaylist from '../styles/playlists.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
-import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
+import { MusicaContext } from '../utils/context/musicaContext';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
 import HorarioBrasilia from '../utils/outros/horarioBrasilia';
 
@@ -31,24 +31,14 @@ export default function Index({ musicas, playlists }) {
         // console.log(playlists);
     }, []);
 
-    async function setarMusica(e) {
-        const id = e.target.id;
-        // console.log(id);
-
-        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
-        const musicaJson = await res.json();
-
-        // Salvar no Context e no localStorage;
-        MusicaStorage.set(musicaJson);
-        setMusicaContext(musicaJson);
-    }
-
     function renovarLista() {
         // Salvar no Context e no localStorage;
         // Guardar provisoriamente a lista de músicas em ListaMusicasContext;
         // console.log(musicas);
         ListaMusicasStorage.set(musicas);
         setListaMusicasContext(musicas);
+
+        Aviso.custom('Lista de músicas padrão renovada em sua lista', 10000);
     }
 
     function gerarOla() {
@@ -81,22 +71,13 @@ export default function Index({ musicas, playlists }) {
                 </div>
             </div>
 
-            {/* xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */}
-            <div style={{ display: 'none' }}>
-                <h1>Músicas</h1>
-                <ul>
-                    {musicas.map((m) => (
-                        <li key={m.musicaId} id={m.musicaId} onClick={(e) => setarMusica(e)} className={Styles.aea}>
-                            {m.nome} - {m.musicasBandas[0].bandas.nome}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div>
-                <button onClick={() => renovarLista()}>TESTE: Renovar lista</button>
-                <button><Link href={'/fila'}><a>Sua fila</a></Link></button>
-            </div>
+            {process.env.NODE_ENV === 'development' && (
+                <div className={Styles.div}>
+                    <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
+                        <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
+                    </div>
+                </div>
+            )}
         </section>
     )
 }

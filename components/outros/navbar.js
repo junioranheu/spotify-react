@@ -10,8 +10,8 @@ export default function Navbar() {
     const [nomeUsuario, setNomeUsuario] = useState('');
 
     useEffect(() => {
-        console.log(isAuth);
-        console.log(Auth.getUsuarioLogado()?.nome);
+        // console.log(isAuth);
+        // console.log(Auth.getUsuarioLogado()?.nome);
 
         setNomeUsuario(isAuth ? Auth.getUsuarioLogado()?.nome : null);
     }, [isAuth]);

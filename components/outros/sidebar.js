@@ -55,7 +55,7 @@ export default function Sidebar() {
                         <span className={`${Styles.quadrado} ${Styles.quadradoBranco}`}>
                             <Mais width='12px' cor='var(--preto)' />
                         </span>
-
+ 
                         <span className='pointer' onClick={AvisoFuncaoNaoDesenvolvida}>Criar lista de reprodução</span>
                     </span>
 

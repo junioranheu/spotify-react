@@ -10,10 +10,14 @@
 
 .divDireita {
     /* background-color: pink; */
-
     display: flex;
     flex-direction: column;
     padding-bottom: 5px;
+}
+
+.divisao {
+    border-bottom: 1px solid rgba(42, 42, 42, 100);
+    margin-top: 40px;
 }
 
 .capa {

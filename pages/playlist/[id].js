@@ -141,6 +141,8 @@ export default function Playlist() {
                 </div>
             </div>
 
+            <div className={StylesPlaylist.divisao}></div>
+
             {/* Playlist */}
             <div className={Styles.div}>
                 <div>

@@ -56,7 +56,7 @@
     justify-content: center;
 }
 
-.iconeCoracao{
+.iconeCoracao {
     /* background-color: rebeccapurple; */
     margin-left: 10px;
 }
@@ -190,3 +190,49 @@
     align-items: center;
 }
 
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .divInfo span:nth-child(3) {
+        /* background-color: pink; */
+        display: none;
+    }
+
+    .divOpcoes span:nth-child(1), .divOpcoes span:nth-child(3) {
+        /* background-color: pink; */
+        display: none;
+    }
+
+    .divPlayer {
+        /* background-color: pink; */
+        width: 100vw;
+    }
+
+    .divInfo img {
+        display: none !important;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .iconeCoracao {
+        /* background-color: pink; */
+        display: none;
+    }
+
+    .barraPlayer {
+        /* background-color: pink; */
+        gap: 60px;
+
+        overflow-x: auto;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

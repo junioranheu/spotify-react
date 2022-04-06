@@ -49,8 +49,8 @@
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {
     .botaoCustom button {
-        width: 200px;
-        font-size: 10px;
+        width: 220px;
+        font-size: 11px;
     }
 
     .titulo {

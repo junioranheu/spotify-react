@@ -78,7 +78,7 @@ export default function Index({ musicas, playlists }) {
                 <span className={Styles.textoNormal}>Novas playlists serão criadas e, mais para frente, será permitido criar suas proprias!</span>
 
                 {isAuth && (
-                    <span className={Styles.textoNormal}>Para "renovar" sua playlist por completo, clique no botão abaixo.</span>
+                    <span className={Styles.textoNormal}>Para “renovar” sua playlist por completo, clique no botão abaixo.</span>
                 )}
             </div>
 

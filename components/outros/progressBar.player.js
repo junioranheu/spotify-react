@@ -37,15 +37,15 @@ export default function ProgressBarPlayer(props) {
     useEffect(() => {
         // Pegar uma vez o width do elemento;
         var rect = document.querySelector('#progressWrapperPlayer')?.getBoundingClientRect();
-        setWidthElemento(rect.width);
+        setWidthElemento(rect?.width);
 
         // Ajustar novamente o width do elemento ao dar resize, também ajustar o tempoAtual para desbugar visualmente;
         window.addEventListener('resize', handleResize);
         function handleResize() {
             var rect = document.querySelector('#progressWrapperPlayer')?.getBoundingClientRect();
-            setWidthElemento(rect.width);
+            setWidthElemento(rect?.width);
 
-            if (rect.width > 0 && rect.width !== Infinity) {
+            if (rect?.width > 0 && rect.width !== Infinity) {
                 // console.log(rect.width);
                 setarTempoAtual(rect.width);
             }

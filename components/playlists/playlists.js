@@ -18,7 +18,7 @@ export default function Playlists({ playlist }) {
     }
 
     return (
-        <Link href={`/playlist/${playlist.playlistId}`}>
+        <Link href={`/playlist/${playlist.playlistId}`} passHref>
             <div className={Styles.playlist} id={playlist.playlistId}>
                 <div className={Styles.divThumbnail}>
                     <Image src={Thumbnail} objectFit='contain' alt='' />

@@ -8,7 +8,7 @@ export default function ProgressBarPlayer(props) {
     useEffect(() => {
         // Tentar infinitas vezes encontrar o refMusica.current.duration;
         function forcarDuracao() {
-            if (!refMusica.current.duration) {
+            if (!refMusica?.current?.duration) {
                 window.setTimeout(forcarDuracao, 100);
                 // console.log('Tentando de novo');
             } else {

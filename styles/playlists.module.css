@@ -5,10 +5,12 @@
     flex-wrap: wrap;
     gap: 15px;
 
+    width: 100%;
     margin-top: 25px;
 }
 
 .divPlaylists>.playlist {
+    /* background-color: red; */
     flex: 1 1 20%;
 }
 
@@ -36,7 +38,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* z-index: -1; */
 }
 
 .divThumbnail img {
@@ -116,6 +117,11 @@
     .divPlaylists {
         /* background-color: pink; */
         justify-content: center;
+    }
+
+    .divPlaylists>.playlist {
+        /* background-color: blue; */
+        width: 45%;
     }
 }
 

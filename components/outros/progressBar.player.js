@@ -36,13 +36,13 @@ export default function ProgressBarPlayer(props) {
 
     useEffect(() => {
         // Pegar uma vez o width do elemento;
-        var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
+        var rect = document.querySelector('#progressWrapperPlayer')?.getBoundingClientRect();
         setWidthElemento(rect.width);
 
         // Ajustar novamente o width do elemento ao dar resize, também ajustar o tempoAtual para desbugar visualmente;
         window.addEventListener('resize', handleResize);
         function handleResize() {
-            var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
+            var rect = document.querySelector('#progressWrapperPlayer')?.getBoundingClientRect();
             setWidthElemento(rect.width);
 
             if (rect.width > 0 && rect.width !== Infinity) {
@@ -54,7 +54,7 @@ export default function ProgressBarPlayer(props) {
 
     function handleClick(e) {
         e.preventDefault();
-        var rect = document.querySelector('#progressWrapperPlayer').getBoundingClientRect();
+        var rect = document.querySelector('#progressWrapperPlayer')?.getBoundingClientRect();
         let posicaoClick = e.clientX - rect.left;
         // console.log(`${e.clientX} - ${rect.left}`);
         // console.log(posicaoClick);

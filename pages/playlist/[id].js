@@ -127,7 +127,7 @@ export default function Playlist() {
             <div className={StylesPlaylist.banner}>
                 {capaPlaylist && (
                     <div>
-                        <Image src={capaPlaylist} width={220} height={220} alt='' />
+                        <Image src={capaPlaylist} className={StylesPlaylist.capa} width={220} height={220} alt='' />
                     </div>
                 )}
 

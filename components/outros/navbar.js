@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Botao from '../../components/outros/botao.js';
@@ -15,6 +15,7 @@ export default function Navbar() {
         // console.log(isAuth);
         // console.log(Auth.getUsuarioLogado()?.nome);
 
+        // Atribuir nome do usuário logado;
         setNomeUsuario(isAuth ? Auth.getUsuarioLogado()?.nome : null);
     }, [isAuth]);
 
@@ -22,6 +23,14 @@ export default function Navbar() {
     function mostrarSubmenu() {
         setIsExibirSubmenu(!isExibirSubmenu);
     }
+
+    const asPath = useRouter();
+    useEffect(() => {
+        // console.log(asPath.pathname);
+
+        // Cada reload, setar como false, para fechar submenu;
+        setIsExibirSubmenu(false);
+    }, [asPath]);
 
     function deslogar() {
         NProgress.start();

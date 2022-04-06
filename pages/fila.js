@@ -110,8 +110,7 @@ export default function Fila() {
                         </div>
                     </div>
                 </section>
-            )
-            }
+            )}
         </Fragment >
     )
 }

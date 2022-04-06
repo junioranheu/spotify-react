@@ -94,7 +94,10 @@ export default function Playlist() {
                 const banda = playlist.musicas.musicasBandas[0]?.bandas.nome;
                 // console.log(banda);
 
-                bandas = bandas + `, ${banda}`;
+                // Se a banda não estiver na string "bandas", adicione-a;
+                if (!bandas.includes(banda)) {
+                    bandas = bandas + `, ${banda}`;
+                }
             } else {
                 isPassouLimite = true;
             }

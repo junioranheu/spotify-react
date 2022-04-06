@@ -1,85 +1,109 @@
 .container {
-  /* background-color: pink; */
-  width: 100vw;
-  height: 100vh;
+    /* background-color: pink; */
+    width: 100vw;
+    height: 100vh;
 
-  overflow-y: hidden;
-  overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
 
-  display: flex;
+    display: flex;
 }
 
 .containerInner {
-  background-color: var(--preto2);
-  width: 100vw;
-  height: 100vh;
+    background-color: var(--preto2);
+    width: 100vw;
+    height: 100vh;
 
-  overflow-y: hidden;
-  overflow-x: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
 .botao {
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  height: 40px;
-  margin: 8px 0 12px;
-  padding: 8px 48px;
-  border: none;
-  background: var(--branco);
-  border-radius: 500px;
-  color: var(--preto);
-  cursor: pointer;
-  font: inherit;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 180px;
-  white-space: nowrap;
-  outline: none;
-  place-content: center;
-  place-items: center;
-  -webkit-transition: opacity .2s;
-  transition: opacity .2s;
-  text-transform: uppercase;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 40px;
+    margin: 8px 0 12px;
+    padding: 8px 48px;
+    border: none;
+    background: var(--branco);
+    border-radius: 500px;
+    color: var(--preto);
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 180px;
+    white-space: nowrap;
+    outline: none;
+    place-content: center;
+    place-items: center;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+    text-transform: uppercase;
 }
 
 .botao:hover {
-  transform: scale(1.05);
-  transition: all 0.3s;
+    transform: scale(1.05);
+    transition: all 0.3s;
 }
 
 .botao:disabled {
-  cursor: not-allowed;
-  filter: brightness(50%);
+    cursor: not-allowed;
+    filter: brightness(50%);
+}
+
+.sideBarRemoverSeWidthPequeno {
+    display: block;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Coração =-=-=-=-=-=-=-=-=-=-= */
 .coracao {
-  /* background-color: red; */
-  background-image: url('../static/image/coracao-animacao.png');
-  background-repeat: no-repeat;
-  background-size: 2900%;
-  background-position: left;
-  height: 50px;
-  width: 50px;
-  margin: 0 auto;
-  cursor: pointer;
+    /* background-color: red; */
+    background-image: url('../static/image/coracao-animacao.png');
+    background-repeat: no-repeat;
+    background-size: 2900%;
+    background-position: left;
+    height: 50px;
+    width: 50px;
+    margin: 0 auto;
+    cursor: pointer;
 }
 
 .animarCoracao {
-  animation: heart-burst .8s steps(28) forwards;
+    animation: heart-burst .8s steps(28) forwards;
 }
 
 @keyframes heart-burst {
-  0% {
-    background-position: left;
-  }
+    0% {
+        background-position: left;
+    }
 
-  100% {
-    background-position: right;
-  }
+    100% {
+        background-position: right;
+    }
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {
+    .sideBarRemoverSeWidthPequeno {
+        display: none;
+    }
+}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

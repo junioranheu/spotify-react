@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
@@ -6,6 +7,7 @@ import SetinhaBaixo from '../../components/svg/setinhaBaixo';
 import Styles from '../../styles/navbar.module.css';
 import { Auth, UsuarioContext } from '../../utils/context/usuarioContext';
 import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
+import SpotifyLogo from '../svg/spotifyLogo';
 
 export default function Navbar() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
@@ -48,9 +50,9 @@ export default function Navbar() {
 
     return (
         <nav className={Styles.navbar}>
-            {/* <div>
-                <h1>aea</h1>
-            </div> */}
+            <div className={Styles.exibirLogoSeWidthPequeno}>
+                <Link href={'/'}><a><SpotifyLogo width='100px' /></a></Link>
+            </div>
 
             <div className={Styles.divDireita}>
                 {isAuth ? (

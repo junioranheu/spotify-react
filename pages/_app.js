@@ -19,7 +19,9 @@ export default function App({ Component, pageProps }) {
                     <ToastContainer className='semHighlight' />
 
                     <section className={`${Styles.container} semHighlight`}>
-                        <Sidebar />
+                        <div className={Styles.sideBarRemoverSeWidthPequeno}>
+                            <Sidebar />
+                        </div>
 
                         {/* Navbar + Views */}
                         <div className={Styles.containerInner}>

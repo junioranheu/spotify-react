@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }) {
         <UsuarioProvider>
             <ListaMusicasProvider>
                 <MusicaProvider>
-                    <ToastContainer />
+                    <ToastContainer className='semHighlight' />
 
                     <section className={`${Styles.container} semHighlight`}>
                         <Sidebar />

@@ -149,7 +149,7 @@
     .divMusica {
         /* background-color: pink; */
         overflow-x: auto;
-        gap: 30px;
+        gap: 0px;
     }
 
     .divInfoMusica {
@@ -157,6 +157,8 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        min-width: 180px;
+        max-width: 180px;
     }
 
     .divMeio {

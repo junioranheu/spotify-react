@@ -1,8 +1,10 @@
 import Image from 'next/image';
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Coracao from '../../components/outros/coracao';
 import Reticencias from '../../components/svg/reticencias';
+import GifEqualiser from '../../static/image/equaliser.gif';
 import Styles from '../../styles/fila.module.css';
+import { MusicaContext } from '../../utils/context/musicaContext';
 import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 import BotaoPlay from '../svg/botaoPlay';
@@ -24,18 +26,27 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
         setIsMusicaCurtida(!isMusicaCurtida);
     }
 
+    // Quando uma música é selecionada no MusicaContext;
+    const [musicaContext] = useContext(MusicaContext); // Context da música;
+    useEffect(() => {
+        // console.log(musicaContext);
+        // console.log(musicaContext?.musicaId);
+    }, [musicaContext]);
+
     return (
         <div className={Styles.divMusica}>
             <div className={Styles.divEsquerda}>
 
                 {isDesativarUm ? (
                     <Fragment>
-                        <span className={`${(i > 1 ? Styles.contador : Styles.contadorItem1)} ${(i === 1 ? Styles.verde : '')}`}>{i}</span>
+                        <span className={`${(i > 1 ? Styles.contador : Styles.contadorItem1)} ${(i === 1 ? Styles.verde : '')}`}>
+                            {((id === musicaContext?.musicaId) ? <Image src={GifEqualiser} width={14} height={14} alt='' /> : i)}
+                        </span>
                         <span className={`${(i > 1 ? Styles.esconderPlay : Styles.esconderItem1)}`} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
                     </Fragment>
                 ) : (
                     <Fragment>
-                        <span className={Styles.contador}>{i}</span>
+                        <span className={Styles.contador}> {((id === musicaContext?.musicaId) ? <Image src={GifEqualiser} width={14} height={14} alt='' /> : i)}</span>
                         <span className={Styles.esconderPlay} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
                     </Fragment>
                 )}

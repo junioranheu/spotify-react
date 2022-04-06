@@ -41,3 +41,56 @@
 .botaoCustom button {
     color: #2e77d0;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .botaoCustom button {
+        width: 200px;
+        font-size: 10px;
+    }
+
+    .titulo {
+        display: none !important;
+    }
+
+    .barraDeslogado span {
+        /* Reticências após a segunda linha */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {
+    .divEsquerda {
+        /* background-color: pink; */
+        display: none;
+    }
+
+    .barraDeslogado {
+        justify-content: center;
+    }
+
+    .botaoCustom button {
+        width: 300px;
+        font-size: 12px;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {
+    .botaoCustom button {
+        width: 80vw;
+        font-size: 10px;
+    }
+}

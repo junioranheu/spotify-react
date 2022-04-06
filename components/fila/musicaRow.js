@@ -45,7 +45,7 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                 </div>
 
                 <div className={Styles.divInfoMusica}>
-                    <span className={`${Styles.verdeOnHover} ${(i === 1 ? Styles.verde : '')}`}>{titulo}</span>
+                    <span className={`${Styles.verdeOnHover} ${(i === 1 && isDesativarUm ? Styles.verde : '')}`}>{titulo}</span>
                     <span>{banda}</span>
                 </div>
             </div>

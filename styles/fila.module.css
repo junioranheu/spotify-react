@@ -7,7 +7,7 @@
 
     padding-left: 30px;
     padding-right: 30px;
-    padding-bottom: 100px;
+    padding-bottom: 15vh;
 }
 
 .div {
@@ -177,7 +177,12 @@
 @media (max-width:801px) {}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
-@media (max-width:600px) {}
+@media (max-width:600px) {
+    .container {
+        /* background-color: pink; */
+        padding-bottom: 30vh;
+    }
+}
 
 /* smartphones, Android phones, landscape iPhone */
 @media (max-width:480px) {}

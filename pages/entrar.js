@@ -113,27 +113,29 @@ export default function Index() {
                 </div>
             ) : (
                 <section className={Styles.container}>
-                    <span className={Styles.titulo}>Bem-vindo ao Spotify</span>
+                    <div className={Styles.containerInner}>
+                        <span className={Styles.titulo}>Bem-vindo ao Spotify</span>
 
-                    <div>
-                        <input className={`${Styles.input} ${Styles.margemTopP}`} type='text' placeholder='E-mail ou nome de usuário'
-                            name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
-                        />
+                        <div>
+                            <input className={`${Styles.input} ${Styles.margemTopP}`} type='text' placeholder='E-mail ou nome de usuário'
+                                name='usuario' onChange={handleChange} ref={refUsuario} onKeyPress={handleKeyPress}
+                            />
 
-                        <input className={`${Styles.input} ${Styles.margemTopP}`} type='password' placeholder='Senha'
-                            name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
-                        />
+                            <input className={`${Styles.input} ${Styles.margemTopP}`} type='password' placeholder='Senha'
+                                name='senha' onChange={handleChange} ref={refSenha} onKeyPress={handleKeyPress}
+                            />
 
-                        <div className={`${Styles.botaoCustom} ${Styles.margemTopP}`} onClick={handleSubmit}>
-                            <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' refBtn={refBtn} />
+                            <div className={`${Styles.botaoCustom} ${Styles.margemTopP}`} onClick={handleSubmit}>
+                                <Botao texto={'Entrar'} url={''} isNovaAba={false} Svg='' refBtn={refBtn} />
+                            </div>
                         </div>
-                    </div>
 
-                    <div className={Styles.divCode}>
-                        <code>
-                            Por enquanto não é possível criar uma nova conta.<br />
-                            Entre com o usuário <b className='verde'>usuario</b> e a senha <b className='verde'>123</b>.
-                        </code>
+                        <div className={Styles.divCode}>
+                            <code>
+                                Por enquanto não é possível criar uma nova conta.<br />
+                                Entre com o usuário <b className='verde'>usuario</b> e a senha <b className='verde'>123</b>.
+                            </code>
+                        </div>
                     </div>
                 </section>
             )}

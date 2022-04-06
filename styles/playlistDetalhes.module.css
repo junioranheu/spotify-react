@@ -43,7 +43,7 @@
     color: var(--branco);
     opacity: 0.9;
 }
- 
+
 .span3 {
     margin-top: 20px;
     -webkit-line-clamp: 3;
@@ -64,3 +64,36 @@
     color: var(--branco);
     opacity: 0.9;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .span2 {
+        font-size: 3rem;
+        line-height: 3rem;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .span2 {
+        font-size: 2rem;
+        line-height: 2rem;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {
+    .banner {
+        /* background-color: pink; */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

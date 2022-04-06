@@ -9,7 +9,7 @@ export default function Playlists({ playlist }) {
 
     // Import dinâmico: thumbnail da playlist;
     let Thumbnail = '';
-    try {
+    try { 
         Thumbnail = require(`../../static/playlists/${playlist.foto}`);
         // console.log(Thumbnail);
     } catch (err) {

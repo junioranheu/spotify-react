@@ -50,7 +50,6 @@
     /* background-color: pink; */
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
 
     margin-left: 20px;
     margin-right: 20px;
@@ -143,3 +142,40 @@
 .esconderPlay:hover svg path {
     fill: var(--verde) !important;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .divMusica {
+        /* background-color: pink; */
+        overflow-x: auto;
+        gap: 30px;
+    }
+
+    .divInfoMusica {
+        /* background-color: red; */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .divMeio {
+        display: none;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {
+    .divImg {
+        display: none;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

@@ -40,7 +40,7 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                     </Fragment>
                 )}
 
-                <div>
+                <div className={Styles.divImg}>
                     <Image src={ImagemBanda} width={40} height={40} alt='' />
                 </div>
 

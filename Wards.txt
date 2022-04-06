@@ -1,5 +1,4 @@
 https://open.spotify.com/
 
 --
-Corrigir barra.js no mobile
 Quando uma musica estiver tocando, o icone muda

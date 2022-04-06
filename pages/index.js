@@ -6,10 +6,12 @@ import Styles from '../styles/index.module.css';
 import StylesPlaylist from '../styles/playlists.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
 import { MusicaContext } from '../utils/context/musicaContext';
+import { UsuarioContext } from '../utils/context/usuarioContext';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
 import HorarioBrasilia from '../utils/outros/horarioBrasilia';
 
 export default function Index({ musicas, playlists }) {
+    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
@@ -74,14 +76,17 @@ export default function Index({ musicas, playlists }) {
             <div className={Styles.div}>
                 <span className={Styles.titulo}>Outras playlists</span>
                 <span className={Styles.textoNormal}>Novas playlists serão criadas e, mais para frente, será permitido criar suas proprias!</span>
-                <span className={Styles.textoNormal}>Para "renovar" sua playlist por completo, clique no botão abaixo.</span>
+
+                {isAuth && (
+                    <span className={Styles.textoNormal}>Para "renovar" sua playlist por completo, clique no botão abaixo.</span>
+                )}
             </div>
 
-            {/* {process.env.NODE_ENV === 'development' && ( */}
-            <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
-                <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
-            </div>
-            {/* )} */}
+            {isAuth && (
+                <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
+                    <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
+                </div>
+            )}
         </section>
     )
 }

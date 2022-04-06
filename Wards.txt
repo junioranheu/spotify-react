@@ -2,4 +2,5 @@ https://open.spotify.com/
 
 --
 Ajustar z-index da navbar
+Botao FUNCTION RENOVAR LISTA ta com um width absurdo?
 Ajustar responsividade

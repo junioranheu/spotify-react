@@ -35,7 +35,7 @@
 
 .textoNormal {
     margin-top: 10px;
-    
+
     font-size: 1rem;
     line-height: 1rem;
     font-weight: 400;
@@ -48,6 +48,12 @@
     flex-direction: column;
 
     margin-top: 30px;
+}
+
+.botaoCustom {
+    /* background-color: pink; */
+    margin-top: 20px;
+    width: fit-content;
 }
 
 .botaoCustom button {

@@ -7,7 +7,7 @@ export const ListaMusicasContext = createContext();
 export const ListaMusicasProvider = props => {
     // https://stackoverflow.com/questions/68189273/referenceerror-localstorage-is-not-defined-using-local-storage-in-nextjs
     if (typeof window !== 'undefined') {
-        const [listaMusica, setListaMusica] = useState(localStorage.getItem('listaMusicasContext') == 'undefined' ? {} : JSON.parse(localStorage.getItem('listaMusicasContext')));
+        const [listaMusica, setListaMusica] = useState(localStorage.getItem('listaMusicasContextV2') == 'undefined' ? {} : JSON.parse(localStorage.getItem('listaMusicasContextV2')));
 
         return (
             <ListaMusicasContext.Provider value={[listaMusica, setListaMusica]}>
@@ -24,11 +24,11 @@ export const ListaMusicasStorage = {
     set(data) {
         // console.log(data);
         let parsedData = JSON.stringify(data);
-        localStorage.setItem('listaMusicasContext', parsedData);
+        localStorage.setItem('listaMusicasContextV2', parsedData);
     },
 
     get() {
-        let data = localStorage.getItem('listaMusicasContext');
+        let data = localStorage.getItem('listaMusicasContextV2');
 
         if (!data) {
             return null;
@@ -40,6 +40,6 @@ export const ListaMusicasStorage = {
     },
 
     delete() {
-        localStorage.removeItem('listaMusicasContext');
+        localStorage.removeItem('listaMusicasContextV2');
     }
 }

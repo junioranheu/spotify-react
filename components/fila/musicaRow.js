@@ -42,11 +42,15 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                         <span className={`${(i > 1 ? Styles.contador : Styles.contadorItem1)} ${(i === 1 ? Styles.verde : '')}`}>
                             {((id === musicaContext?.musicaId) ? <Image src={GifEqualiser} width={14} height={14} alt='' /> : i)}
                         </span>
+
                         <span className={`${(i > 1 ? Styles.esconderPlay : Styles.esconderItem1)}`} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
                     </Fragment>
                 ) : (
                     <Fragment>
-                        <span className={Styles.contador}> {((id === musicaContext?.musicaId) ? <Image src={GifEqualiser} width={14} height={14} alt='' /> : i)}</span>
+                        <span className={Styles.contador}>
+                            {((id === musicaContext?.musicaId) ? <Image src={GifEqualiser} width={14} height={14} alt='' /> : i)}
+                        </span>
+
                         <span className={Styles.esconderPlay} onClick={(e) => setarMusica(e)} id={id}><BotaoPlay width='14' cor='#A7A7A7' /></span>
                     </Fragment>
                 )}

@@ -40,7 +40,7 @@ export default function Index({ musicas, playlists }) {
         ListaMusicasStorage.set(musicas);
         setListaMusicasContext(musicas);
 
-        Aviso.custom('Lista de músicas padrão renovada em sua lista', 10000);
+        Aviso.custom('Todas as músicas disponíveis atualmente foram importadas para sua fila', 10000);
     }
 
     function gerarOla() {
@@ -84,7 +84,7 @@ export default function Index({ musicas, playlists }) {
 
             {isAuth && (
                 <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
-                    <Botao texto={'{ function renovarLista() }'} url={''} isNovaAba={false} Svg='' />
+                    <Botao texto={'Importar todas as músicas disponíveis em sua fila'} url={''} isNovaAba={false} Svg='' />
                 </div>
             )}
         </section>

@@ -61,7 +61,7 @@ export default function Playlist() {
             // Atualizar a fila do usuário com as músicas da playlist [id];
             const res2 = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/porPlaylist/${id}`)
             const musicasDaPlaylist = await res2.json();
-            console.log(musicasDaPlaylist);
+            // console.log(musicasDaPlaylist);
             ListaMusicasStorage.set(musicasDaPlaylist);
             setListaMusicasContext(musicasDaPlaylist);
 

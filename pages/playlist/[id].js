@@ -6,7 +6,7 @@ import MusicaRow from '../../components/fila/musicaRow';
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/fila.module.css';
 import StylesPlaylist from '../../styles/playlistDetalhes.module.css';
-import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
+import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
 import FormatarSegundosComLegenda from '../../utils/outros/formatarSegundosComLegenda.js';
@@ -57,6 +57,13 @@ export default function Playlist() {
                 const d = somarDuracaoTotal(playlist.playlistsMusicas);
                 setDuracaoPlaylist(d);
             }
+
+            // Atualizar a fila do usuário com as músicas da playlist [id];
+            const res2 = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/porPlaylist/${id}`)
+            const musicasDaPlaylist = await res2.json();
+            console.log(musicasDaPlaylist);
+            ListaMusicasStorage.set(musicasDaPlaylist);
+            setListaMusicasContext(musicasDaPlaylist);
 
             // Página carregada por completo;
             setIsPaginaCarregada(true);

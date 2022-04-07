@@ -245,8 +245,8 @@ export default function BarraPlayer() {
                                     {musicaContext.nome}
                                 </span>
 
-                                <span className={Styles.infoDescricao} title={musicaContext.musicasBandas[0].bandas.nome}>
-                                    {musicaContext.musicasBandas[0].bandas.nome}
+                                <span className={Styles.infoDescricao} title={(musicaContext?.musicasBandas ? musicaContext?.musicasBandas[0]?.bandas.nome : '')}>
+                                    {(musicaContext?.musicasBandas ? musicaContext?.musicasBandas[0]?.bandas.nome : '')}
                                 </span>
                             </div>
                         </div>

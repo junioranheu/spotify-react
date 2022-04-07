@@ -8,6 +8,7 @@ import Navbar from '../components/outros/navbar';
 import Sidebar from '../components/outros/sidebar';
 import Styles from '../styles/geral.module.css';
 import '../styles/globals.css';
+import { IsPlayingProvider } from '../utils/context/isPlayingContext';
 import { ListaMusicasProvider } from '../utils/context/listaMusicasContext';
 import { MusicaProvider } from '../utils/context/musicaContext';
 import { UsuarioProvider } from '../utils/context/usuarioContext';
@@ -31,21 +32,23 @@ export default function App({ Component, pageProps }) {
         <UsuarioProvider>
             <ListaMusicasProvider>
                 <MusicaProvider>
-                    <ToastContainer className='semHighlight' />
+                    <IsPlayingProvider>
+                        <ToastContainer className='semHighlight' />
 
-                    <section className={`${Styles.container} semHighlight`}>
-                        <div className={Styles.sideBarRemoverSeWidthPequeno}>
-                            <Sidebar />
-                        </div>
+                        <section className={`${Styles.container} semHighlight`}>
+                            <div className={Styles.sideBarRemoverSeWidthPequeno}>
+                                <Sidebar />
+                            </div>
 
-                        {/* Navbar + Views */}
-                        <div className={Styles.containerInner}>
-                            <Navbar />
-                            <Component {...pageProps} />
-                        </div>
+                            {/* Navbar + Views */}
+                            <div className={Styles.containerInner}>
+                                <Navbar />
+                                <Component {...pageProps} />
+                            </div>
 
-                        <Barra />
-                    </section>
+                            <Barra />
+                        </section>
+                    </IsPlayingProvider>
                 </MusicaProvider>
             </ListaMusicasProvider>
         </UsuarioProvider >

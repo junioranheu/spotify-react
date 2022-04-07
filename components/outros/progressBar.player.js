@@ -1,10 +1,12 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-// import Musica from '../../static/music/3.mp3';
+import React, { Fragment, useContext, useEffect, useRef, useState } from 'react';
 import Styles from '../../styles/progressBar.module.css';
+import { IsPlayingContext } from '../../utils/context/isPlayingContext';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
 export default function ProgressBarPlayer(props) {
+    const [isPlayingContext, setIsPlayingContext] = useContext(IsPlayingContext); // Context isPlaying;
+
     useEffect(() => {
         // Tentar infinitas vezes encontrar o refMusica.current.duration;
         function forcarDuracao() {
@@ -77,7 +79,7 @@ export default function ProgressBarPlayer(props) {
         refMusica.current.currentTime = segundoAtual;
         setTempoAtual(posicaoClick);
     }
-
+ 
     useEffect(() => {
         let volumeAjustado = props.volume / 100;
         refMusica.current.volume = volumeAjustado;
@@ -97,7 +99,11 @@ export default function ProgressBarPlayer(props) {
             if (props.isPlaying && props.arquivoMusica && tempoSegundosMaximo > refMusica.current.currentTime) {
                 // console.log(refMusica.current.currentTime);
                 setarTempoAtual(widthElemento);
+      
+                setIsPlayingContext(true); // IsPlaying?
             } else {
+                setIsPlayingContext(false); // IsPlaying?
+
                 if (props.arquivoMusica) {
                     if (props.isPlaying) {
                         if (props.isModoLoop) {

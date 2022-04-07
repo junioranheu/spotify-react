@@ -7,6 +7,7 @@ import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvo
 import Biblioteca from '../svg/biblioteca';
 import Casa from '../svg/casa';
 import Coracao from '../svg/coracao';
+import Github from '../svg/github';
 import Lupa from '../svg/lupa';
 import Mais from '../svg/mais';
 import SpotifyLogo from '../svg/spotifyLogo';
@@ -48,6 +49,10 @@ export default function Sidebar() {
                             </a>
                         </Link>
                     </span>
+
+                    <span className='pointer' onClick={() => window.open('https://github.com/junioranheu', '_blank')}>
+                        <Github width='24px' /> <span>Github</span>
+                    </span>
                 </div>
 
                 <div className={Styles.divIcones}>
@@ -55,7 +60,7 @@ export default function Sidebar() {
                         <span className={`${Styles.quadrado} ${Styles.quadradoBranco}`}>
                             <Mais width='12px' cor='var(--preto)' />
                         </span>
- 
+
                         <span className='pointer' onClick={AvisoFuncaoNaoDesenvolvida}>Criar lista de reprodução</span>
                     </span>
 

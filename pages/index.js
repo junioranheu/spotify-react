@@ -57,9 +57,9 @@ export default function Index({ playlists }) {
                 <span className={Styles.titulo}>Playlists disponíveis no momento {EmojiAleatorio()}</span>
 
                 <div className={StylesPlaylist.divPlaylists}>
-                    {playlists.map((p) => (
+                    {playlists.filter(x => x.isAtivo === 1).map((p) => (
                         <Playlists playlist={p} key={p.playlistId} />
-                    ))}
+                    ))} 
                 </div>
             </div>
 

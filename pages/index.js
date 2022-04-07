@@ -5,15 +5,13 @@ import Playlists from '../components/playlists/playlists';
 import Styles from '../styles/index.module.css';
 import StylesPlaylist from '../styles/playlists.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
-import { MusicaContext } from '../utils/context/musicaContext';
 import { UsuarioContext } from '../utils/context/usuarioContext';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
 import HorarioBrasilia from '../utils/outros/horarioBrasilia';
 
-export default function Index({ musicas, playlists }) {
+export default function Index({ playlists }) {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
-    const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
     useEffect(() => {
         // Título da página;
@@ -23,10 +21,12 @@ export default function Index({ musicas, playlists }) {
         // console.log(playlists);
     }, []);
 
-    function renovarLista() {
+    async function renovarLista() {
+        const res = await fetch('https://spotifyapi.azurewebsites.net/api/Musicas/todos')
+        const musicas = await res.json();
+
         // Salvar no Context e no localStorage;
-        // Guardar provisoriamente a lista de músicas em ListaMusicasContext;
-        // console.log(musicas);
+        console.log(musicas);
         ListaMusicasStorage.set(musicas);
         setListaMusicasContext(musicas);
 
@@ -82,15 +82,12 @@ export default function Index({ musicas, playlists }) {
 }
 
 export async function getStaticProps() {
-    const res1 = await fetch('https://spotifyapi.azurewebsites.net/api/Musicas/todos')
-    const musicas = await res1.json();
-
-    const res2 = await fetch('https://spotifyapi.azurewebsites.net/api/Playlists/todos')
-    const playlists = await res2.json();
+    const res = await fetch('https://spotifyapi.azurewebsites.net/api/Playlists/todos')
+    const playlists = await res.json();
 
     return {
         props: {
-            musicas, playlists
+            playlists
         },
     }
 }

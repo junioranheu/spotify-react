@@ -67,7 +67,7 @@ export default function Fila() {
                                     foto={musicaContext.musicasBandas[0]?.bandas.foto}
                                     titulo={musicaContext.nome}
                                     banda={musicaContext.musicasBandas[0]?.bandas.nome}
-                                    album={(musicaContext.albunsMusicas ? musicaContext.albunsMusicas[0]?.albuns.nome : '')}
+                                    album={musicaContext.albunsMusicas[0]?.albuns.nome}
                                     tempo={musicaContext.duracaoSegundos}
                                     setarMusica={setarMusica}
                                     isDesativarUm={true}

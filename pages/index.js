@@ -26,7 +26,7 @@ export default function Index({ playlists }) {
         const musicas = await res.json();
 
         // Salvar no Context e no localStorage;
-        console.log(musicas);
+        // console.log(musicas);
         ListaMusicasStorage.set(musicas);
         setListaMusicasContext(musicas);
 
@@ -59,7 +59,7 @@ export default function Index({ playlists }) {
                 <div className={StylesPlaylist.divPlaylists}>
                     {playlists.filter(x => x.isAtivo === 1).map((p) => (
                         <Playlists playlist={p} key={p.playlistId} />
-                    ))} 
+                    ))}
                 </div>
             </div>
 
@@ -74,7 +74,7 @@ export default function Index({ playlists }) {
 
             {isAuth && (
                 <div className={Styles.botaoCustom} onClick={() => renovarLista()}>
-                    <Botao texto={'Importar todas as músicas disponíveis em sua fila'} url={''} isNovaAba={false} Svg='' />
+                    <Botao texto={'Importar todas as músicas'} url={''} isNovaAba={false} Svg='' />
                 </div>
             )}
         </section>

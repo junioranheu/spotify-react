@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
+import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
@@ -64,6 +65,11 @@ export default function BarraPlayer() {
 
     const [isPlaying, setIsPlaying] = useState(false);
     function handleIsPlaying() {
+        if (!musicaContext?.musicaId) {
+            Aviso.custom('Nenhuma música foi selecionada', 5000);
+            return false;
+        }
+
         setIsPlaying(!isPlaying);
     }
 
@@ -78,6 +84,13 @@ export default function BarraPlayer() {
     const [arquivoMusica, setArquivoMusica] = useState();
     const [isFirstLoad, setIsFirstLoad] = useState(true);
     useEffect(() => {
+        // Lógica para não dar play automaticamente ao carregar página;
+        if (!isFirstLoad) {
+            setIsPlaying(true);
+        } else {
+            setIsFirstLoad(false);
+        }
+
         async function importDinamico() {
             // Importar música dinamicamente;
             const arquivo = await import(`../../static/music/${musicaContext.musicaId}.mp3`);
@@ -90,13 +103,6 @@ export default function BarraPlayer() {
             listaMusicasContext?.splice(indexMusicaTocando, 1);
             ListaMusicasStorage.set(listaMusicasContext);
             setListaMusicasContext(listaMusicasContext);
-
-            // Lógica para não dar play automaticamente ao carregar página;
-            if (!isFirstLoad) {
-                setIsPlaying(true);
-            } else {
-                setIsFirstLoad(false);
-            }
         }
 
         if (musicaContext?.musicaId > 0) {

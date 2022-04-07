@@ -7,7 +7,7 @@ export default function BarraDeslogado() {
         <section className={Styles.barraDeslogado}>
             <div className={Styles.divEsquerda}>
                 <span className={Styles.titulo}>Pré-visualização do Spotify</span>
-                <span>Regista-te para ouvires músicas e podcasts ilimitados com alguns anúncios de vez em quando. Não é necessário cartão de crédito.</span>
+                <span>Registre-se para ouvir músicas e podcasts ilimitados com alguns anúncios de vez em quando. Não é necessário cartão de crédito.</span>
             </div>
 
             <div>

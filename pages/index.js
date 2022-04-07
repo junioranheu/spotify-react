@@ -19,16 +19,6 @@ export default function Index({ musicas, playlists }) {
         // Título da página;
         document.title = 'Spotify — React.js — junioranheu';
 
-        // Aviso;
-        if (process.env.NODE_ENV === 'production') {
-            const msg =
-                `Olá! ${EmojiAleatorio()}<br/><br/> 
-            Esse projeto foi replicado, sem fins lucrativos, a fim de estudo apenas, utilizando React.js e Next.js, a partir de um projeto real, de uma empresa real.<br/><br/> 
-            Feito por @junioranheu.<br/><br/> 
-            Todos os direitos reservados à @spotify.`;
-            Aviso.custom(msg, 20000);
-        }
-
         // console.log(musicas);
         // console.log(playlists);
     }, []);

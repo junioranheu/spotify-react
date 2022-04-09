@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }) {
             const msg =
                 `Olá! ${EmojiAleatorio()}<br/><br/> 
             Esse projeto foi replicado, sem fins lucrativos, a fim de estudo apenas, utilizando React.js e Next.js, a partir de um projeto real, de uma empresa real.<br/><br/> 
+            O primeiro loading das playlists pode demorar um pouco, pois o hosting da API é free.<br/><br/> 
             Feito por @junioranheu.<br/><br/> 
             Todos os direitos reservados à @spotify.`;
             Aviso.custom(msg, 20000);

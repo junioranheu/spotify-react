@@ -60,6 +60,11 @@
     background-color: var(--verde);
 }
 
+.divImgWaiting img {
+    /* background-color: pink; */
+    border-radius: 10px;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {}

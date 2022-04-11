@@ -72,7 +72,7 @@ export default function Index({ playlists }) {
 
     return (
         <Fragment>
-            {isApiOk === true ? (
+            {isApiOk === false ? (
                 <section className={Styles.container} style={{ color: 'white' }}>
                     <div className={Styles.div}>
                         <span className={Styles.titulo}>Aguarde alguns segundos, por favor.</span>

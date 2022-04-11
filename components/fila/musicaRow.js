@@ -1,7 +1,9 @@
 import Image from 'next/image';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Coracao from '../../components/outros/coracao';
+import ImageWithFallback from '../../components/outros/imageWithFallback';
 import Reticencias from '../../components/svg/reticencias';
+import ImgCinza from '../../static/image/cinza.webp';
 import GifEqualiser from '../../static/image/equaliser.gif';
 import Styles from '../../styles/fila.module.css';
 import { IsPlayingContext } from '../../utils/context/isPlayingContext';
@@ -16,16 +18,6 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
     useEffect(() => {
         // console.log(`isPlaying? ${isPlayingContext}`);
     }, [isPlayingContext]);
-
-    // Import dinâmico: capa da banda;
-    let ImagemBanda = '';
-    try {
-        ImagemBanda = require(`../../static/capas/${foto}`);
-        // console.log(ImagemBanda);
-    } catch (err) {
-        ImagemBanda = require('../../static/image/cinza.webp');
-        // console.log(err);
-    }
 
     const [isMusicaCurtida, setIsMusicaCurtida] = useState(false);
     function handleCoracao() {
@@ -62,7 +54,11 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                 )}
 
                 <div className={Styles.divImg}>
-                    <Image src={ImagemBanda} width={40} height={40} alt='' />
+                    <ImageWithFallback
+                        objectFit='contain' width={40} height={40}
+                        src={`https://spotifyapi.azurewebsites.net/Upload/capas/${foto}`}
+                        fallbackSrc={ImgCinza}
+                    />
                 </div>
 
                 <div className={Styles.divInfoMusica}>

@@ -1,9 +1,13 @@
-const minify = { 
+const minify = {
   swcMinify: true,
 };
 
 const final = {
   minify,
+
+  images: {
+    domains: ['spotifyapi.azurewebsites.net'],
+  },
 
   webpack(config, options) {
     config.module.rules.push({

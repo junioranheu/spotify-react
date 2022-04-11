@@ -114,11 +114,10 @@ export default function BarraPlayer() {
     let ImagemBanda = '';
     try {
         const foto = musicaContext.musicasBandas[0].bandas.foto;
-        ImagemBanda = require(`../../static/capas/${foto}`);
+        ImagemBanda = `https://spotifyapi.azurewebsites.net/Upload/capas/${foto}`
         // console.log(ImagemBanda);
     } catch (err) {
-        ImagemBanda = require('../../static/image/cinza.webp');
-        // console.log(err);
+        console.log(err);
     }
 
     const [isModoAleatorio, setIsModoAleatorio] = useState(false);

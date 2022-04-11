@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import MusicaRow from '../../components/fila/musicaRow';
 import { Aviso } from '../../components/outros/aviso';
+import ImageWithFallback from '../../components/outros/imageWithFallback';
+import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/fila.module.css';
 import StylesPlaylist from '../../styles/playlistDetalhes.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
@@ -151,7 +152,11 @@ export default function Playlist() {
                     <div className={StylesPlaylist.banner}>
                         {capaPlaylist && (
                             <div>
-                                <Image src={capaPlaylist} className={StylesPlaylist.capa} width={220} height={220} alt='' />
+                                <ImageWithFallback
+                                    objectFit='contain' width={220} height={220} className={StylesPlaylist.capa}
+                                    src={`https://spotifyapi.azurewebsites.net/Upload/capas/${playlist.foto}`}
+                                    fallbackSrc={ImgCinza}
+                                />
                             </div>
                         )}
 

@@ -113,11 +113,11 @@ export default function BarraPlayer() {
                     setArquivoMusica(arquivoBlob);
                     console.log(`Música "${musicaContext.nome}" (${musicaContext.musicaId}) importada`);
 
-                    // // Quando a música for importada, é necessário removê-la da lista/fila;
-                    // const indexMusicaTocando = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
-                    // listaMusicasContext?.splice(indexMusicaTocando, 1);
-                    // ListaMusicasStorage.set(listaMusicasContext);
-                    // setListaMusicasContext(listaMusicasContext);
+                    // Quando a música for importada, é necessário removê-la da lista/fila;
+                    const indexMusicaTocando = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
+                    listaMusicasContext?.splice(indexMusicaTocando, 1);
+                    ListaMusicasStorage.set(listaMusicasContext);
+                    setListaMusicasContext(listaMusicasContext);
                 });
         }
 

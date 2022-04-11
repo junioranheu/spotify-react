@@ -15,4 +15,4 @@ Desenvolvido para praticar React.js, Next.js, .NET, API Rest, JWT token, e etc.
 Este projeto faz parte do meu potfólio pessoal, sem fins lucrativos, a fim de estudo apenas. Todos os direitos reservados à @spotify.
 
 Projeto iniciado em 26 de março e finalizado em 07 de abril de 2022.
-
+Alteração feita em 11 de abril para habilitar os arquivos (.webp e .mp3) em https://spotifyapi.azurewebsites.net/upload/

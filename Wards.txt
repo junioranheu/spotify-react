@@ -1,1 +1,4 @@
 https://open.spotify.com/
+
+--
+Trazer as imagens e musicas da API e nao do front mais

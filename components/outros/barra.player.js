@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
-import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
+import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
 import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import NumeroAleatorio from '../../utils/outros/numeroAleatorio';

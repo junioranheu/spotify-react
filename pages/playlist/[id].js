@@ -140,7 +140,7 @@ export default function Playlist() {
                         <div>
                             <ImageWithFallback
                                 objectFit='contain' width={220} height={220} className={StylesPlaylist.capa}
-                                src={`https://spotifyapi.azurewebsites.net/Upload/capas/${playlist.foto}`}
+                                src={`https://spotifyapi.azurewebsites.net/Upload/playlists/${playlist.foto}`}
                                 fallbackSrc={ImgCinza}
                             />
                         </div>

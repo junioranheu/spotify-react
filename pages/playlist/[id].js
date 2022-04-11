@@ -22,7 +22,6 @@ export default function Playlist() {
 
     const [isPaginaCarregada, setIsPaginaCarregada] = useState(false);
     const [playlist, setPlaylist] = useState({});
-    const [capaPlaylist, setCapaPlaylist] = useState();
     const [concatBandas, setConcatBandas] = useState('');
     const [duracaoPlaylist, setDuracaoPlaylist] = useState('');
     useEffect(() => {
@@ -36,18 +35,6 @@ export default function Playlist() {
 
             // Título da página;
             document.title = `Spotify — ${playlist.nome}`;
-
-            // Import dinâmico: capa da playlist;
-            let ImagemCapaPlaylist = '';
-            try {
-                ImagemCapaPlaylist = require(`../../static/playlists/${playlist.foto}`);
-                // console.log(ImagemCapaPlaylist);
-            } catch (err) {
-                ImagemCapaPlaylist = require('../../static/image/cinza.webp');
-                // console.log(err);
-            }
-
-            setCapaPlaylist(ImagemCapaPlaylist);
 
             // Setar o valor das bandas da playlist em setConcatBandas();
             // Setar o tempo todal da playlist;
@@ -150,15 +137,13 @@ export default function Playlist() {
                 <section className={Styles.container}>
                     {/* Banner */}
                     <div className={StylesPlaylist.banner}>
-                        {capaPlaylist && (
-                            <div>
-                                <ImageWithFallback
-                                    objectFit='contain' width={220} height={220} className={StylesPlaylist.capa}
-                                    src={`https://spotifyapi.azurewebsites.net/Upload/capas/${playlist.foto}`}
-                                    fallbackSrc={ImgCinza}
-                                />
-                            </div>
-                        )}
+                        <div>
+                            <ImageWithFallback
+                                objectFit='contain' width={220} height={220} className={StylesPlaylist.capa}
+                                src={`https://spotifyapi.azurewebsites.net/Upload/capas/${playlist.foto}`}
+                                fallbackSrc={ImgCinza}
+                            />
+                        </div>
 
                         <div className={StylesPlaylist.divDireita}>
                             <span className={StylesPlaylist.span1}>Lista de reprodução</span>

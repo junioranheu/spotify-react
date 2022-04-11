@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
-import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
+import { ListaMusicasContext } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
 import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import NumeroAleatorio from '../../utils/outros/numeroAleatorio';
@@ -93,16 +93,32 @@ export default function BarraPlayer() {
 
         async function importDinamico() {
             // Importar música dinamicamente;
-            const arquivo = await import(`../../static/music/${musicaContext.musicaId}.mp3`);
-            setArquivoMusica(arquivo.default);
+            const url = `https://spotifyapi.azurewebsites.net/Upload/music/${musicaContext.musicaId}.mp3`;
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'audio/mpeg',
+                },
+            })
+                .then((response) => response.blob())
+                .then((blob) => {
+                    // Criar blob;
+                    const arquivoBlob = window.URL.createObjectURL(
+                        new Blob([blob], {
+                            type: 'audio/mpeg'
+                        }),
+                    );
 
-            console.log(`Música "${musicaContext.nome}" (${musicaContext.musicaId}) importada`);
+                    // console.log(arquivoBlob);
+                    setArquivoMusica(arquivoBlob);
+                    console.log(`Música "${musicaContext.nome}" (${musicaContext.musicaId}) importada`);
 
-            // Quando a música for importada, é necessário removê-la da lista/fila;
-            const indexMusicaTocando = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
-            listaMusicasContext?.splice(indexMusicaTocando, 1);
-            ListaMusicasStorage.set(listaMusicasContext);
-            setListaMusicasContext(listaMusicasContext);
+                    // // Quando a música for importada, é necessário removê-la da lista/fila;
+                    // const indexMusicaTocando = listaMusicasContext?.findIndex(m => m.musicaId === musicaContext?.musicaId);
+                    // listaMusicasContext?.splice(indexMusicaTocando, 1);
+                    // ListaMusicasStorage.set(listaMusicasContext);
+                    // setListaMusicasContext(listaMusicasContext);
+                });
         }
 
         if (musicaContext?.musicaId > 0) {

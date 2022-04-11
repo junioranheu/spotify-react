@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import Coracao from '../../components/outros/coracao';
-import ImageWithFallback from '../../components/outros/imageWithFallback';
 import Reticencias from '../../components/svg/reticencias';
 import ImgCinza from '../../static/image/cinza.webp';
 import GifEqualiser from '../../static/image/equaliser.gif';
@@ -26,9 +25,16 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
 
     // Quando uma música é selecionada no MusicaContext;
     const [musicaContext] = useContext(MusicaContext); // Context da música;
+    const [imagemBanda, setImagemBanda] = useState(ImgCinza);
     useEffect(() => {
         // console.log(musicaContext);
         // console.log(musicaContext?.musicaId);
+
+        // Import dinâmico: capa da música reproduzindo;
+        if (foto) {
+            // console.log('Entrou aqui com o nome de ' + foto);
+            setImagemBanda(`https://spotifyapi.azurewebsites.net/Upload/capas/${foto}`);
+        }
     }, [musicaContext]);
 
     return (
@@ -54,11 +60,7 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
                 )}
 
                 <div className={Styles.divImg}>
-                    <ImageWithFallback
-                        objectFit='contain' width={40} height={40}
-                        src={`https://spotifyapi.azurewebsites.net/Upload/capas/${foto}`}
-                        fallbackSrc={ImgCinza}
-                    />
+                    <Image src={imagemBanda} width={40} height={40} alt='' />
                 </div>
 
                 <div className={Styles.divInfoMusica}>

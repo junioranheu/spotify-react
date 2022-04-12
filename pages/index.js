@@ -6,6 +6,8 @@ import Styles from '../styles/index.module.css';
 import StylesPlaylist from '../styles/playlists.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../utils/context/listaMusicasContext';
 import { UsuarioContext } from '../utils/context/usuarioContext';
+import CONSTANTS_MUSICAS from '../utils/data/constMusicas';
+import CONSTANTS_PLAYLISTS from '../utils/data/constPlaylists';
 import EmojiAleatorio from '../utils/outros/emojiAleatorio';
 import HorarioBrasilia from '../utils/outros/horarioBrasilia';
 
@@ -22,7 +24,8 @@ export default function Index({ playlists }) {
     }, []);
 
     async function renovarLista() {
-        const res = await fetch('https://spotifyapi.azurewebsites.net/api/Musicas/todos')
+        const url = CONSTANTS_MUSICAS.API_URL_GET_TODOS;
+        const res = await fetch(url)
         const musicas = await res.json();
 
         // Salvar no Context e no localStorage;
@@ -82,7 +85,8 @@ export default function Index({ playlists }) {
 }
 
 export async function getStaticProps() {
-    const res = await fetch('https://spotifyapi.azurewebsites.net/api/Playlists/todos')
+    const url = CONSTANTS_PLAYLISTS.API_URL_GET_TODOS;
+    const res = await fetch(url)
     const playlists = await res.json();
 
     return {

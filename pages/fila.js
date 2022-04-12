@@ -1,11 +1,12 @@
 import Router from 'next/router';
-import React, { Fragment, useContext, useEffect } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import MusicaRow from '../components/fila/musicaRow';
 import { Aviso } from '../components/outros/aviso';
 import Styles from '../styles/fila.module.css';
 import { ListaMusicasContext } from '../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../utils/context/musicaContext';
 import { UsuarioContext } from '../utils/context/usuarioContext';
+import CONSTANTS from '../utils/data/constMusicas';
 
 export default function Fila() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
@@ -38,7 +39,8 @@ export default function Fila() {
         const id = e.currentTarget.id;
         // console.log(id);
 
-        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
+        const url = `${CONSTANTS.API_URL_GET_POR_ID}/${id}`;
+        const res = await fetch(url)
         const musica = await res.json();
         // console.log(musica);
 

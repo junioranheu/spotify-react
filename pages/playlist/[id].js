@@ -11,6 +11,8 @@ import StylesPlaylist from '../../styles/playlistDetalhes.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
 import { UsuarioContext } from '../../utils/context/usuarioContext';
+import CONSTANTS_MUSICAS from '../../utils/data/constMusicas';
+import CONSTANTS_PLAYLISTS from '../../utils/data/constPlaylists';
 import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import FormatarSegundosComLegenda from '../../utils/outros/formatarSegundosComLegenda.js';
 
@@ -48,7 +50,7 @@ export default function Playlist({ isApiOk, playlist, musicasDaPlaylist, imgCapa
             setIsPaginaCarregada(true);
             NProgress.done();
         }
-
+ 
         processoInicial();
     }, []);
 
@@ -62,7 +64,8 @@ export default function Playlist({ isApiOk, playlist, musicasDaPlaylist, imgCapa
         const id = e.currentTarget.id;
         // console.log(id);
 
-        const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/${id}`)
+        const url = `${CONSTANTS_MUSICAS.API_URL_GET_POR_ID}/${id}`;
+        const res = await fetch(url)
         const musica = await res.json();
         // console.log(musica);
 
@@ -210,7 +213,8 @@ export async function getStaticPaths() {
     // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
 
     // Todas as playlists;
-    const res = await fetch('https://spotifyapi.azurewebsites.net/api/Playlists/todos');
+    const url = CONSTANTS_PLAYLISTS.API_URL_GET_TODOS;
+    const res = await fetch(url);
     const playlists = await res.json();
 
     // Gerar o "paths";
@@ -229,11 +233,13 @@ export async function getStaticProps(context) {
     let isApiOk = false;
 
     // Playlist;
-    const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Playlists/${id}`);
+    const url1 = `${CONSTANTS_PLAYLISTS.API_URL_GET_POR_ID}/${id}`;
+    const res = await fetch(url1);
     const playlist = await res.json();
 
     // Atualizar a fila do usuário com as músicas da playlist [id];
-    const res2 = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/porPlaylist/${id}`)
+    const url2 = `${CONSTANTS_MUSICAS.API_URL_POR_PLAYLIST}/${id}`;
+    const res2 = await fetch(url2)
     const musicasDaPlaylist = await res2.json();
 
     // Capa;

@@ -5,6 +5,7 @@ import { Aviso } from '../components/outros/aviso';
 import Botao from '../components/outros/botao.js';
 import Styles from '../styles/entrar.module.css';
 import { Auth, UsuarioContext } from '../utils/context/usuarioContext';
+import CONSTANTS from '../utils/data/constUsuarios';
 
 export default function Index() {
     const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
@@ -48,7 +49,10 @@ export default function Index() {
             return false;
         }
 
-        const resposta = await fetch(`https://spotifyapi.azurewebsites.net/api/Usuarios/verificarEmailSenha?nomeUsuarioSistema=${formData.usuario}&senha=${formData.senha}`);
+        const url = `${CONSTANTS.API_URL_GET_VERIFICAR_EMAIL_E_SENHA}?nomeUsuarioSistema=${formData.usuario}&senha=${formData.senha}`;
+        // console.log(url);
+
+        const resposta = await fetch(url);
         if (resposta.status !== 200) {
             NProgress.done();
             refSenha.current.value = '';
@@ -67,7 +71,7 @@ export default function Index() {
     };
 
     async function getToken(nomeUsuario, senha, usuario) {
-        const url = `https://spotifyapi.azurewebsites.net/api/Usuarios/autenticar?nomeUsuarioSistema=${nomeUsuario}&senha=${senha}`;
+        const url = `${CONSTANTS.API_URL_GET_VERIFICAR_EMAIL_E_SENHA}?nomeUsuarioSistema=${nomeUsuario}&senha=${senha}`;
 
         // Gerar token;
         const resposta = await fetch(url, {

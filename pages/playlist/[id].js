@@ -78,17 +78,19 @@ export default function Playlist({ isApiOk, playlist, musicasDaPlaylist, imgCapa
     function concatenarBandas(lista) {
         let bandas = '';
         const limite = 3;
+        let contador = 0;
         let isPassouLimite = false;
         lista.forEach(function (playlist, index) {
             // console.log(playlist);
 
-            if (index <= (limite - 1)) {
+            if (contador <= (limite - 1)) {
                 const banda = playlist.musicas.musicasBandas[0]?.bandas.nome;
                 // console.log(banda);
 
                 // Se a banda não estiver na string "bandas", adicione-a;
                 if (!bandas.includes(banda)) {
                     bandas = bandas + `, ${banda}`;
+                    contador++;
                 }
             } else {
                 isPassouLimite = true;

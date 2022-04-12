@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import MusicaRow from '../../components/fila/musicaRow';
@@ -15,79 +14,43 @@ import { UsuarioContext } from '../../utils/context/usuarioContext';
 import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import FormatarSegundosComLegenda from '../../utils/outros/formatarSegundosComLegenda.js';
 
-export default function Playlist() {
-    const router = useRouter();
-    const [playlistId, setPlaylistId] = useState(0);
-
-    const [isAuth, setIsAuth] = useContext(UsuarioContext); // Contexto do usuário;
+export default function Playlist({ isApiOk, playlist, musicasDaPlaylist, imgCapa }) {
+    const [isAuth] = useContext(UsuarioContext); // Contexto do usuário;
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
     const [isPaginaCarregada, setIsPaginaCarregada] = useState(false);
     const [isErro, setIsErro] = useState(false);
-    const [playlist, setPlaylist] = useState({});
     const [concatBandas, setConcatBandas] = useState('');
     const [duracaoPlaylist, setDuracaoPlaylist] = useState('');
-    const [isApiOk, setIsApiOk] = useState(null);
-    const [imgCapa, setImgCapa] = useState(null);
     useEffect(() => {
-        NProgress.start();
+        async function processoInicial() {
+            NProgress.start();
 
-        async function fetchPlaylist(id) {
-            try {
-                const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Playlists/${id}`);
-                // console.log(res.status);
+            // Título da página;
+            document.title = `Spotify — ${playlist.nome}`;
 
-                if (res.status === 200) {
-                    setIsApiOk(true);
+            // Setar o valor das bandas da playlist em setConcatBandas();
+            // Setar o tempo todal da playlist;
+            if (playlist.playlistsMusicas) {
+                const c = concatenarBandas(playlist.playlistsMusicas);
+                setConcatBandas(c);
 
-                    const playlist = await res.json();
-                    setPlaylist(playlist);
-                    // console.log(playlist);
-
-                    // Título da página;
-                    document.title = `Spotify — ${playlist.nome}`;
-
-                    // Setar o valor das bandas da playlist em setConcatBandas();
-                    // Setar o tempo todal da playlist;
-                    if (playlist.playlistsMusicas) {
-                        const c = concatenarBandas(playlist.playlistsMusicas);
-                        setConcatBandas(c);
-
-                        const d = somarDuracaoTotal(playlist.playlistsMusicas);
-                        setDuracaoPlaylist(d);
-                    }
-
-                    // Atualizar a fila do usuário com as músicas da playlist [id];
-                    const res2 = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/porPlaylist/${id}`)
-                    const musicasDaPlaylist = await res2.json();
-                    // console.log(musicasDaPlaylist);
-                    ListaMusicasStorage.set(musicasDaPlaylist);
-                    setListaMusicasContext(musicasDaPlaylist);
-
-                    // Set imagem;
-                    setImgCapa(`https://spotifyapi.azurewebsites.net/Upload/playlists/${playlist.foto}`);
-
-                    // Página carregada por completo;
-                    setIsPaginaCarregada(true);
-                    NProgress.done();
-                } else {
-                    setIsApiOk(false);
-                }
-            } catch (error) {
-                setIsErro(true);
-                console.log('Houve algum erro na requisição da API');
+                const d = somarDuracaoTotal(playlist.playlistsMusicas);
+                setDuracaoPlaylist(d);
             }
+
+            // Atualizar a fila do usuário com as músicas da playlist [id];
+            ListaMusicasStorage.set(musicasDaPlaylist);
+            setListaMusicasContext(musicasDaPlaylist);
+
+            // Página carregada por completo;
+            setIsPaginaCarregada(true);
+            NProgress.done();
         }
 
-        if (router.query.id) {
-            // Setar o ID da URL;
-            setPlaylistId(router.query.id);
-
-            // Buscar playlist;
-            fetchPlaylist(router.query.id);
-        }
-    }, [router]);
+        processoInicial();
+    }, []);
 
     async function setarMusica(e) {
         // Se o usuário estiver deslogado;
@@ -243,3 +206,48 @@ export default function Playlist() {
     )
 }
 
+export async function getStaticPaths() {
+    // Tutorial de getStaticPaths: https://www.youtube.com/watch?v=V2T_bkOs0xA&ab_channel=FilipeDeschamps
+
+    // Todas as playlists;
+    const res = await fetch('https://spotifyapi.azurewebsites.net/api/Playlists/todos');
+    const playlists = await res.json();
+
+    // Gerar o "paths";
+    const paths = playlists.map(p => ({
+        params: { id: p.playlistId.toString() }
+    }));
+
+    return {
+        paths,
+        fallback: false
+    }
+}
+
+export async function getStaticProps(context) {
+    const id = context.params.id;
+    let isApiOk = false;
+
+    // Playlist;
+    const res = await fetch(`https://spotifyapi.azurewebsites.net/api/Playlists/${id}`);
+    const playlist = await res.json();
+
+    // Atualizar a fila do usuário com as músicas da playlist [id];
+    const res2 = await fetch(`https://spotifyapi.azurewebsites.net/api/Musicas/porPlaylist/${id}`)
+    const musicasDaPlaylist = await res2.json();
+
+    // Capa;
+    const imgCapa = `https://spotifyapi.azurewebsites.net/Upload/playlists/${playlist.foto}`;
+
+    // isApiOk;
+    isApiOk = true;
+
+    return {
+        props: {
+            isApiOk,
+            playlist,
+            musicasDaPlaylist,
+            imgCapa
+        },
+    }
+}

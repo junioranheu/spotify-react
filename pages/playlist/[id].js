@@ -13,6 +13,7 @@ import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext'
 import { UsuarioContext } from '../../utils/context/usuarioContext';
 import CONSTANTS_MUSICAS from '../../utils/data/constMusicas';
 import CONSTANTS_PLAYLISTS from '../../utils/data/constPlaylists';
+import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import EmojiAleatorio from '../../utils/outros/emojiAleatorio';
 import FormatarSegundosComLegenda from '../../utils/outros/formatarSegundosComLegenda.js';
 
@@ -243,7 +244,7 @@ export async function getStaticProps(context) {
     const musicasDaPlaylist = await res2.json();
 
     // Capa;
-    const imgCapa = `https://spotifyapi.azurewebsites.net/Upload/playlists/${playlist.foto}`;
+    const imgCapa = `${CONSTANTS_UPLOAD.API_URL_GET_PLAYLIST}/${playlist.foto}`;
 
     // isApiOk;
     isApiOk = true;

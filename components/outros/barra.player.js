@@ -6,6 +6,7 @@ import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
 import { ListaMusicasContext, ListaMusicasStorage } from '../../utils/context/listaMusicasContext';
 import { MusicaContext, MusicaStorage } from '../../utils/context/musicaContext';
+import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import NumeroAleatorio from '../../utils/outros/numeroAleatorio';
 import Aleatorio from '../svg/barra.player/aleatorio';
@@ -93,7 +94,8 @@ export default function BarraPlayer() {
 
         async function importDinamico() {
             // Importar música dinamicamente;
-            const url = `https://spotifyapi.azurewebsites.net/Upload/music/${musicaContext.musicaId}.mp3`;
+
+            const url = `${CONSTANTS_UPLOAD.API_URL_GET_MUSIC}/${musicaContext.musicaId}.mp3`;
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -130,7 +132,7 @@ export default function BarraPlayer() {
     let ImagemBanda = '';
     try {
         const foto = musicaContext.musicasBandas[0].bandas.foto;
-        ImagemBanda = `https://spotifyapi.azurewebsites.net/Upload/capas/${foto}`
+        ImagemBanda = `${CONSTANTS_UPLOAD.API_URL_GET_CAPA}/${foto}`;
         // console.log(ImagemBanda);
     } catch (err) {
         console.log(err);

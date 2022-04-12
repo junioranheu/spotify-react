@@ -7,6 +7,7 @@ import GifEqualiser from '../../static/image/equaliser.gif';
 import Styles from '../../styles/fila.module.css';
 import { IsPlayingContext } from '../../utils/context/isPlayingContext';
 import { MusicaContext } from '../../utils/context/musicaContext';
+import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import AvisoFuncaoNaoDesenvolvida from '../../utils/outros/avisoFuncaoNaoDesenvolvida';
 import FormatarSegundos from '../../utils/outros/formatarSegundos.js';
 import BotaoPlay from '../svg/botaoPlay';
@@ -33,7 +34,8 @@ export default function MusicaRow({ i, id, foto, titulo, banda, album, tempo, se
         // Import dinâmico: capa da música reproduzindo;
         if (foto) {
             // console.log('Entrou aqui com o nome de ' + foto);
-            setImagemBanda(`https://spotifyapi.azurewebsites.net/Upload/capas/${foto}`);
+            const img = `${CONSTANTS_UPLOAD.API_URL_GET_CAPA}/${foto}`;
+            setImagemBanda(img);
         }
     }, [musicaContext]);
 

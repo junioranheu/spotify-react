@@ -3,6 +3,7 @@ import React from 'react';
 import ImageWithFallback from '../../components/outros/imageWithFallback';
 import ImgCinza from '../../static/image/cinza.webp';
 import Styles from '../../styles/playlists.module.css';
+import CONSTANTS_UPLOAD from '../../utils/data/constUpload';
 import BotaoPlay from '../svg/botaoPlay';
 
 export default function Playlists({ playlist }) {
@@ -14,7 +15,7 @@ export default function Playlists({ playlist }) {
                 <div className={Styles.divThumbnail}>
                     <ImageWithFallback
                         objectFit='contain' width={250} height={250}
-                        src={`https://spotifyapi.azurewebsites.net/Upload/playlists/${playlist.foto}`}
+                        src={`${CONSTANTS_UPLOAD.API_URL_GET_PLAYLIST}/${playlist.foto}`}
                         fallbackSrc={ImgCinza}
                     />
                 </div>

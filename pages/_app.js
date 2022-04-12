@@ -1,5 +1,5 @@
 import 'nprogress/nprogress.css';
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Aviso } from '../components/outros/aviso';
@@ -29,29 +29,31 @@ export default function App({ Component, pageProps }) {
     }, []);
 
     return (
-        <UsuarioProvider>
-            <ListaMusicasProvider>
-                <MusicaProvider>
-                    <IsPlayingProvider>
-                        <ToastContainer className='semHighlight' />
+        <Fragment>
+            <UsuarioProvider>
+                <ListaMusicasProvider>
+                    <MusicaProvider>
+                        <IsPlayingProvider>
+                            <ToastContainer className='semHighlight' />
 
-                        <section className={`${Styles.container} semHighlight`}>
-                            <div className={Styles.sideBarRemoverSeWidthPequeno}>
-                                <Sidebar />
-                            </div>
+                            <section className={`${Styles.container} semHighlight`}>
+                                <div className={Styles.sideBarRemoverSeWidthPequeno}>
+                                    <Sidebar />
+                                </div>
 
-                            {/* Navbar + Views */}
-                            <div className={Styles.containerInner}>
-                                <Navbar />
-                                <Component {...pageProps} />
-                            </div>
+                                {/* Navbar + Views */}
+                                <div className={Styles.containerInner}>
+                                    <Navbar />
+                                    <Component {...pageProps} />
+                                </div>
 
-                            <Barra />
-                        </section>
-                    </IsPlayingProvider>
-                </MusicaProvider>
-            </ListaMusicasProvider>
-        </UsuarioProvider >
+                                <Barra />
+                            </section>
+                        </IsPlayingProvider>
+                    </MusicaProvider>
+                </ListaMusicasProvider>
+            </UsuarioProvider >
+        </Fragment>
     )
 }
 

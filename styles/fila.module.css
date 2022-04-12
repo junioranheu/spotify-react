@@ -143,6 +143,12 @@
     fill: var(--verde) !important;
 }
 
+/* =-=-=-=-=-=-=-=-=-=-=-=- Gif =-=-=-=-=-=-=-=-=-=-=-=- */
+.divImgWaiting img {
+    /* background-color: pink; */
+    border-radius: 10px;
+}
+
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {
@@ -170,6 +176,13 @@
 @media (max-width:1025px) {
     .divImg {
         display: none;
+    }
+
+    .divImgWaiting {
+        /* background-color: pink; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 

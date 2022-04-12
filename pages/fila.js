@@ -12,6 +12,7 @@ export default function Fila() {
     const [listaMusicasContext, setListaMusicasContext] = useContext(ListaMusicasContext); // Context da lista de músicas;
     const [musicaContext, setMusicaContext] = useContext(MusicaContext); // Context da música;
 
+    const [isApiOk, setIsApiOk] = useState(null);
     useEffect(() => {
         // Título da página;
         document.title = 'Spotify — Fila de reprodução';
@@ -111,6 +112,6 @@ export default function Fila() {
                     </div>
                 </section>
             )}
-        </Fragment >
+        </Fragment>
     )
 }

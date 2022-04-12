@@ -60,24 +60,12 @@
     background-color: var(--verde);
 }
 
-.divImgWaiting img {
-    /* background-color: pink; */
-    border-radius: 10px;
-}
-
 /* =-=-=-=-=-=-=-=-=-=-=-=- Media queries =-=-=-=-=-=-=-=-=-=-=-=- */
 /* hi-res laptops and desktops */
 @media (max-width:1281px) {}
 
 /* big landscape tablets, laptops, and desktops */
-@media (max-width:1025px) {
-    .divImgWaiting {
-        /* background-color: pink; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
+@media (max-width:1025px) {}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {}

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import NProgress from 'nprogress';
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import { Aviso } from '../../components/outros/aviso';
 import Styles from '../../styles/barra.player.module.css';
@@ -94,6 +95,7 @@ export default function BarraPlayer() {
 
         async function importDinamico() {
             // Importar música dinamicamente;
+            NProgress.start();
 
             const url = `${CONSTANTS_UPLOAD.API_URL_GET_MUSIC}/${musicaContext.musicaId}.mp3`;
             fetch(url, {
@@ -120,6 +122,7 @@ export default function BarraPlayer() {
                     listaMusicasContext?.splice(indexMusicaTocando, 1);
                     ListaMusicasStorage.set(listaMusicasContext);
                     setListaMusicasContext(listaMusicasContext);
+                    NProgress.done();
                 });
         }
 

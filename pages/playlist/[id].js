@@ -258,5 +258,6 @@ export async function getStaticProps(context) {
             musicasDaPlaylist,
             imgCapa
         },
+        // revalidate: 10 // segundos
     }
 }

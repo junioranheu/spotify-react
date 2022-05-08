@@ -71,8 +71,8 @@ export default function Index() {
     };
 
     async function getToken(nomeUsuario, senha, usuario) {
-        const url = `${CONSTANTS.API_URL_GET_VERIFICAR_EMAIL_E_SENHA}?nomeUsuarioSistema=${nomeUsuario}&senha=${senha}`;
-
+        const url = `${CONSTANTS.API_URL_GET_AUTENTICAR}?nomeUsuarioSistema=${nomeUsuario}&senha=${senha}`;
+ 
         // Gerar token;
         const resposta = await fetch(url, {
             headers: {

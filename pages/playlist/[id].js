@@ -51,7 +51,7 @@ export default function Playlist({ isApiOk, playlist, musicasDaPlaylist, imgCapa
             setIsPaginaCarregada(true);
             NProgress.done();
         }
- 
+
         processoInicial();
     }, []);
 
